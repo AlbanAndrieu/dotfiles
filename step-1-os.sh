@@ -1,0 +1,1 @@
+/workspace/users/albandrieu30/ansible-nabla/roles/albanandrieu.shell/files/step-1-os.sh

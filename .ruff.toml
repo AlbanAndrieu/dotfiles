@@ -1,0 +1,41 @@
+exclude = [
+    ".git",
+    "__pycache__",
+    "build",
+    "dist",
+    "docs",
+    ".eggs",
+    ".tox",
+    ".venv",
+    ".direnv",
+    "noxfile.py",
+]
+
+line-length = 88
+
+[lint]
+ignore = ["E501", "E203", "RUF012"]
+select = [
+    "B",
+    "C",
+    "E",
+    "F",
+    "W",
+    "S",
+    "A",
+    "LOG",
+    "RUF",
+    "PLC",
+    "PLE",
+    "PLW",
+    "C90"
+]
+
+[lint.mccabe]
+max-complexity = 10
+
+[lint.per-file-ignores]
+"tests/*" = ["S101"]
+
+[format]
+line-ending = "lf"

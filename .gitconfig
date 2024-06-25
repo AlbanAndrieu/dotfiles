@@ -133,6 +133,7 @@
 
 	# Detect copies as well as renames.
 	renames = copies
+	tool = meld
 
 [diff "bin"]
 
@@ -181,3 +182,10 @@
 [init]
 
 	defaultBranch = main
+[user]
+	name = Andrieu, Alban
+	email = alban.andrieu@free.fr
+[difftool]
+	prompt = false
+[difftool "meld"]
+	path = /usr/bin/meld
