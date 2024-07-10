@@ -75,8 +75,12 @@
 
 	# Show most recently changed branches first.
 	sort = -committerdate
+	autosetuprebase = always
+	autosetupmerge = always
 
 [core]
+
+	autocrlf = input
 
 	# Use custom `.gitignore` and `.gitattributes`.
 	excludesfile = ~/.gitignore
@@ -98,6 +102,23 @@
 	# Speed up commands involving untracked files such as `git status`.
 	# https://git-scm.com/docs/git-update-index#_untracked_cache
 	untrackedCache = true
+
+	editor = nano
+	
+	pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true    # use n and N to move between diff sections
+
+    # delta detects terminal colors automatically; set one of these to disable auto-detection
+    # dark = true
+    # light = true
+    
+[fetch]
+	prune = true
 
 [color]
 
@@ -140,15 +161,22 @@
 	# Use `hexdump` to diff binary files.
 	textconv = hexdump -v -C
 
+[difftool]
+	prompt = false
+
+[difftool "meld"]
+	path = /usr/bin/meld
+
 [help]
 
 	# Automatically correct and execute mistyped commands.
-	autocorrect = 1
+	autocorrect = 8
 
 [merge]
 
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
+	tool = meld
 
 [push]
 
@@ -156,6 +184,8 @@
 	default = simple
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
+	default = current
+	autoSetupRemote = true
 
 # URL shorthands
 
@@ -182,10 +212,18 @@
 [init]
 
 	defaultBranch = main
+	templateDir = /home/albandrieu/.git-template
+
+[safe]
+	directory = /workspace/users/albandrieu30/follow/
+
 [user]
-	name = Andrieu, Alban
+	# name = Andrieu, Alban
+	name = AlbanAndrieu
 	email = alban.andrieu@free.fr
-[difftool]
-	prompt = false
-[difftool "meld"]
-	path = /usr/bin/meld
+	signingkey = F4C4B79A80826A5E5ADAD2C8B12DECD437E9E1C8
+
+[credential]
+	helper = store
+[pull]
+	rebase = true

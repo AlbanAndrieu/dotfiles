@@ -9,7 +9,8 @@ Pictures/
 .asdf/
 .Microsoft/
 .pki/
-.ssh/
+.ssh/*
+.gnupg/*
 .yubico/
 
 anaconda3/
@@ -20,8 +21,8 @@ greenbone-community-container/
 snap/
 src/
 
-dotfiles/
-w/
+dotfiles/*
+w/*
 
 # Sensitive files
 
@@ -74,7 +75,7 @@ General-20240426.dbp
 env/scripts/jenkins/*.nse
 env/scripts/jenkins/tls.lua
 
-scripts/
+# scripts/
 
 *.csv
 *.ipynb_checkpoints
