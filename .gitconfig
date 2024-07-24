@@ -186,6 +186,7 @@
 	followTags = true
 	default = current
 	autoSetupRemote = true
+	autoSetupRemote = true
 
 # URL shorthands
 

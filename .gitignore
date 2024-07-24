@@ -22,7 +22,7 @@ snap/
 src/
 
 dotfiles/*
-w/*
+# w/*
 
 # Sensitive files
 
@@ -290,7 +290,7 @@ celerybeat-schedule
 
 # Environments
 .env
-env/
+# env/
 .direnv/
 .venv/
 venv/
