@@ -187,6 +187,8 @@
 	default = current
 	autoSetupRemote = true
 	autoSetupRemote = true
+	default = current
+	autoSetupRemote = true
 
 # URL shorthands
 
@@ -219,12 +221,11 @@
 	directory = /workspace/users/albandrieu30/follow/
 
 [user]
-	# name = Andrieu, Alban
-	name = AlbanAndrieu
 	email = alban.andrieu@free.fr
+	name = AlbanAndrieu
 	signingkey = F4C4B79A80826A5E5ADAD2C8B12DECD437E9E1C8
-
-[credential]
-	helper = store
 [pull]
 	rebase = true
+[credential]
+	helper = store
+

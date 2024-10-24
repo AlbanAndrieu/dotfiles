@@ -113,11 +113,6 @@ fi
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -158,10 +153,6 @@ if [ -f ${WORKSPACE_ENV}/home/dev.env.sh ]; then
   . ${WORKSPACE_ENV}/home/dev.env.sh
 fi
 
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
 
 # If not running interactively, don't do anything
 case $- in
@@ -169,8 +160,10 @@ case $- in
     *) return;;
 esac
 
+# source ~/.local/share/omakub/defaults/bash/rc
+
 # Path to the bash it configuration
-export BASH_IT="/workspace/users/albandrieu30/bash-it"
+export BASH_IT="${WORKSPACE}/bash-it"
 
 # Lock and Load a custom theme file.
 # Leave empty to disable theming.
@@ -245,5 +238,3 @@ export SCM_CHECK=true
 
 # Load Bash It
 source "$BASH_IT"/bash_it.sh
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

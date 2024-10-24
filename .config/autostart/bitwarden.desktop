@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=/snap/bin/bitwarden
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=bitwarden
+Name=bitwarden
+Comment[en_US]=bitwarden
+Comment=bitwarden
