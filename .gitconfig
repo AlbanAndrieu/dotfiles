@@ -76,7 +76,6 @@
 	# Show most recently changed branches first.
 	sort = -committerdate
 	autosetuprebase = always
-	autosetupmerge = always
 
 [core]
 
@@ -184,10 +183,8 @@
 	default = simple
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
-	default = current
-	autoSetupRemote = true
-	autoSetupRemote = true
-	default = current
+	# default = current
+	default = simple
 	autoSetupRemote = true
 
 # URL shorthands

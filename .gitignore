@@ -12,6 +12,7 @@ Pictures/
 .ssh/*
 .gnupg/*
 .yubico/
+.aicommits
 
 anaconda3/
 

@@ -238,3 +238,5 @@ export SCM_CHECK=true
 
 # Load Bash It
 source "$BASH_IT"/bash_it.sh
+
+export NODE_TLS_REJECT_UNAUTHORIZED=0
