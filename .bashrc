@@ -240,3 +240,5 @@ export SCM_CHECK=true
 source "$BASH_IT"/bash_it.sh
 
 export NODE_TLS_REJECT_UNAUTHORIZED=0
+
+[[ -s "/home/albanandrieu/.gvm/scripts/gvm" ]] && source "/home/albanandrieu/.gvm/scripts/gvm"
