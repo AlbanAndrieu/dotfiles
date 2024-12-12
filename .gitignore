@@ -5,6 +5,9 @@ Downloads/
 Dropbox/
 Pictures/
 
+.vim/
+.config/
+
 .aws/
 .asdf/
 .Microsoft/
@@ -63,7 +66,7 @@ aws_credentials
 
 .vnc/passwd
 
-	
+
 # Backup
 
 .*-2024-06-20

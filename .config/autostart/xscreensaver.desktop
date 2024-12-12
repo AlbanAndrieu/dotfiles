@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=/bin/xscreensaver -nosplash
+Exec=sleep 500 && /bin/xscreensaver -nosplash
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
