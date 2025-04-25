@@ -103,7 +103,7 @@
 	untrackedCache = true
 
 	editor = nano
-	
+
 	pager = delta
 
 [interactive]
@@ -115,7 +115,7 @@
     # delta detects terminal colors automatically; set one of these to disable auto-detection
     # dark = true
     # light = true
-    
+
 [fetch]
 	prune = true
 
@@ -216,6 +216,8 @@
 
 [safe]
 	directory = /workspace/users/albandrieu30/follow/
+	directory = /media/www/nabla-site-apache
+	directory = /media/www/nabla-servers-bower-sample
 
 [user]
 	email = alban.andrieu@free.fr
@@ -225,4 +227,3 @@
 	rebase = true
 [credential]
 	helper = store
-

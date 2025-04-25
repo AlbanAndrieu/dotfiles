@@ -240,6 +240,10 @@ export SCM_CHECK=true
 # Load Bash It
 source "$BASH_IT"/bash_it.sh
 
+function check_dockerignore(){
+	rsync -avn . /dev/shm --exclude-from "$1"
+}
+
 export NODE_TLS_REJECT_UNAUTHORIZED=0
 
 [[ -s "${HOME}/.gvm/scripts/gvm" ]] && source "${HOME}/.gvm/scripts/gvm"
@@ -253,3 +257,4 @@ export GPG_TTY=$(tty)
 export PATH="$HOME/.poetry/bin:$PATH"
 # . "$HOME/.cargo/env"
 
+. "$HOME/.grit/bin/env"
