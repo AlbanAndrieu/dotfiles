@@ -252,7 +252,7 @@ export NODE_TLS_REJECT_UNAUTHORIZED=0
 
 [[ -s "${HOME}/.gvm/scripts/gvm" ]] && source "${HOME}/.gvm/scripts/gvm"
 
-[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh # This loads NVM
+[[ -s "$HOME/.nvm/nvm.sh" ]] && . "$HOME/.nvm/nvm.sh" # This loads NVM
 
 export PATH="$PATH:/opt/mssql-tools/bin"
 export QT_STYLE_OVERRIDE=kvantum

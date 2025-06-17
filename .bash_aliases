@@ -234,6 +234,15 @@ alias setWorkspace="source ${WORKSPACE_ENV}/scripts/setWorkspace.sh"
 alias phpstan='docker run -v $PWD:/app --rm ghcr.io/phpstan/phpstan'
 alias lzd='docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v /home/albanandrieu/.config/:/.config/jesseduffield/lazydocker lazyteam/lazydocker'
 
+# Infrastructure tools
+alias tf='terraform'
+alias mcp-gen='mcp generate'
+
+# Cloud CLI shortcuts
+alias awsq='aws q'
+alias azai='az ai'
+alias gcp-ai='gcloud ai'
+
 # alias tctl="docker exec temporal-admin-tools tctl"
 # BEGIN ANSIBLE MANAGED BLOCK profile 
 # openvpn

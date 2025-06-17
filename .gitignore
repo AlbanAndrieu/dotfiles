@@ -23,7 +23,7 @@ go/
 
 greenbone-community-container/
 snap/
-src/
+# src/
 
 dotfiles/*
 # w/*
