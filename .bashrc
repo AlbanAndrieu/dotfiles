@@ -1,3 +1,5 @@
+# Amazon Q pre block. Keep at the top of this file.
+[[ -f "${HOME}/.local/share/amazon-q/shell/bashrc.pre.bash" ]] && builtin source "${HOME}/.local/share/amazon-q/shell/bashrc.pre.bash"
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -240,6 +242,8 @@ export SCM_CHECK=true
 # Load Bash It
 source "$BASH_IT"/bash_it.sh
 
+source <(register-python-argcomplete checkov)
+
 function check_dockerignore(){
 	rsync -avn . /dev/shm --exclude-from "$1"
 }
@@ -258,3 +262,30 @@ export PATH="$HOME/.poetry/bin:$PATH"
 # . "$HOME/.cargo/env"
 
 . "$HOME/.grit/bin/env"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/albandrieu/google-cloud-sdk/path.bash.inc' ]; then . '/home/albandrieu/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/albandrieu/google-cloud-sdk/completion.bash.inc' ]; then . '/home/albandrieu/google-cloud-sdk/completion.bash.inc'; fi
+
+# # Cloud CLI shortcuts
+# alias awsq='aws q'
+# alias azai='az ai'
+# alias gcp-ai='gcloud ai'
+#
+# # Multi-cloud deployment function
+# deploy-everywhere() {
+#     local config_file=$1
+#     echo "🚀 Deploying to Azure..."
+#     wrapai deploy -f $config_file --provider azure
+#     echo "🚀 Deploying to GCP..."
+#     wrapai deploy -f $config_file --provider gcp
+#     echo "🚀 Deploying to AWS..."
+#     wrapai deploy -f $config_file --provider aws
+# }
+
+# Amazon Q post block. Keep at the bottom of this file.
+[[ -f "${HOME}/.local/share/amazon-q/shell/bashrc.post.bash" ]] && builtin source "${HOME}/.local/share/amazon-q/shell/bashrc.post.bash"
+
+eval "$(starship init bash)"
