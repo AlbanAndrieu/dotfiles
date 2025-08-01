@@ -218,6 +218,7 @@
 	directory = /workspace/users/albandrieu30/follow/
 	directory = /media/www/nabla-site-apache
 	directory = /media/www/nabla-servers-bower-sample
+	directory = /workspace/users/albandrieu30/jm/fastapi-sample
 
 [user]
 	email = alban.andrieu@free.fr
