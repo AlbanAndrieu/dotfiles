@@ -218,6 +218,9 @@
 	directory = /workspace/users/albandrieu30/follow/
 	directory = /media/www/nabla-site-apache
 	directory = /media/www/nabla-servers-bower-sample
+	directory = /workspace/users/albandrieu30/nabla-site-apache
+	directory = /workspace/users/albandrieu30/nabla-servers-bower-sample
+	directory = /workspace/users/albandrieu30/nabla-hooks
 	directory = /workspace/users/albandrieu30/jm/fastapi-sample
 
 [user]
