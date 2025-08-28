@@ -1,0 +1,11 @@
+[http-basic.gitlab]
+username = "gitlab-ci-token"
+
+[http-basic.gitlab-llm]
+username = "read_api_for_CI_llm_group"
+
+[http-basic.gitlab-ds]
+username = "__token__"
+
+[http-basic.gitlab-evaluation]
+username = "__token__"
