@@ -231,3 +231,6 @@
 	rebase = true
 [credential]
 	helper = store
+
+# remote "origin"]
+# 	glab-resolved = base
