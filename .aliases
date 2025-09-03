@@ -16,6 +16,13 @@ alias p="cd ~/projects"
 alias g="git"
 alias gco="oco --fgm --no-verify"
 
+alias cdr="cd ~/w"
+alias cdj="cd ~/w/jm"
+alias cdi="cd ~/w/jm/infra"
+alias cde="cd ${PROJECT_DEV}/${PROJECT_EXTRACTION}"
+alias cdw="cd ${PROJECT_DEV}"
+alias cdc="cd ${PROJECT_DEV}/env/config"
+
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color"
@@ -149,3 +156,5 @@ alias reload="exec ${SHELL} -l"
 alias path='echo -e ${PATH//:/\\n}'
 
 alias mrsort="gawk -v RS=\"\" '{ gsub(\"\n\", \"###\"); print }' .mrconfig | sort -f | gawk -v ORS=\"\n\n\" '{ gsub(\"###\", \"\n\"); print }' > .mrconfig.tmp && mv .mrconfig.tmp .mrconfig"
+
+alias update="${HOME}/w/nabla/env/linux/run-git-update.sh -gc ./"

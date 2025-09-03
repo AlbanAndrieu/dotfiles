@@ -49,4 +49,7 @@ complete -W "NSGlobalDomain" defaults;
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
 
-. "$HOME/.grit/bin/env"
+# ~/.bash_profile
+if [ -f ~/.bashrc ]; then
+    source ~/.bashrc
+fi

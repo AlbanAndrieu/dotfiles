@@ -3,6 +3,8 @@
 # Alias
 ###
 
+# WARNING : .bash_alias is not used by Warp but .alias yes
+
 # Formatting constants
 export BOLD=`tput bold`
 export UNDERLINE_ON=`tput smul`
