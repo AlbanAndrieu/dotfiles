@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "composio_composio": {
+      "url": "https://mcp.composio.dev/composio/server/95939cc7-318a-494c-b0f1-8928e43aaa8c?transport=sse&useComposioHelperActions=true"
+    },
+    "fastapi_mcp": {
+      "url": "http://localhost:8001"
+    },
+    "GitLab": {
+      "command": "npx",
+      "args": [
+        "mcp-remote",
+        "https://gitlab.com/api/v4/mcp",
+        "--static-oauth-client-metadata",
+        "{\"scope\": \"mcp\"}"
+      ]
+    }
+  }
+}

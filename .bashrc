@@ -177,11 +177,11 @@ if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
   
   # Amazon Q post block. Keep at the bottom of this file.
   [[ -f "${HOME}/.local/share/amazon-q/shell/bashrc.post.bash" ]] && builtin source "${HOME}/.local/share/amazon-q/shell/bashrc.post.bash"
-  
-  eval "$(starship init bash)"
 
 fi
 
+eval "$(starship init bash)"
+  
 source <(register-python-argcomplete checkov)
 
 function check_dockerignore(){
