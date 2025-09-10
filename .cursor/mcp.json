@@ -4,7 +4,7 @@
       "url": "https://mcp.composio.dev/composio/server/95939cc7-318a-494c-b0f1-8928e43aaa8c?transport=sse&useComposioHelperActions=true"
     },
     "fastapi_mcp": {
-      "url": "http://localhost:8001"
+      "url": "http://localhost:8001/mcp"
     },
     "GitLab": {
       "command": "npx",
