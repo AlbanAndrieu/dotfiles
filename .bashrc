@@ -160,9 +160,9 @@ export WORKSPACE_ENV=/workspace/users/${PROJECT_USER}${PROJECT_VERSION}/nabla/en
 
 eval "$(direnv hook bash)"
 
-if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
+if [[ $TERM_PROGRAM != "WarpTerminal" && $TERM_PROGRAM != "vscode" ]]; then
   # Unsupported plugin/prompt code here, i.e.
- 
+
   if [ -f ${WORKSPACE_ENV}/home/dev.env.sh ]; then
     echo ${WORKSPACE_ENV}/home/dev.env.sh
     . ${WORKSPACE_ENV}/home/dev.env.sh
@@ -172,16 +172,16 @@ if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
 
   # The next line updates PATH for the Google Cloud SDK.
   if [ -f '/home/albandrieu/google-cloud-sdk/path.bash.inc' ]; then . '/home/albandrieu/google-cloud-sdk/path.bash.inc'; fi
-  
+
   # The next line enables shell command completion for gcloud.
-  
+
   # Amazon Q post block. Keep at the bottom of this file.
   [[ -f "${HOME}/.local/share/amazon-q/shell/bashrc.post.bash" ]] && builtin source "${HOME}/.local/share/amazon-q/shell/bashrc.post.bash"
 
 fi
 
 eval "$(starship init bash)"
-  
+
 source <(register-python-argcomplete checkov)
 
 function check_dockerignore(){
