@@ -1,3 +1,7 @@
+
+# Extend the `pyproject.toml` file in the parent directory.
+extend = "./pyproject.toml"
+
 exclude = [
     ".git",
     "__pycache__",
@@ -11,7 +15,8 @@ exclude = [
     "noxfile.py",
 ]
 
-line-length = 88
+# But use a different line length.
+line-length = 180
 
 [lint]
 ignore = ["E501", "E203", "RUF012"]
@@ -36,6 +41,7 @@ max-complexity = 10
 
 [lint.per-file-ignores]
 "tests/*" = ["S101"]
+"nabla/tools/*" = ["S602", "S607"]
 
 [format]
 line-ending = "lf"
