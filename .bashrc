@@ -71,9 +71,9 @@ fi
 # GIT specific
 source ~/.git-prompt.sh
 if [ "$color_prompt" = yes ]; then
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\03[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    #PS1='\[\e[1;32m\][\u\[\e[m\]@\[\e[1;33m\]\h\[\e[1;34m\] \w]\[\e[1;36m\] $(__git_ps1 " (%s)") \$\[\e[1;37m\] '
-    PS1='\[\e[1;32m\][\u\[\e[m\]@\[\e[1;33m\]\h\[\e[1;34m\]:\w]\[\e[1;36m\]'
+  #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\03[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+  #PS1='\[\e[1;32m\][\u\[\e[m\]@\[\e[1;33m\]\h\[\e[1;34m\] \w]\[\e[1;36m\] $(__git_ps1 " (%s)") \$\[\e[1;37m\] '
+  PS1='\[\e[1;32m\][\u\[\e[m\]@\[\e[1;33m\]\h\[\e[1;34m\]:\w]\[\e[1;36m\]'
 else
   PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -118,8 +118,6 @@ fi
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-
-
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
@@ -128,7 +126,7 @@ fi
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
 for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
-	[ -r "$file" ] && [ -f "$file" ] && source "$file";
+  [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
 
@@ -171,7 +169,9 @@ if [[ $TERM_PROGRAM != "WarpTerminal" && $TERM_PROGRAM != "vscode" ]]; then
   source ~/.bashit
 
   # The next line updates PATH for the Google Cloud SDK.
-  if [ -f '/home/albandrieu/google-cloud-sdk/path.bash.inc' ]; then . '/home/albandrieu/google-cloud-sdk/path.bash.inc'; fi
+  if [ -f '/home/albandrieu/google-cloud-sdk/path.bash.inc' ]; then
+    . '/home/albandrieu/google-cloud-sdk/path.bash.inc';
+  fi
 
   # The next line enables shell command completion for gcloud.
 
@@ -184,8 +184,8 @@ eval "$(starship init bash)"
 
 source <(register-python-argcomplete checkov)
 
-function check_dockerignore(){
-	rsync -avn . /dev/shm --exclude-from "$1"
+function check_dockerignore {
+  rsync -avn . /dev/shm --exclude-from "$1"
 }
 
 export NODE_TLS_REJECT_UNAUTHORIZED=0
@@ -202,3 +202,5 @@ export PATH="$HOME/.poetry/bin:$PATH"
 # . "$HOME/.cargo/env"
 
 . "$HOME/.grit/bin/env"
+
+eval "$(~/.local/bin/mise activate bash)"

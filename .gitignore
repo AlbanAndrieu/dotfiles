@@ -6,7 +6,7 @@ Dropbox/
 Pictures/
 
 .vim/
-.config/
+# .config/
 
 .aws/
 .asdf/

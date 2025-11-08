@@ -1,7 +1,7 @@
 # vi: ft=yaml.ansible.jinja2
 ---
 # fail_fast: true
-minimum_pre_commit_version: 4.2.0
+minimum_pre_commit_version: 4.3.0
 exclude: |
   (?x)^(
       .*\{\{.*\}\}.*|     # Exclude any files with cookiecutter variables
@@ -38,9 +38,9 @@ repos:
   # ---------------------------------------------------------------------------- #
   #                              🔄 Pre-Commit Hooks                             #
   # ---------------------------------------------------------------------------- #
-  - repo: meta
-    hooks:
-      - id: check-useless-excludes
+  # - repo: meta
+  #   hooks:
+  #     - id: check-useless-excludes
 
   # ---------------------------- 📁 Filesystem Tools --------------------------- #
   - repo: https://github.com/pre-commit/pre-commit-hooks.git
@@ -84,18 +84,9 @@ repos:
         name: "📁 filesystem/📝 docstring · Validate docstring first"
       - id: name-tests-test
         name: "📁 filesystem/📝 names · Check tests names"
-        exclude: >
-          (?x)^(
-              tests/.*|
-          )$
       # --------------------------- 🔍 Code Quality Tools -------------------------- #
       - id: check-json
         name: "📁 filesystem/📝 json · Check json"
-        exclude: >
-          (?x)^(
-            ^.vscode/.*|
-            .devcontainer/devcontainer.json|
-          )$
       - id: check-toml
         name: "📁 filesystem/📜 toml - Check toml"
       - id: check-xml
@@ -103,12 +94,6 @@ repos:
       - id: check-yaml
         name: "📁 filesystem/📜 yaml - Check yaml"
         args: [--allow-multiple-documents]
-        exclude: >
-          (?x)^(
-            .gitlab-ci.yml|
-            templates/.*.gitlab-ci.yml|  # because of !reference
-            k8s/.*|
-          )$
       - id: sort-simple-yaml
         name: "🔀 sort/📜 yaml - Sort yaml"
       - id: file-contents-sorter
@@ -139,11 +124,6 @@ repos:
       # ----------------------------- 🔒 Security Tools ---------------------------- #
       - id: detect-private-key
         name: "🔒 security · Detect private keys"
-        exclude: >
-          (?x)^(
-              README.md|
-              .ssh/id_rsa|
-          )$
 
   - repo: https://github.com/pre-commit/pre-commit.git
     rev: v4.3.0
@@ -176,34 +156,18 @@ repos:
     hooks:
       - id: ruff-format
         name: "🐍 python · Format with Ruff"
-        exclude: >
-          (?x)^(
-              ccds/hook_utils/dependencies.py|
-          )$
-      - id: ruff
-        name: "🐍 python · Lint and perform unsafe auto-fixes with Ruff"
-        args: [--unsafe-fixes]
-        exclude: >
-          (?x)^(
-              ccds/hook_utils/dependencies.py|
-          )$
-      - id: ruff-check
-        name: "🐍 python · Check with Ruff"
-        args: [--fix]
-        exclude: >
-          (?x)^(
-              ccds/hook_utils/dependencies.py|
-          )$
+      # - id: ruff
+      #   name: "🐍 python · Lint and perform unsafe auto-fixes with Ruff"
+      #   args: [--unsafe-fixes]
+      # - id: ruff-check
+      #   name: "🐍 python · Check with Ruff"
+      #   args: [--fix]
 
   # - repo: https://github.com/RobertCraigie/pyright-python
   #   rev: v1.1.406
   #   hooks:
   #     - id: pyright
   #       name: "🐍 python · Check types"
-  #       exclude: >
-  #         (?x)^(
-  #             ccds/hook_utils/.*|
-  #         )$
   - repo: https://github.com/abravalheri/validate-pyproject
     rev: v0.24.1
     hooks:
@@ -246,28 +210,28 @@ repos:
           - ".config/requirements-lock.txt"
 
   ### Shell ###
-  - repo: https://github.com/scop/pre-commit-shfmt
-    rev: v3.12.0-2
-    hooks:
-      # Choose one of:
-      # - id: shfmt         # native (requires Go to build)
-      - id: shfmt-docker # Docker image (requires Docker to run)
-        name: "🐚 🐳 shell · Format shell scripts"
-  - repo: https://github.com/detailyang/pre-commit-shell
-    rev: 1.0.5
-    hooks:
-      - id: shell-lint
-        name: "🐚 shell · Lint shell scripts"
-        args: [-x]
-        exclude: >
-          (?x)^(
-            mvnw|
-            biscuitcutter.sh|
-            hooks|
-            tests/.*|
-            docs/Makefile|
-            .envrc|
-          )$
+  # - repo: https://github.com/scop/pre-commit-shfmt
+  #   rev: v3.12.0-2
+  #   hooks:
+  #     # Choose one of:
+  #     # - id: shfmt         # native (requires Go to build)
+  #     - id: shfmt-docker # Docker image (requires Docker to run)
+  #       name: "🐚 🐳 shell · Format shell scripts"
+  # - repo: https://github.com/detailyang/pre-commit-shell
+  #   rev: 1.0.5
+  #   hooks:
+  #     - id: shell-lint
+  #       name: "🐚 shell · Lint shell scripts"
+  #       args: [-x]
+  #       exclude: >
+  #         (?x)^(
+  #           mvnw|
+  #           biscuitcutter.sh|
+  #           hooks|
+  #           tests/.*|
+  #           docs/Makefile|
+  #           .envrc|
+  #         )$
 
   - repo: https://github.com/openstack/bashate
     rev: 2.1.1
@@ -275,11 +239,6 @@ repos:
       - id: bashate
         name: "🐚 shell · Check shell script code style"
         args: [-i, "E003,E006"]
-        exclude: >
-          (?x)^(
-              trunk|
-              scripts/run-python.sh|
-          )$
 
   ### Makefile ###
   - repo: https://github.com/mrtazz/checkmake.git
@@ -331,24 +290,19 @@ repos:
     hooks:
       - id: markdownlint
         name: "📝 markdown · Lint markdown"
-        exclude: >
-          (?x)^(
-              CHANGELOG.md|
-              README.md|
-          )$
 
   ### Javascript & Web Tools ###
-  - repo: https://github.com/biomejs/pre-commit
-    rev: "v2.2.6"
-    hooks:
-      - id: biome-check
-        name: "🟨 javascript · Lint, format, and safe fixes with Biome"
-        additional_dependencies: ["@biomejs/biome@1.9.4"]
-        exclude: >
-          (?x)^(
-              trivy-sbom.json|
-              my-app/public/.*|
-          )$
+  # - repo: https://github.com/biomejs/pre-commit
+  #   rev: "v2.2.6"
+  #   hooks:
+  #     - id: biome-check
+  #       name: "🟨 javascript · Lint, format, and safe fixes with Biome"
+  #       additional_dependencies: ["@biomejs/biome@1.9.4"]
+  #       exclude: >
+  #         (?x)^(
+  #             trivy-sbom.json|
+  #             my-app/public/.*|
+  #         )$
 
   - repo: https://github.com/Lucas-C/pre-commit-hooks-nodejs
     rev: v1.1.2
@@ -381,11 +335,6 @@ repos:
         types_or: [yaml, html, scss]
         additional_dependencies:
           - prettier@3.4.2
-        exclude: >
-          (?x)^(
-              trivy-sbom.json|
-              my-app/public/.*|
-          )$
 
   ### Data & Config Validation ###
   - repo: https://github.com/python-jsonschema/check-jsonschema
@@ -411,17 +360,6 @@ repos:
       - id: bandit
         name: "🔒 security · Detect security issues"
         args: [-c, .bandit.yml]
-        exclude: >
-          (?x)^(
-            noxfile.py|
-            versioneer.py|
-            hooks/_version.py|
-            hooks/tests/|
-            ccds/hook_utils/configure_vcs.py|
-            ccds/hook_utils/configure_gh.py|
-            ccds/hook_utils/configure_ssh.py|
-            ccds/hook_utils/custom_config.py|
-          )$
 
   - repo: https://github.com/IamTheFij/ansible-pre-commit
     rev: v1.0.1
@@ -436,21 +374,21 @@ repos:
         entry: zricethezav/gitleaks protect --verbose --redact --staged
 
   ### Ansible ###
-  - repo: https://github.com/ansible-community/ansible-lint.git
-    rev: v25.9.2
-    hooks:
-      - id: ansible-lint
-        name: "📜 ansible - Lint Ansible"
-        # args: [--verbose]
-        files: \.(yaml|yml)$
-        exclude: >
-          (?x)^(
-            .travis.yml|
-            docker/|
-            requirements.yml|
-            playbooks/group_vars/all/vault.yml|
-            .gitlab-ci.yml|
-          )$
+  # - repo: https://github.com/ansible-community/ansible-lint.git
+  #   rev: v25.9.2
+  #   hooks:
+  #     - id: ansible-lint
+  #       name: "📜 ansible - Lint Ansible"
+  #       # args: [--verbose]
+  #       files: \.(yaml|yml)$
+  #       exclude: >
+  #         (?x)^(
+  #           .travis.yml|
+  #           docker/|
+  #           requirements.yml|
+  #           playbooks/group_vars/all/vault.yml|
+  #           .gitlab-ci.yml|
+  #         )$
   - repo: https://github.com/adrienverge/yamllint.git
     rev: v1.37.1
     hooks:
@@ -480,8 +418,8 @@ repos:
     hooks:
       - id: gitlint
         name: "🌳 git · Lint"
-        additional_dependencies:
-          - gitlint-core[trusted-deps]==0.19.1
+        # additional_dependencies:
+        #   - gitlint-core[trusted-deps]==0.19.1
 
   # ---------------------------------------------------------------------------- #
   #                            👑 Mega linter                                    #
@@ -509,35 +447,3 @@ repos:
   #         - --filesonly
   #         - --flavor
   #         - "python"
-
-  # ---------------------------------------------------------------------------- #
-  #                             🧪 Fast Tests (Local)                            #
-  # ---------------------------------------------------------------------------- #
-
-  - repo: local
-    hooks:
-      #     - id: lint
-      #       name: Lint
-      #       entry: python3 -m nox -rs lint
-      #       language: system
-      #       pass_filenames: false
-      #     - id: test
-      #       name: Test
-      #       entry: python3 -m nox -rs test
-      #       language: system
-      #       pass_filenames: false
-      - id: pytest-collect
-        name: 🧪 test · Validate test formatting
-        entry: ./.venv/bin/pytest tests
-        language: system
-        types: [python]
-        args: ["--collect-only"]
-        pass_filenames: false
-      - id: pytest-fast
-        name: 🧪 test · Run fast tests
-        entry: ./.venv/bin/pytest tests
-        language: system
-        types: [python]
-        args: ["--timeout=3"]
-        pass_filenames: false
-        always_run: true

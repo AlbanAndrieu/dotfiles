@@ -7,6 +7,8 @@ name = "pypi"
 sqlfluff = "*"
 
 [dev-packages]
+cz-conventional-gitmoji = ">=0.7.0"
+pre-commit = ">=4.0.1"
 
 [requires]
 python_version = "3.12"

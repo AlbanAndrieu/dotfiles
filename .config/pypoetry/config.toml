@@ -1,2 +1,6 @@
 [repositories.gitlab]
 url = "https://gitlab.com/api/v4/projects/7364654/packages/pypi/simple"
+
+[virtualenvs]
+prefer-active-python = true
+use-poetry-python = false
