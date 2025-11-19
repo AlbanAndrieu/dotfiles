@@ -203,4 +203,10 @@ export PATH="$HOME/.poetry/bin:$PATH"
 
 . "$HOME/.grit/bin/env"
 
-eval "$(~/.local/bin/mise activate bash)"
+# eval "$(~/.local/bin/mise activate bash)"
+eval "$(/usr/bin/mise activate bash)"
+
+# pnpm
+export PNPM_HOME="/home/albanandrieu/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end

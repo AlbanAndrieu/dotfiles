@@ -1,0 +1,38 @@
+# mise.toml
+[tools]
+terraform = "1"
+aws-cli = "2"
+# ruby = "3.3"
+ruby = "3.1.5"
+# node = "lts"
+node = "22"
+# go = "latest"
+go = "1.22.4"
+# Only install on Linux and macOS
+ripgrep = { version = "latest", os = ["linux", "macos"] }
+fnox = "latest"
+
+[env]
+# TF_WORKSPACE = "development"
+AWS_REGION = "eu-west-3"
+# AWS_PROFILE = "dev"
+
+[tasks.plan]
+description = "Run terraform plan with configured workspace"
+run = """
+terraform init
+terraform workspace select $TF_WORKSPACE
+terraform plan
+"""
+
+[tasks.validate]
+description = "Validate AWS credentials and terraform config"
+run = """
+aws sts get-caller-identity
+terraform validate
+"""
+
+[tasks.deploy]
+description = "Deploy infrastructure after validation"
+depends = ["validate", "plan"]
+run = "terraform apply -auto-approve"
