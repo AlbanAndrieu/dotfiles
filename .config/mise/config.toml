@@ -3,7 +3,7 @@
 terraform = "1"
 aws-cli = "2"
 # ruby = "3.3"
-ruby = "3.1.5"
+# ruby = "3.1.5"
 # node = "lts"
 node = "22"
 # go = "latest"
