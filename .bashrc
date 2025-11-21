@@ -156,6 +156,8 @@ export WORKSPACE_ENV=/workspace/users/${PROJECT_USER}${PROJECT_VERSION}/nabla/en
 
 #echo ${WORKSPACE_ENV}
 
+export NIX_PATH="nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixpkgs:/nix/var/nix/profiles/per-user/root/channels"
+
 eval "$(direnv hook bash)"
 
 if [[ $TERM_PROGRAM != "WarpTerminal" && $TERM_PROGRAM != "vscode" ]]; then
@@ -166,7 +168,12 @@ if [[ $TERM_PROGRAM != "WarpTerminal" && $TERM_PROGRAM != "vscode" ]]; then
     . ${WORKSPACE_ENV}/home/dev.env.sh
   fi
 
-  source ~/.bashit
+  if [ -n "$IN_NIX_SHELL" ]; then
+    echo -e "${yellow} ${double_arrow} Welcome to NIX Shell 🐚 ($IN_NIX_SHELL) ${NC}"
+  else
+    # bashit not working on nix-shell
+    source ~/.bashit
+  fi
 
   # The next line updates PATH for the Google Cloud SDK.
   if [ -f '/home/albandrieu/google-cloud-sdk/path.bash.inc' ]; then
@@ -184,29 +191,9 @@ eval "$(starship init bash)"
 
 source <(register-python-argcomplete checkov)
 
-function check_dockerignore {
-  rsync -avn . /dev/shm --exclude-from "$1"
-}
-
 export NODE_TLS_REJECT_UNAUTHORIZED=0
 
-[[ -s "${HOME}/.gvm/scripts/gvm" ]] && source "${HOME}/.gvm/scripts/gvm"
-
-[[ -s "$HOME/.nvm/nvm.sh" ]] && . "$HOME/.nvm/nvm.sh" # This loads NVM
-
-export PATH="$PATH:/opt/mssql-tools/bin"
 export QT_STYLE_OVERRIDE=kvantum
 export GPG_TTY=$(tty)
 
-export PATH="$HOME/.poetry/bin:$PATH"
-# . "$HOME/.cargo/env"
-
 . "$HOME/.grit/bin/env"
-
-# eval "$(~/.local/bin/mise activate bash)"
-eval "$(/usr/bin/mise activate bash)"
-
-# pnpm
-export PNPM_HOME="/home/albanandrieu/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-# pnpm end
