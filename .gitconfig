@@ -231,7 +231,8 @@
 	rebase = true
 [credential]
 	helper = store
+
 [tag]
 	forceSignAnnotated = true
 [gpg "ssh"]
-	allowedSignersFile = /home/albanandrieu/.ssh/allowed_signers
+	allowedSignersFile = /home/albandrieu/.ssh/allowed_signers

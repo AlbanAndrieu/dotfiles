@@ -354,13 +354,6 @@ repos:
 
   # ----------------------------- 🔒 Security Tools ---------------------------- #
 
-  - repo: https://github.com/PyCQA/bandit
-    rev: 1.8.6
-    hooks:
-      - id: bandit
-        name: "🔒 security · Detect security issues"
-        args: [-c, .bandit.yml]
-
   - repo: https://github.com/IamTheFij/ansible-pre-commit
     rev: v1.0.1
     hooks:
@@ -389,6 +382,7 @@ repos:
   #           playbooks/group_vars/all/vault.yml|
   #           .gitlab-ci.yml|
   #         )$
+
   - repo: https://github.com/adrienverge/yamllint.git
     rev: v1.37.1
     hooks:
