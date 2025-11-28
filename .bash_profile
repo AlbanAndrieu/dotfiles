@@ -53,3 +53,5 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 if [ -f ~/.bashrc ]; then
     source ~/.bashrc
 fi
+
+. "$HOME/.cargo/env"

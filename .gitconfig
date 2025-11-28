@@ -83,6 +83,7 @@
 
 	# Use custom `.gitignore` and `.gitattributes`.
 	excludesfile = ~/.gitignore
+
 	attributesfile = ~/.gitattributes
 
 	# Treat spaces before tabs and all kinds of trailing whitespace as an error.
@@ -104,7 +105,7 @@
 
 	editor = nano
 
-	pager = delta
+	pager = delta --paging=always
 
 [interactive]
     diffFilter = delta --color-only
@@ -115,6 +116,9 @@
     # delta detects terminal colors automatically; set one of these to disable auto-detection
     # dark = true
     # light = true
+
+		side-by-side = true
+		line-numbers = true
 
 [fetch]
 	prune = true
@@ -176,6 +180,8 @@
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
 	tool = meld
+	
+	conflictStyle = zdiff3 # for delta
 
 [push]
 

@@ -197,3 +197,8 @@ export QT_STYLE_OVERRIDE=kvantum
 export GPG_TTY=$(tty)
 
 . "$HOME/.grit/bin/env"
+
+eval "$(github-copilot-cli alias -- "$0")"
+
+export CARGO_TARGET_DIR=~/cargo-target
+. "$HOME/.cargo/env"
