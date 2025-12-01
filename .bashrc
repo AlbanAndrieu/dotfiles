@@ -170,6 +170,7 @@ if [[ $TERM_PROGRAM != "WarpTerminal" && $TERM_PROGRAM != "vscode" ]]; then
 
   if [ -n "$IN_NIX_SHELL" ]; then
     echo -e "${yellow} ${double_arrow} Welcome to NIX Shell 🐚 ($IN_NIX_SHELL) ${NC}"
+    export NIXPKGS_ALLOW_UNFREE=1
   else
     # bashit not working on nix-shell
     source ~/.bashit
@@ -198,7 +199,9 @@ export GPG_TTY=$(tty)
 
 . "$HOME/.grit/bin/env"
 
-eval "$(github-copilot-cli alias -- "$0")"
+if [ -z "$IN_NIX_SHELL" ]; then
+  eval "$(github-copilot-cli alias -- "$0")"
 
-export CARGO_TARGET_DIR=~/cargo-target
-. "$HOME/.cargo/env"
+  export CARGO_TARGET_DIR=~/cargo-target
+  . "$HOME/.cargo/env"
+fi
