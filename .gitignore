@@ -86,7 +86,7 @@ env/scripts/jenkins/tls.lua
 data/*
 notebooks/.ipynb_checkpoints
 *mlruns
-.editorconfig
+# .editorconfig
 .env.secrets
 .dvc/config
 **/*.log

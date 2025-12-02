@@ -5,7 +5,7 @@ branch: main
 compact: true
 # directory:
 # - test-dir
-docker-image: registry.gitlab.com/jusmundi-group/web/templates/jm-oci/jm-ubuntu
+# docker-image: registry.gitlab.com/jusmundi-group/web/templates/jm-oci/jm-ubuntu
 dockerfile-path: Dockerfile
 download-external-modules: true
 evaluate-variables: true
@@ -20,7 +20,7 @@ repo-id: https://github.com/AlbanAndrieu/dotfiles
 # skip-check:
 # - CKV_DOCKER_3
 # - CKV_DOCKER_2
-skip-fixes: true
+# NOK OLD skip-fixes: true
 # skip-framework:
 # - dockerfile
 # - secrets
