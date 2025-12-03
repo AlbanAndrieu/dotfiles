@@ -192,7 +192,7 @@ eval "$(starship init bash)"
 
 source <(register-python-argcomplete checkov)
 
-export NODE_TLS_REJECT_UNAUTHORIZED=0
+# export NODE_TLS_REJECT_UNAUTHORIZED=0
 
 export QT_STYLE_OVERRIDE=kvantum
 export GPG_TTY=$(tty)
@@ -205,3 +205,5 @@ if [ -z "$IN_NIX_SHELL" ]; then
   export CARGO_TARGET_DIR=~/cargo-target
   . "$HOME/.cargo/env"
 fi
+
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path bash)"

@@ -169,3 +169,19 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+# Function to display a spinning animation during the LLM processing from https://harper.blog/2024/03/11/use-an-llm-to-automagically-generate-meaningful-git-commit-messages/
+function spin_animation() {
+  # Array of spinner characters for the animation
+  spinner=("⠋" "⠙" "⠹" "⠸" "⠼" "⠴" "⠦" "⠧" "⠇" "⠏")
+  # Infinite loop to keep the animation running
+  while true; do
+    for i in "${spinner[@]}"; do
+      tput civis  # Hide the cursor to enhance the animation appearance
+      tput el1    # Clear the line from the cursor to the beginning to display the spinner
+      printf "\\r${YELLOW}%s${NC} Generating nabla data..." "$i"  # Print the spinner and message
+      sleep 0.1   # Delay to control the speed of the animation
+      tput cub 32 # Move the cursor back 32 columns to reset the spinner position
+    done
+  done
+}
