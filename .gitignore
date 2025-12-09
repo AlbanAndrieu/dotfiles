@@ -6,7 +6,6 @@ Dropbox/
 Pictures/
 
 .vim/
-# .config/
 
 .aws/
 .asdf/
@@ -55,6 +54,7 @@ vault.passwd
 .docker/config.json
 .novarc
 cloud.conf
+# .config/
 .config/openstack/clouds.yaml
 .config/Yubico/u2f_keys
 aws_credentials
