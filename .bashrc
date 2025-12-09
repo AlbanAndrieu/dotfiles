@@ -188,8 +188,6 @@ if [[ $TERM_PROGRAM != "WarpTerminal" && $TERM_PROGRAM != "vscode" ]]; then
 
 fi
 
-eval "$(starship init bash)"
-
 source <(register-python-argcomplete checkov)
 
 # export NODE_TLS_REJECT_UNAUTHORIZED=0
