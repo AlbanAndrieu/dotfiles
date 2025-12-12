@@ -8,6 +8,7 @@
 node = "24"
 go = "1.25.5"
 sops = "latest"
+age = "latest"
 # Only install on Linux and macOS
 ripgrep = { version = "latest", os = ["linux", "macos"] }
 fnox = "latest"
