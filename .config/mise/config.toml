@@ -1,13 +1,13 @@
 # mise.toml
 [tools]
-terraform = "1.14.0"
+# terraform = "1.14.0"
 # aws-cli = "2"
-ruby = "3.4.7"
+# ruby = "3.4.7"
 # ruby = "3.1.5"
 # node = "lts"
 node = "24"
-# go = "latest"
-go = "1.22.4"
+go = "1.25.5"
+sops = "latest"
 # Only install on Linux and macOS
 # ripgrep = { version = "latest", os = ["linux", "macos"] }
 # fnox = "latest"
@@ -20,9 +20,9 @@ AWS_REGION = "eu-west-3"
 [tasks.plan]
 description = "Run terraform plan with configured workspace"
 run = """
-terraform init
-terraform workspace select $TF_WORKSPACE
-terraform plan
+terraform init -reconfigure -upgrade
+# terraform workspace select $TF_WORKSPACE
+terraform plan -parallelism=2 -lock=true
 """
 
 [tasks.validate]
@@ -35,4 +35,4 @@ terraform validate
 [tasks.deploy]
 description = "Deploy infrastructure after validation"
 depends = ["validate", "plan"]
-run = "terraform apply -auto-approve"
+run = "terraform apply -lock=true"
