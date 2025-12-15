@@ -9,8 +9,8 @@ node = "24"
 go = "1.25.5"
 sops = "latest"
 # Only install on Linux and macOS
-# ripgrep = { version = "latest", os = ["linux", "macos"] }
-# fnox = "latest"
+ripgrep = { version = "latest", os = ["linux", "macos"] }
+fnox = "latest"
 
 [env]
 # TF_WORKSPACE = "development"
