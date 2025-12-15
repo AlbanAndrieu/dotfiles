@@ -15,8 +15,9 @@ fnox = "latest"
 
 [env]
 # TF_WORKSPACE = "development"
-AWS_REGION = "eu-west-3"
+AWS_REGION = "us-east-1"
 # AWS_PROFILE = "dev"
+AWS_PROFILE = "eks"
 
 [tasks.plan]
 description = "Run terraform plan with configured workspace"
