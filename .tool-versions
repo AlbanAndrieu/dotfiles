@@ -21,3 +21,4 @@ kind       latest # 0.26.0
 krew       latest # 0.4.4
 ansible    latest
 kube-score 1.20.0
+mkcert 1.4.4
