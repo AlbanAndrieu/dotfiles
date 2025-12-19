@@ -6,19 +6,19 @@ ruby       3.4.7
 ripgrep    latest # 14.1.0
 terragrunt 0.95.1
 terraform  1.14.0
-act        0.2.74
+act        latest # 0.2.74
 awscli     latest # 2.24.4
-dagger     0.15.4
+dagger     latest # 0.15.4
 direnv     latest # 2.35.0
-fzf        0.60.0
+fzf        latest # 0.60.0
 gitleaks   latest # 8.23.3
 glab       latest # 1.53.0
 golang     1.25.5
-helm       3.17.1
+helm       latest # 3.17.1
 k9s        latest # 0.32.7
-kubectl    latest
+kubectl    latest # 1.35.0
 kind       latest # 0.26.0
 krew       latest # 0.4.4
 ansible    latest
-kube-score 1.20.0
-mkcert 1.4.4
+kube-score latest #  1.20.0
+mkcert     latest # 1.4.4

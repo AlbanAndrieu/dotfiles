@@ -1,0 +1,19 @@
+servers:
+  # Local MCP server (stdio-based)
+  # sequential-thinking: Advanced reasoning and step-by-step analysis
+  - name: sequential-thinking
+    command: npx
+    args:
+      - -y
+      - "@modelcontextprotocol/server-sequential-thinking"
+  
+  # Remote MCP server (HTTP-based)
+  - name: cloudflare-documentation
+    url: https://docs.mcp.cloudflare.com/mcp
+    
+  # Optional: Remote MCP server with authentication
+  # - name: custom-api
+  #   url: https://api.albandrieu.com/mcp
+  #   auth:
+  #     type: "bearer"
+  #     token: "${MCP_TOKEN}"
