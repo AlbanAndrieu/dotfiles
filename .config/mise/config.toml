@@ -5,7 +5,7 @@
 # ruby = "3.4.7"
 # ruby = "3.1.5"
 # node = "lts"
-node = "24"
+node = "25"
 go = "1.25.5"
 sops = "latest"
 age = "latest"
