@@ -198,7 +198,7 @@ export GPG_TTY=$(tty)
 . "$HOME/.grit/bin/env"
 
 if [ -z "$IN_NIX_SHELL" ]; then
-  eval "$(github-copilot-cli alias -- "$0")"
+  # eval "$(github-copilot-cli alias -- "$0")"
 
   export CARGO_TARGET_DIR=~/cargo-target
   . "$HOME/.cargo/env"

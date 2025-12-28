@@ -179,7 +179,7 @@ function spin_animation() {
     for i in "${spinner[@]}"; do
       tput civis  # Hide the cursor to enhance the animation appearance
       tput el1    # Clear the line from the cursor to the beginning to display the spinner
-      printf "\\r${YELLOW}%s${NC} Generating nabla data..." "$i"  # Print the spinner and message
+      printf "\\r${YELLOW}%s${NC} $@ " "$i"  # Print the spinner and message
       sleep 0.1   # Delay to control the speed of the animation
       tput cub 32 # Move the cursor back 32 columns to reset the spinner position
     done
