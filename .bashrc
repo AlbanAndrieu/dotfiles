@@ -168,14 +168,6 @@ if [[ $TERM_PROGRAM != "WarpTerminal" && $TERM_PROGRAM != "vscode" ]]; then
     . ${WORKSPACE_ENV}/home/dev.env.sh
   fi
 
-  if [ -n "$IN_NIX_SHELL" ]; then
-    echo -e "${yellow} ${double_arrow} Welcome to NIX Shell 🐚 ($IN_NIX_SHELL) ${NC}"
-    export NIXPKGS_ALLOW_UNFREE=1
-  else
-    # bashit not working on nix-shell
-    source ~/.bashit
-  fi
-
   # The next line updates PATH for the Google Cloud SDK.
   if [ -f '/home/albandrieu/google-cloud-sdk/path.bash.inc' ]; then
     . '/home/albandrieu/google-cloud-sdk/path.bash.inc';
@@ -188,20 +180,7 @@ if [[ $TERM_PROGRAM != "WarpTerminal" && $TERM_PROGRAM != "vscode" ]]; then
 
 fi
 
-source <(register-python-argcomplete checkov)
-
 # export NODE_TLS_REJECT_UNAUTHORIZED=0
 
 export QT_STYLE_OVERRIDE=kvantum
 export GPG_TTY=$(tty)
-
-. "$HOME/.grit/bin/env"
-
-if [ -z "$IN_NIX_SHELL" ]; then
-  # eval "$(github-copilot-cli alias -- "$0")"
-
-  export CARGO_TARGET_DIR=~/cargo-target
-  . "$HOME/.cargo/env"
-fi
-
-[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path bash)"
