@@ -1,0 +1,12 @@
+
+[/media/www/nabla-servers-bower-sample]
+checkout = git clone 'git@github.com:AlbanAndrieu/nabla-servers-bower-sample.git' 'nabla-servers-bower-sample'
+
+[/media/www/nabla-site-apache]
+checkout = git clone 'git@github.com:AlbanAndrieu/nabla-site-apache.git' 'nabla-site-apache'
+
+[/media/www/nabla-site-bababou]
+checkout = git clone 'git@github.com:AlbanAndrieu/nabla-site-bababou.git' 'nabla-site-bababou'
+
+[/media/www/nabla-site-python]
+checkout = git clone 'git@github.com:AlbanAndrieu/nabla-site-python.git' 'nabla-site-python'
