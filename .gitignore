@@ -31,6 +31,10 @@ dotfiles/*
 
 # See cleanup-security.sh
 
+# age private keys
+keys/nabla-age-ley.txt
+.config/mise/age.txt
+
 .ssh/config
 .gnupg/gpa.conf
 
