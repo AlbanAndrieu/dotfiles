@@ -15,6 +15,7 @@ Pictures/
 .gnupg/*
 .yubico/
 .aicommits
+.opencommit
 
 anaconda3/
 
