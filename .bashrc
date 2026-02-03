@@ -184,3 +184,7 @@ fi
 
 export QT_STYLE_OVERRIDE=kvantum
 export GPG_TTY=$(tty)
+
+# OpenClaw Completion
+source <(openclaw completion --shell bash)
+
