@@ -42,3 +42,7 @@ terraform validate
 description = "Deploy infrastructure after validation"
 depends = ["validate", "plan"]
 run = "terraform apply -lock=true"
+
+[settings]
+lockfile = true
+experimental = true
