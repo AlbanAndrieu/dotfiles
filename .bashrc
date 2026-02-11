@@ -185,6 +185,12 @@ fi
 export QT_STYLE_OVERRIDE=kvantum
 export GPG_TTY=$(tty)
 
-# OpenClaw Completion
-source <(openclaw completion --shell bash)
 
+
+# pnpm
+export PNPM_HOME="/home/albanandrieu/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
