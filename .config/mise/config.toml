@@ -16,6 +16,7 @@ pre-commit = "latest"
 popeye = "latest"
 kustomize = "latest"
 krew = "latest"
+"github:getplumber/plumber" = "latest"
 
 [env]
 # TF_WORKSPACE = "development"

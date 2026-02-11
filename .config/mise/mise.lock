@@ -1,0 +1,98 @@
+[[tools.age]]
+version = "1.2.1"
+backend = "aqua:FiloSottile/age"
+"platforms.linux-arm64" = { url = "https://github.com/FiloSottile/age/releases/download/v1.2.1/age-v1.2.1-linux-arm64.tar.gz"}
+"platforms.linux-x64" = { url = "https://github.com/FiloSottile/age/releases/download/v1.2.1/age-v1.2.1-linux-amd64.tar.gz"}
+"platforms.macos-arm64" = { url = "https://github.com/FiloSottile/age/releases/download/v1.2.1/age-v1.2.1-darwin-arm64.tar.gz"}
+"platforms.macos-x64" = { url = "https://github.com/FiloSottile/age/releases/download/v1.2.1/age-v1.2.1-darwin-amd64.tar.gz"}
+"platforms.windows-x64" = { url = "https://github.com/FiloSottile/age/releases/download/v1.2.1/age-v1.2.1-windows-amd64.zip"}
+
+[[tools.fnox]]
+version = "1.7.0"
+backend = "github:jdx/fnox"
+"platforms.linux-arm64" = { checksum = "sha256:d38305aa3f0b187b169a767eb56af905f55b792b2df6cbf0377efb30d4879731", url = "https://github.com/jdx/fnox/releases/download/v1.7.0/fnox-aarch64-unknown-linux-gnu.tar.gz", url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/321587574"}
+"platforms.linux-x64" = { checksum = "sha256:d593b853806212a75db74048d4cb27ac70f6811e591c1e29f496fb8af38475f3", url = "https://github.com/jdx/fnox/releases/download/v1.7.0/fnox-x86_64-unknown-linux-gnu.tar.gz", url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/321587581"}
+"platforms.macos-arm64" = { checksum = "sha256:65f954960de7a5cabee7bfe84be328a0baf83ab3d5362b9192be6b4791d4d2f2", url = "https://github.com/jdx/fnox/releases/download/v1.7.0/fnox-aarch64-apple-darwin.tar.gz", url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/321587572"}
+"platforms.macos-x64" = { checksum = "sha256:e15167601cc41e6b7ed1af216cb2a3537db2e40cf61ad65150f517065f24d580", url = "https://github.com/jdx/fnox/releases/download/v1.7.0/fnox-x86_64-apple-darwin.tar.gz", url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/321587571"}
+"platforms.windows-x64" = { checksum = "sha256:fe3a964d67f4f531afc44e8f0cf72886739c6a79d2113db50a3482ca1d09f0e2", url = "https://github.com/jdx/fnox/releases/download/v1.7.0/fnox-x86_64-pc-windows-msvc.zip", url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/321587570"}
+
+[[tools."github:getplumber/plumber"]]
+version = "0.1.32"
+backend = "github:getplumber/plumber"
+"platforms.linux-arm64" = { checksum = "sha256:a6065ee0397d8ffe8a256846658acdbe440cc481861ff2b381d024f7f8009207", url = "https://github.com/getplumber/plumber/releases/download/v0.1.32/plumber-linux-arm64", url_api = "https://api.github.com/repos/getplumber/plumber/releases/assets/350537829"}
+"platforms.linux-x64" = { checksum = "sha256:8924446e221974a6cac8403b0c5f974a583090b7e269b7729acb5dec67d629d5", url = "https://github.com/getplumber/plumber/releases/download/v0.1.32/plumber-linux-amd64", url_api = "https://api.github.com/repos/getplumber/plumber/releases/assets/350537828"}
+"platforms.macos-arm64" = { checksum = "sha256:66c9d47f0f99b99694b65952606eb096937fb6acef35feb5ad43532f835695ea", url = "https://github.com/getplumber/plumber/releases/download/v0.1.32/plumber-darwin-arm64", url_api = "https://api.github.com/repos/getplumber/plumber/releases/assets/350537827"}
+"platforms.macos-x64" = { checksum = "sha256:4bda1b677272da28facab00e310cbce818c47b0b2c4c89cb84dc121d2a9699d3", url = "https://github.com/getplumber/plumber/releases/download/v0.1.32/plumber-darwin-amd64", url_api = "https://api.github.com/repos/getplumber/plumber/releases/assets/350537826"}
+"platforms.windows-x64" = { checksum = "sha256:8111eb875a869bd79ec24bf6b62f04bfd3684664c2c9e2dd121b2a5c7ec1cf6f", url = "https://github.com/getplumber/plumber/releases/download/v0.1.32/plumber-windows-amd64.exe", url_api = "https://api.github.com/repos/getplumber/plumber/releases/assets/350537825"}
+
+[[tools.go]]
+version = "1.25.5"
+backend = "core:go"
+"platforms.linux-arm64" = { checksum = "sha256:b00b694903d126c588c378e72d3545549935d3982635ba3f7a964c9fa23fe3b9", url = "https://dl.google.com/go/go1.25.5.linux-arm64.tar.gz"}
+"platforms.linux-x64" = { checksum = "sha256:9e9b755d63b36acf30c12a9a3fc379243714c1c6d3dd72861da637f336ebb35b", url = "https://dl.google.com/go/go1.25.5.linux-amd64.tar.gz"}
+"platforms.macos-arm64" = { checksum = "sha256:bed8ebe824e3d3b27e8471d1307f803fc6ab8e1d0eb7a4ae196979bd9b801dd3", url = "https://dl.google.com/go/go1.25.5.darwin-arm64.tar.gz"}
+"platforms.macos-x64" = { checksum = "sha256:b69d51bce599e5381a94ce15263ae644ec84667a5ce23d58dc2e63e2c12a9f56", url = "https://dl.google.com/go/go1.25.5.darwin-amd64.tar.gz"}
+"platforms.windows-x64" = { checksum = "sha256:ae756cce1cb80c819b4fe01b0353807178f532211b47f72d7fa77949de054ebb", url = "https://dl.google.com/go/go1.25.5.windows-amd64.zip"}
+
+[[tools.krew]]
+version = "0.4.5"
+backend = "aqua:kubernetes-sigs/krew"
+"platforms.linux-arm64" = { checksum = "sha256:e02bdb8fe67cd6641b9ed6b45c6d084f7aa5b161fe49191caf5b1d5e83b0c0f9", url = "https://github.com/kubernetes-sigs/krew/releases/download/v0.4.5/krew-linux_arm64.tar.gz"}
+"platforms.linux-x64" = { checksum = "sha256:bacc06800bda14ec063cd0b6f377a961fdf4661c00366bf9834723cd28bfabc7", url = "https://github.com/kubernetes-sigs/krew/releases/download/v0.4.5/krew-linux_amd64.tar.gz"}
+"platforms.macos-arm64" = { checksum = "sha256:5e33636a73392cf88021a85162ac4d4c86d4c0b57677e64094bcbcca637068e6", url = "https://github.com/kubernetes-sigs/krew/releases/download/v0.4.5/krew-darwin_arm64.tar.gz"}
+"platforms.macos-x64" = { checksum = "sha256:7ff3dde825734e74f4975c8e922b4419639e5fbff738786ab085cf06a0d1ccc0", url = "https://github.com/kubernetes-sigs/krew/releases/download/v0.4.5/krew-darwin_amd64.tar.gz"}
+"platforms.windows-x64" = { checksum = "sha256:61cbe66d47c1f8e3ad4d778d136c293487efc7b2bf7085a3e30a6701a374b51d", url = "https://github.com/kubernetes-sigs/krew/releases/download/v0.4.5/krew-windows_amd64.tar.gz"}
+
+[[tools.kustomize]]
+version = "5.8.0"
+backend = "aqua:kubernetes-sigs/kustomize"
+"platforms.linux-arm64" = { checksum = "sha256:a4f48b4c3d4ca97d748943e19169de85a2e86e80bcc09558603e2aa66fb15ce1", url = "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize/v5.8.0/kustomize_v5.8.0_linux_arm64.tar.gz"}
+"platforms.linux-x64" = { checksum = "sha256:4dfa8307358dd9284aa4d2b1d5596766a65b93433e8fa3f9f74498941f01c5ef", url = "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize/v5.8.0/kustomize_v5.8.0_linux_amd64.tar.gz"}
+"platforms.macos-arm64" = { checksum = "sha256:d098f62ecda500c752303163838af823f947d245927f3000b629199c1eeeae0f", url = "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize/v5.8.0/kustomize_v5.8.0_darwin_arm64.tar.gz"}
+"platforms.macos-x64" = { checksum = "sha256:2deaa6f96450c0b3204cccd9f159a22278eb6cf85ad545d212d608d2428aeb57", url = "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize/v5.8.0/kustomize_v5.8.0_darwin_amd64.tar.gz"}
+"platforms.windows-x64" = { checksum = "sha256:7779999c8eb7bdbbaa55c6ecf4fadfdbe7508199ea189f06862835e7e5cb1e41", url = "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize/v5.8.0/kustomize_v5.8.0_windows_amd64.zip"}
+
+[[tools.node]]
+version = "25.2.1"
+backend = "core:node"
+"platforms.linux-arm64" = { checksum = "sha256:905238a17be9ae62c16e596019268d8ca9f0fc3142602a1f860dc4a7c1ddbf82", url = "https://nodejs.org/dist/v25.2.1/node-v25.2.1-linux-arm64.tar.gz"}
+"platforms.linux-x64" = { checksum = "sha256:2094ecdc844ea11e9777cac42672b0d89cd63d27204193a587dc5a2d276bb940", url = "https://nodejs.org/dist/v25.2.1/node-v25.2.1-linux-x64.tar.gz"}
+"platforms.macos-arm64" = { checksum = "sha256:be87e21bd235a451fad02c89e5bf7cb17e206e4cd89dd5664f20d19e7dfde6f9", url = "https://nodejs.org/dist/v25.2.1/node-v25.2.1-darwin-arm64.tar.gz"}
+"platforms.macos-x64" = { checksum = "sha256:c266da5a9075a56e1aa02460ce8df96fca9e796c388abe94a8df4949945df6b6", url = "https://nodejs.org/dist/v25.2.1/node-v25.2.1-darwin-x64.tar.gz"}
+"platforms.windows-x64" = { checksum = "sha256:f97ba75ead7720652f3925d9cf8661e083a28c6b98ea77acc83903d77a9dd688", url = "https://nodejs.org/dist/v25.2.1/node-v25.2.1-win-x64.zip"}
+
+[[tools.popeye]]
+version = "0.22.1"
+backend = "aqua:derailed/popeye"
+"platforms.linux-arm64" = { checksum = "sha256:5188b0b521966113580f0fef7769173af6303061dee10df247536f9bb55fe988", url = "https://github.com/derailed/popeye/releases/download/v0.22.1/popeye_linux_arm64.tar.gz"}
+"platforms.linux-x64" = { checksum = "sha256:d58a3c0ba45805d452c32628320eecdcb5172fd5f42c82e12aeecc7a17eb930b", url = "https://github.com/derailed/popeye/releases/download/v0.22.1/popeye_linux_amd64.tar.gz"}
+"platforms.macos-arm64" = { checksum = "sha256:71dc8b8dc7d7cad60f9c377d4bb22a0ef5bac189c617951ebc20343f83a6704d", url = "https://github.com/derailed/popeye/releases/download/v0.22.1/popeye_darwin_arm64.tar.gz"}
+"platforms.macos-x64" = { checksum = "sha256:3dafce865dd778e2501ccbfd53fcbeecfc3244a43d4d1b02446064e39ac58d4e", url = "https://github.com/derailed/popeye/releases/download/v0.22.1/popeye_darwin_amd64.tar.gz"}
+"platforms.windows-x64" = { checksum = "sha256:fa5c155d65313e93985bdb7ed1a79fb0e310b7868848dfaf381ea081f349dacc", url = "https://github.com/derailed/popeye/releases/download/v0.22.1/popeye_windows_amd64.tar.gz"}
+
+[[tools.pre-commit]]
+version = "4.5.1"
+backend = "aqua:pre-commit/pre-commit"
+"platforms.linux-arm64" = { checksum = "sha256:19d00ba35cbf9c04dc3736cd8bb641e8633f3eddd4cedde71809574ae68a2cd1", url = "https://github.com/pre-commit/pre-commit/releases/download/v4.5.1/pre-commit-4.5.1.pyz"}
+"platforms.linux-x64" = { checksum = "sha256:19d00ba35cbf9c04dc3736cd8bb641e8633f3eddd4cedde71809574ae68a2cd1", url = "https://github.com/pre-commit/pre-commit/releases/download/v4.5.1/pre-commit-4.5.1.pyz"}
+"platforms.macos-arm64" = { checksum = "sha256:19d00ba35cbf9c04dc3736cd8bb641e8633f3eddd4cedde71809574ae68a2cd1", url = "https://github.com/pre-commit/pre-commit/releases/download/v4.5.1/pre-commit-4.5.1.pyz"}
+"platforms.macos-x64" = { checksum = "sha256:19d00ba35cbf9c04dc3736cd8bb641e8633f3eddd4cedde71809574ae68a2cd1", url = "https://github.com/pre-commit/pre-commit/releases/download/v4.5.1/pre-commit-4.5.1.pyz"}
+"platforms.windows-x64" = { checksum = "sha256:19d00ba35cbf9c04dc3736cd8bb641e8633f3eddd4cedde71809574ae68a2cd1", url = "https://github.com/pre-commit/pre-commit/releases/download/v4.5.1/pre-commit-4.5.1.pyz"}
+
+[[tools.ripgrep]]
+version = "15.1.0"
+backend = "aqua:BurntSushi/ripgrep"
+"platforms.linux-arm64" = { checksum = "sha256:2b661c6ef508e902f388e9098d9c4c5aca72c87b55922d94abdba830b4dc885e", url = "https://github.com/BurntSushi/ripgrep/releases/download/15.1.0/ripgrep-15.1.0-aarch64-unknown-linux-gnu.tar.gz"}
+"platforms.linux-x64" = { checksum = "sha256:1c9297be4a084eea7ecaedf93eb03d058d6faae29bbc57ecdaf5063921491599", url = "https://github.com/BurntSushi/ripgrep/releases/download/15.1.0/ripgrep-15.1.0-x86_64-unknown-linux-musl.tar.gz"}
+"platforms.macos-arm64" = { checksum = "sha256:378e973289176ca0c6054054ee7f631a065874a352bf43f0fa60ef079b6ba715", url = "https://github.com/BurntSushi/ripgrep/releases/download/15.1.0/ripgrep-15.1.0-aarch64-apple-darwin.tar.gz"}
+"platforms.macos-x64" = { checksum = "sha256:64811cb24e77cac3057d6c40b63ac9becf9082eedd54ca411b475b755d334882", url = "https://github.com/BurntSushi/ripgrep/releases/download/15.1.0/ripgrep-15.1.0-x86_64-apple-darwin.tar.gz"}
+"platforms.windows-x64" = { checksum = "sha256:124510b94b6baa3380d051fdf4650eaa80a302c876d611e9dba0b2e18d87493a", url = "https://github.com/BurntSushi/ripgrep/releases/download/15.1.0/ripgrep-15.1.0-x86_64-pc-windows-msvc.zip"}
+
+[[tools.sops]]
+version = "3.11.0"
+backend = "aqua:getsops/sops"
+"platforms.linux-arm64" = { checksum = "sha256:c71d32f74b3a73ce283affe6ed36e221a8f1476c3d37963f60bd962fb1676681", url = "https://github.com/getsops/sops/releases/download/v3.11.0/sops-v3.11.0.linux.arm64"}
+"platforms.linux-x64" = { checksum = "sha256:775f1384d55decfad228e7196a3f683791914f92a473f78fc47700531c29dfef", url = "https://github.com/getsops/sops/releases/download/v3.11.0/sops-v3.11.0.linux.amd64"}
+"platforms.macos-arm64" = { checksum = "sha256:45e7562b1f5d022c4d7a4e4c3d1b7b1a7ee6c328356629286cfd18a394b00e7c", url = "https://github.com/getsops/sops/releases/download/v3.11.0/sops-v3.11.0.darwin.arm64"}
+"platforms.macos-x64" = { checksum = "sha256:c36583e178f7e83b947044b292e106e79615f7725f75cb147045fb0c81953e2b", url = "https://github.com/getsops/sops/releases/download/v3.11.0/sops-v3.11.0.darwin.amd64"}
+"platforms.windows-x64" = { checksum = "sha256:f3d74d83006954f0d8cf770ad7e5380504270ded5a62f33eb2548ce5461af3b3", url = "https://github.com/getsops/sops/releases/download/v3.11.0/sops-v3.11.0.amd64.exe"}
