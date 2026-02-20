@@ -5,7 +5,7 @@
     "@commitlint/prompt-cli": "^20.3.1",
     "commitizen": "^4.3.1",
     "cz-emoji-conventional": "^1.2.1",
-    "prisma": "^7.3.0"
+    "prisma": "^7.4.0"
   },
   "config": {
     "commitizen": {
@@ -14,6 +14,6 @@
     }
   },
   "dependencies": {
-    "@prisma/client": "^7.3.0"
+    "@prisma/client": "^7.4.0"
   }
 }
