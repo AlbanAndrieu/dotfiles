@@ -187,9 +187,10 @@ export GPG_TTY=$(tty)
 
 if [[ -n "$CURSOR_AGENT" ]]; then
   # OpenClaw Completion
-  source <(openclaw completion --shell bash)
-# else
-#   echo "Cursor agent : $CURSOR_AGENT"
+  # source <(openclaw completion --shell bash)
+  
+  source "/home/albandrieu/.openclaw/completions/openclaw.bash"
+
 fi
 
 # ~/.bashrc — utiliser une invite simple pour les sessions Agent
