@@ -162,6 +162,8 @@ eval "$(direnv hook bash)"
 
 if [[ $TERM_PROGRAM != "WarpTerminal" && $TERM_PROGRAM != "vscode" ]]; then
   # Unsupported plugin/prompt code here, i.e.
+  
+  echo "Loading env variables"
 
   if [ -f ${WORKSPACE_ENV}/home/dev.env.sh ]; then
     echo ${WORKSPACE_ENV}/home/dev.env.sh
@@ -180,13 +182,20 @@ if [[ $TERM_PROGRAM != "WarpTerminal" && $TERM_PROGRAM != "vscode" ]]; then
 
 fi
 
-# export NODE_TLS_REJECT_UNAUTHORIZED=0
-
 export QT_STYLE_OVERRIDE=kvantum
 export GPG_TTY=$(tty)
 
-# OpenClaw Completion
-source <(openclaw completion --shell bash)
+if [[ -n "$CURSOR_AGENT" ]]; then
+  # OpenClaw Completion
+  source <(openclaw completion --shell bash)
+# else
+#   echo "Cursor agent : $CURSOR_AGENT"
+fi
+
+# ~/.bashrc — utiliser une invite simple pour les sessions Agent
+if [[ -n "$CURSOR_AGENT" ]]; then
+  PS1='\u@\h \W \$ '
+fi
 
 # pnpm
 export PNPM_HOME="/home/albanandrieu/.local/share/pnpm"
@@ -195,3 +204,12 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# END ANSIBLE MANAGED BLOCK - OpenClaw config
+export XDG_RUNTIME_DIR=/run/user/$(id -u)
+# BEGIN ANSIBLE MANAGED BLOCK - DBus config
+# DBus session bus configuration
+if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
+  export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"
+fi
+# END ANSIBLE MANAGED BLOCK - DBus config
