@@ -185,14 +185,6 @@ fi
 export QT_STYLE_OVERRIDE=kvantum
 export GPG_TTY=$(tty)
 
-if [[ -n "$CURSOR_AGENT" ]]; then
-  # OpenClaw Completion
-  # source <(openclaw completion --shell bash)
-  
-  source "/home/albandrieu/.openclaw/completions/openclaw.bash"
-
-fi
-
 # ~/.bashrc — utiliser une invite simple pour les sessions Agent
 if [[ -n "$CURSOR_AGENT" ]]; then
   PS1='\u@\h \W \$ '
@@ -214,6 +206,9 @@ if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
   export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"
 fi
 # END ANSIBLE MANAGED BLOCK - DBus config
+
+# OpenClaw Completion
+source "/home/albandrieu/.openclaw/completions/openclaw.bash"
 
 # opencode
 export PATH=/home/albanandrieu/.opencode/bin:$PATH
