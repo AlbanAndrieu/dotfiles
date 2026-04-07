@@ -2,7 +2,7 @@ python     3.12.10
 poetry     2.2.1
 direnv     latest # 2.35.0
 ruby       3.4.7
-ripgrep    latest # 14.1.0
+ripgrep    14.1.0
 terragrunt 0.95.1
 terraform  1.14.0
 act        latest # 0.2.74

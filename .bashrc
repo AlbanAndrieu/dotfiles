@@ -214,3 +214,6 @@ if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
   export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"
 fi
 # END ANSIBLE MANAGED BLOCK - DBus config
+
+# opencode
+export PATH=/home/albanandrieu/.opencode/bin:$PATH
