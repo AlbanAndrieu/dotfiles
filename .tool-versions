@@ -8,7 +8,6 @@ terraform  1.14.0
 act        latest # 0.2.74
 awscli     latest # 2.24.4
 dagger     latest # 0.15.4
-direnv     latest # 2.35.0
 fzf        latest # 0.60.0
 gitleaks   latest # 8.23.3
 glab       latest # 1.53.0

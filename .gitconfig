@@ -217,7 +217,7 @@
 
 [init]
 
-	defaultBranch = main
+	defaultBranch = master
 	templateDir = /home/albandrieu/.git-template
 
 [safe]

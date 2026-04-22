@@ -146,7 +146,7 @@ _minted-*/
 *~
 *.swp
 
-lib/
+# lib/ # needed for next.js
 .grunt/
 dist/
 *.iml
