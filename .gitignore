@@ -17,6 +17,8 @@ Pictures/
 .aicommits
 .opencommit
 
+.config/glances/glances.conf
+
 anaconda3/
 
 go/

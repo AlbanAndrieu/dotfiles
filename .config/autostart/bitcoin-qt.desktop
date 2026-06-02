@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=sleep 500 && /usr/local/bin/bitcoin-qt -disablewallet -listenonion -listen=1 -prune=0
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=false
+Name[en_US]=bitcoin-qt
+Name=bitcoin-qt
+Comment[en_US]=bitcoin-qt
+Comment=bitcoin-qt

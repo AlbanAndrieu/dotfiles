@@ -156,6 +156,8 @@ export WORKSPACE_ENV=/workspace/users/${PROJECT_USER}${PROJECT_VERSION}/nabla/en
 
 #echo ${WORKSPACE_ENV}
 
+eval `ssh-agent -s`
+
 export NIX_PATH="nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixpkgs:/nix/var/nix/profiles/per-user/root/channels"
 
 eval "$(direnv hook bash)"
