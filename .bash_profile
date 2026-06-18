@@ -49,6 +49,14 @@ complete -W "NSGlobalDomain" defaults;
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
 
+# start agent and set environment variables, if needed
+agent_started=0
+if ! env | grep -q SSH_AGENT_PID >/dev/null; then
+  echo "Starting ssh agent"
+  eval $(ssh-agent -s)
+  agent_started=1
+fi
+
 # ~/.bash_profile
 if [ -f ~/.bashrc ]; then
   source ~/.bashrc

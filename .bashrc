@@ -156,8 +156,6 @@ export WORKSPACE_ENV=/workspace/users/${PROJECT_USER}${PROJECT_VERSION}/nabla/en
 
 #echo ${WORKSPACE_ENV}
 
-eval `ssh-agent -s`
-
 export NIX_PATH="nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixpkgs:/nix/var/nix/profiles/per-user/root/channels"
 
 eval "$(direnv hook bash)"
@@ -212,5 +210,10 @@ fi
 # OpenClaw Completion
 source "/home/albandrieu/.openclaw/completions/openclaw.bash"
 
+# source <(usage g completion-init bash)
+
 # opencode
 export PATH=/home/albanandrieu/.opencode/bin:$PATH
+
+# kubescape
+export PATH=$PATH:$HOME/.kubescape/bin

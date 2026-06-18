@@ -1,0 +1,10 @@
+[Unit]
+Description=Bose NC700 Handsfree
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/bose-handsfree.sh
+
+[Install]
+WantedBy=default.target
+
