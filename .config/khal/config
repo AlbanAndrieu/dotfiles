@@ -1,0 +1,21 @@
+[calendars]
+
+[[google]]
+path = ~/.calendars/google/*
+type = discover
+readonly = False
+
+[sqlite]
+path = /home/sandbox/.local/share/khal/khal.db
+
+[locale]
+default_timezone = Europe/Paris
+local_timezone = Europe/Paris
+
+timeformat = %H:%M
+dateformat = %d/%m/%Y
+longdateformat = %A %d %B %Y
+datetimeformat = %d/%m/%Y %H:%M
+longdatetimeformat = %A %d %B %Y %H:%M
+
+# firstweekday = monday

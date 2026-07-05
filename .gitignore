@@ -15,7 +15,7 @@ Pictures/
 .gnupg/*
 .yubico/
 .aicommits
-.opencommit
+# .opencommit
 
 .config/glances/glances.conf
 

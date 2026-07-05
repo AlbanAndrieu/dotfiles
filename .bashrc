@@ -156,6 +156,11 @@ export WORKSPACE_ENV=/workspace/users/${PROJECT_USER}${PROJECT_VERSION}/nabla/en
 
 #echo ${WORKSPACE_ENV}
 
+# Use GNOME/GCR SSH agent
+if [ -S "/run/user/$UID/gcr/ssh" ]; then
+  export SSH_AUTH_SOCK="/run/user/$UID/gcr/ssh"
+fi
+
 export NIX_PATH="nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixpkgs:/nix/var/nix/profiles/per-user/root/channels"
 
 eval "$(direnv hook bash)"
@@ -217,3 +222,4 @@ export PATH=/home/albanandrieu/.opencode/bin:$PATH
 
 # kubescape
 export PATH=$PATH:$HOME/.kubescape/bin
+

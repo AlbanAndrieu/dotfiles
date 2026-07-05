@@ -17,6 +17,8 @@ popeye = "latest"
 kustomize = "latest"
 krew = "latest"
 "github:getplumber/plumber" = "latest"
+python = "3.14"
+"pipx:yamllint" = "latest"
 
 [env]
 # TF_WORKSPACE = "development"

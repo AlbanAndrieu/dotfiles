@@ -97,7 +97,7 @@ alias fastping='ping -c 100 -s.2'
 alias h='history'
 alias j='jobs -l'
 
-alias mount='mount | column -t'
+# alias mount='mount | column -t'
 
 alias sha1='openssl sha1'
 
