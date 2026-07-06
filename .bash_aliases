@@ -253,3 +253,4 @@ alias gcp-ai='gcloud ai'
 alias jmvpn="sudo tailscale up --login-server https://vpn.jusmundi.com:943 --accept-routes --accept-dns --advertise-connector --advertise-tags=tag:connector --operator=$USER --stateful-filtering && sudo service tailscaled restart"
 alias bssh="ssh -t gra1bastion.int.jusmundi.com --"
 # END ANSIBLE MANAGED BLOCK profile 
+alias geany='GDK_BACKEND=x11 geany'
