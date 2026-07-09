@@ -1,0 +1,8 @@
+{
+  "enabledPlugins": {
+    "vercel-plugin@vercel": true
+  },
+  "allowShell": true,
+  "bashClassifier": "enabled",  
+  "theme": "dark"
+}
