@@ -1,5 +1,5 @@
 python     3.12.10
-poetry     2.2.1
+poetry     2.4.1
 direnv     latest # 2.35.0
 ruby       3.4.7
 ripgrep    14.1.0

@@ -1,12 +1,12 @@
 [Unit]
-Description=OpenClaw Gateway (v2026.6.11)
+Description=OpenClaw Gateway (v2026.7.1-2)
 After=network-online.target
 Wants=network-online.target
 StartLimitBurst=5
 StartLimitIntervalSec=60
 
 [Service]
-ExecStart=/usr/bin/node /home/albandrieu/.local/share/mise/installs/node/25.4.0/lib/node_modules/openclaw/dist/index.js gateway --port 18789
+ExecStart=/usr/bin/node /home/albandrieu/.local/share/mise/installs/node/24.18.1/lib/node_modules/openclaw/dist/index.js gateway --port 18789
 Restart=always
 RestartSec=5
 RestartPreventExitStatus=78
@@ -16,18 +16,18 @@ SuccessExitStatus=0 143
 OOMPolicy=continue
 KillMode=control-group
 EnvironmentFile=-/home/albandrieu/.openclaw/gateway.systemd.env
-Environment=OPENCLAW_SERVICE_MANAGED_ENV_KEYS=BRAVE_API_KEY,BRAVE_PLAN,DISCORD_BOT_TOKEN,DISCORD_CHANNEL_ID,DISCORD_OPENCLAW_SERVER_ID,LITELLM_API_KEY,LITELLM_OPENCLAW_CRON_API_KEY,LITELLM_OPENCLAW_MAIN_API_KEY,MOLTBOOK_API_KEY,NABLA_FREE_OPENAI_API_KEY,NABLA_PLUS_OPENAI_API_KEY,OPENCLAW_GATEWAY_PASSWORD,OPENCLAW_GATEWAY_TOKEN,SEARXNG_BASE_URL,TAVILY_API_KEY,TELEGRAM_BOT_TOKEN,TWITTER_API_BACKEND,WEB_SEARCH_BACKEND,X_BEARER_TOKEN
+Environment=OPENCLAW_SERVICE_MANAGED_ENV_KEYS=BRAVE_API_KEY,BRAVE_PLAN,DISCORD_BOT_TOKEN,DISCORD_CHANNEL_ID,DISCORD_OPENCLAW_SERVER_ID,GOG_ACCOUNT,GOG_CLIENT,LITELLM_API_KEY,LITELLM_OPENCLAW_CRON_API_KEY,LITELLM_OPENCLAW_MAIN_API_KEY,MOLTBOOK_API_KEY,N8N_API_KEY,N8N_BASE_URL,NABLA_FREE_OPENAI_API_KEY,NABLA_PLUS_OPENAI_API_KEY,OPENCLAW_GATEWAY_PASSWORD,OPENCLAW_GATEWAY_TOKEN,SEARXNG_BASE_URL,TAVILY_API_KEY,TELEGRAM_BOT_TOKEN,TWITTER_API_BACKEND,VAULT_ADDR,VAULT_TOKEN,WEB_SEARCH_BACKEND,X_BEARER_TOKEN
 Environment=HOME=/home/albandrieu
 Environment=TMPDIR=/tmp/user/1000
 Environment=NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt
-Environment=PATH=/usr/bin:/home/albanandrieu/.local/share/pnpm:/home/albandrieu/.bun/bin:/home/albanandrieu/.asdf/shims:/home/albandrieu/.nvm/current/bin:/home/albandrieu/.local/bin:/home/albandrieu/.npm-global/bin:/home/albandrieu/bin:/home/albandrieu/.asdf/shims:/home/albandrieu/.nix-profile/bin:/home/albandrieu/.local/share/pnpm:/usr/local/bin:/bin:/home/albandrieu/.local/share/mise/installs/node/25.4.0/bin
+Environment=PATH=/usr/bin:/usr/local/bin:/bin:/home/albanandrieu/.local/share/pnpm:/home/albanandrieu/.local/share/pnpm/bin:/home/albandrieu/.bun/bin:/home/albanandrieu/.asdf/shims:/home/albandrieu/.nvm/current/bin:/home/albandrieu/.local/bin:/home/albandrieu/.npm-global/bin:/home/albandrieu/bin:/home/albandrieu/.asdf/shims:/home/albandrieu/.nix-profile/bin:/home/albandrieu/.local/share/pnpm:/home/albandrieu/.local/share/mise/installs/node/24.18.1/bin:/home/albandrieu/.local/share/mise/installs/node/25.4.0/bin
 Environment=OPENCLAW_GATEWAY_PORT=18789
 Environment=OPENCLAW_SYSTEMD_UNIT=openclaw-gateway.service
 Environment="OPENCLAW_WINDOWS_TASK_NAME=OpenClaw Gateway"
 Environment=OPENCLAW_WINDOWS_TASK_HIDDEN_LAUNCHER=1
 Environment=OPENCLAW_SERVICE_MARKER=openclaw
 Environment=OPENCLAW_SERVICE_KIND=gateway
-Environment=OPENCLAW_SERVICE_VERSION=2026.6.11
+Environment=OPENCLAW_SERVICE_VERSION=2026.7.1-2
 
 [Install]
 WantedBy=default.target

@@ -223,3 +223,5 @@ export PATH=/home/albanandrieu/.opencode/bin:$PATH
 # kubescape
 export PATH=$PATH:$HOME/.kubescape/bin
 
+# opencode
+export PATH=/home/albandrieu/.opencode/bin:$PATH

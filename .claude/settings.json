@@ -1,8 +1,8 @@
 {
   "enabledPlugins": {
-    "vercel-plugin@vercel": true
+    "vercel@claude-plugins-official": true
   },
+  "theme": "dark",
   "allowShell": true,
-  "bashClassifier": "enabled",  
-  "theme": "dark"
+  "bashClassifier": "enabled"
 }

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "litellm": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "LiteLLM",
+      "options": {
+        "baseURL": "http://172.17.0.57:4000/v1"
+      },
+      "models": {
+        "gpt-4.1": {
+          "name": "gpt-4.1"
+        },
+        "gpt-4.1-mini": {
+          "name": "gpt-4.1-mini"
+        }
+      }
+    }
+  },
+  "mcp": {
+    "next-devtools": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "next-devtools-mcp@latest"
+      ],
+      "enabled": true,
+      "environment": {}
+    }
+  }
+}
