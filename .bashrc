@@ -225,3 +225,4 @@ export PATH=$PATH:$HOME/.kubescape/bin
 
 # opencode
 export PATH=/home/albandrieu/.opencode/bin:$PATH
+

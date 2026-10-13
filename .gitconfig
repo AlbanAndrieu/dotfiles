@@ -205,21 +205,11 @@
 	insteadOf = "gh:"
 	pushInsteadOf = "github:"
 	pushInsteadOf = "git://github.com/"
-
-[url "git://github.com/"]
-
-	insteadOf = "github:"
-
 [url "git@gist.github.com:"]
 
 	insteadOf = "gst:"
 	pushInsteadOf = "gist:"
 	pushInsteadOf = "git://gist.github.com/"
-
-[url "git://gist.github.com/"]
-
-	insteadOf = "gist:"
-
 [init]
 
 	defaultBranch = master
@@ -241,9 +231,6 @@
 	signingkey = F4C4B79A80826A5E5ADAD2C8B12DECD437E9E1C8
 [pull]
 	rebase = true
-[credential]
-	helper = store
-
 [tag]
 	forceSignAnnotated = true
 [gpg "ssh"]
@@ -256,3 +243,7 @@
 	path = ~/.gitconfig-override
 [includeIf "hasconfig:remote.*.url:https://*.ghe.com/**"]
 	path = ~/.gitconfig-override
+
+[credential]
+	helper = libsecret
+

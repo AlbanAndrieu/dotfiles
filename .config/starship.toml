@@ -35,12 +35,12 @@ success_symbol = "[➜](bold green)" # The "success_symbol" segment is being set
 
 # bracketed-segments.toml
 
-[env_var.NOMAD_VAR_env]
-variable = 'NOMAD_VAR_env'
-default = 'unknown nomad'
-symbol = " "
-style = 'bold green'
-format = '\[$symbol($version )[$env_value]($style)\]'
+# [env_var.NOMAD_VAR_env]
+# variable = 'NOMAD_VAR_env'
+# default = 'unknown nomad'
+# symbol = " "
+# style = 'bold green'
+# format = '\[$symbol($version )[$env_value]($style)\]'
 
 [aws]
 format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'

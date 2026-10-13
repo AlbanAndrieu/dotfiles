@@ -20,6 +20,7 @@ python = "3.14"
 "pipx:yamllint" = "latest"
 opencode = "latest"
 bitwarden = "latest"
+just = "1.58.0"
 # .NET SDK only on macOS (skipped on Ubuntu)
 dotnet = { version = "latest", os = ["macos"] }
 gh = "2.101.0"
@@ -59,3 +60,4 @@ run = "terraform apply -lock=true"
 [settings]
 lockfile = true
 experimental = true
+auto_update = true
