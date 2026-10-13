@@ -1,4 +1,7 @@
 # Shared Brewfile for macOS and Ubuntu (Linuxbrew): brew bundle --file=~/Brewfile
+# CLI tools are managed by mise (~/.config/mise/config.toml, ~/.tool-versions) whenever
+# they exist in the mise registry; keep here only what mise cannot provide
+# (libraries, casks, GPG, custom taps).
 # "homebrew/bundle" tap is no longer needed: bundle is built into brew
 
 # Taps
@@ -8,31 +11,23 @@ tap "michaeldfallen/formula"
 # Security / secrets
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
-brew "gitleaks"
-brew "gitguardian/tap/ggshield"
-brew "terrascan"
 
-# Cloud / IaC
-brew "azure-cli"
-brew "awscli"
+# Cloud / IaC (azure-cli, awscli, terraform are managed by mise)
 # Pretty-print terraform plan output
 brew "terraform_landscape"
 
 # Dev tooling
 # Polyglot runtime manager (asdf rust clone)
 brew "mise"
-brew "tfenv"
-brew "dive"
-brew "fzf"
-brew "hadolint"
-brew "github-markdown-toc"
 brew "randomize-lines"
 #brew "navi"
 brew "michaeldfallen/formula/git-radar"
-# Syntax-highlighting pager for git, diff and grep output (core.pager in ~/.gitconfig)
-brew "git-delta"
 # Static site generator for architecture models created with Structrizr DSL
 brew "avisi-cloud/tools/structurizr-site-generatr"
+
+# Fonts (macOS: ~/Library/Fonts, Linux: ~/.local/share/fonts)
+# FiraCode Nerd Font: icons for the starship prompt
+cask "font-fira-code-nerd-font"
 
 # Libraries
 brew "sqlite"

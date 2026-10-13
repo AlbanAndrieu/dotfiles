@@ -2,4 +2,6 @@
 background-color='rgb(4,3,6)'
 foreground-color='rgb(208,207,204)'
 use-theme-colors=false
+font='FiraCode Nerd Font Mono 12'
+use-system-font=false
 visible-name='Nabla'

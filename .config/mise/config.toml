@@ -27,6 +27,23 @@ gh = "2.101.0"
 npm = "12.0.2"
 pipx = "1.17.6"
 uv = "latest"
+# Shell prompt (config: ~/.config/starship.toml)
+starship = "latest"
+# Security scanners: secrets, dependency vulns, GitHub Actions
+betterleaks = "latest"
+osv-scanner = "latest"
+zizmor = "latest"
+gitleaks = "latest"
+ggshield = "latest"
+terrascan = "latest"
+hadolint = "latest"
+# Dev tooling (moved from Brewfile)
+dive = "latest"
+fzf = "latest"
+github-markdown-toc = "latest"
+# git pager (core.pager in ~/.gitconfig)
+delta = "latest"
+azure-cli = "latest"
 
 [env]
 _.file = { path = "$HOME/.env.secrets", redact = true }

@@ -3,6 +3,8 @@
 [profiles]
   [[default]]
     foreground_color = "#ffffff"
+    font = FiraCode Nerd Font Mono 12
+    use_system_font = False
 [layouts]
   [[default]]
     [[[window0]]]

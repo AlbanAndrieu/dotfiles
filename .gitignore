@@ -34,7 +34,6 @@
 !/.git-prompt.sh
 !/.gitattributes
 !/.gitconfig
-!/.gitconfig-override
 !/.gitignore
 !/.gitleaks.toml
 !/.gitleaksignore
@@ -681,3 +680,17 @@ Claude\ outputs/
 .config/cagent/
 .config/jgit/
 .vscode/
+
+# =============================================================================
+# Re-include selected config files. Must stay LAST: rules above (.docker/,
+# .warp/, .agents/) ignore these directories and the last matching rule wins.
+# =============================================================================
+!/.warp/
+/.warp/*
+!/.warp/settings.toml
+!/.docker/
+/.docker/*
+!/.docker/daemon.json
+!/.agents/
+/.agents/*
+!/.agents/.skill-lock.json

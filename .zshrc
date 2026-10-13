@@ -9,4 +9,9 @@ autoload -Uz compinit
 # End of Docker CLI completions
 [[ -f ~/.aliases ]] && source ~/.aliases
 export GPG_TTY=$(tty)
-export GPG_TTY=$(tty)
+
+# Starship prompt (installed by mise, config: ~/.config/starship.toml)
+# Needs a Nerd Font in the terminal, e.g. "FiraCode Nerd Font Mono"
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi

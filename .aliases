@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+# shellcheck shell=bash
 
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
@@ -200,3 +200,6 @@ brew() {
   return $rc
 }
 
+
+# Install missing Brewfile entries without upgrading self-updating casks (Docker, Warp...)
+alias bbi='brew bundle install --no-upgrade --file=~/Brewfile'

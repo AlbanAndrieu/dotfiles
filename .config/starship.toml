@@ -170,11 +170,11 @@ format = '\[[$symbol($version)]($style)\]'
 [memory_usage]
 #disabled = false
 format = '\[$symbol[$ram( | $swap)]($style)\]'
-symbol = " "
+symbol = "󰍛 "
 
 [nim]
 format = '\[[$symbol($version)]($style)\]'
-symbol = " "
+symbol = "󰆥 "
 
 [nix_shell]
 format = '\[[$symbol$state( \($name\))]($style)\]'

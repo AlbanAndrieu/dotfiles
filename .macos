@@ -672,6 +672,13 @@ end tell
 
 EOD
 
+# Use FiraCode Nerd Font (starship icons) in the default Terminal.app profile
+# Font installed by the Brewfile: cask "font-fira-code-nerd-font"
+osascript -e 'tell application "Terminal"' \
+  -e 'set font name of default settings to "FiraCodeNFM-Reg"' \
+  -e 'set font size of default settings to 12' \
+  -e 'end tell'
+
 # Enable “focus follows mouse” for Terminal.app and all X11 apps
 # i.e. hover over a window and start typing in it without clicking first
 #defaults write com.apple.terminal FocusFollowsMouse -bool true

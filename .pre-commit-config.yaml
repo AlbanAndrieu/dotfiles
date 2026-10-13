@@ -89,6 +89,8 @@ repos:
         name: "📁 filesystem/📝 json · Check json"
       - id: check-toml
         name: "📁 filesystem/📜 toml - Check toml"
+        # Warp writes TOML 1.1 multi-line inline tables, rejected by the TOML 1.0 parser
+        exclude: ^\.warp/settings\.toml$
       - id: check-xml
         name: "📁 filesystem/📜 xml - Check xml"
       - id: check-yaml
@@ -239,6 +241,8 @@ repos:
       - id: bashate
         name: "🐚 shell · Check shell script code style"
         args: [-i, "E003,E006"]
+        # zsh files are not bash; .macos embeds tab-indented AppleScript heredocs
+        exclude: ^(\.macos|\.zshrc|\.zprofile|\.zshenv)$
 
   ### Makefile ###
   - repo: https://github.com/mrtazz/checkmake.git
@@ -353,9 +357,11 @@ repos:
   - repo: https://github.com/zricethezav/gitleaks
     rev: v8.29.1
     hooks:
-      - id: gitleaks-docker
-        name: "🔒 🐳 security · Detect hardcoded secrets"
-        entry: zricethezav/gitleaks protect --verbose --redact --staged
+      # Uses the gitleaks binary from PATH (installed by mise), no Docker needed
+      - id: gitleaks-system
+        name: "🔒 security · Detect hardcoded secrets"
+        entry: gitleaks git --pre-commit --staged --redact --verbose
+        pass_filenames: false
 
   ### Ansible ###
   # Disable because too slow
