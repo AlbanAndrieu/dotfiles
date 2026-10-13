@@ -362,6 +362,15 @@ repos:
         name: "🔒 security · Detect hardcoded secrets"
         entry: gitleaks git --pre-commit --staged --redact --verbose
         pass_filenames: false
+  - repo: local
+    hooks:
+      # Uses the ggshield binary from PATH (installed by mise)
+      - id: ggshield
+        name: "🔒 security · Detect hardcoded secrets : ggshield"
+        entry: ggshield secret scan pre-commit
+        language: system
+        pass_filenames: false
+        stages: [pre-commit]
 
   ### Ansible ###
   # Disable because too slow
