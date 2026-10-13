@@ -83,7 +83,7 @@
 	autocrlf = input
 
 	# Use custom `.gitignore` and `.gitattributes`.
-	excludesfile = ~/.gitignore
+	excludesFile = ~/.config/git/ignore
 
 	attributesfile = ~/.gitattributes
 

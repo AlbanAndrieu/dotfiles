@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Shared direnv helpers, available to every .envrc.
+# https://github.com/direnv/direnv/wiki/Node
+
+# use_nvm [version] — activate a Node version managed by nvm.
+# Falls back to .nvmrc when no version is given; warns (without failing the
+# .envrc) when nvm or the requested version is missing, so mise/asdf can still
+# provide Node.
+use_nvm() {
+  local node_version="${1:-}"
+  local nvm_sh="${NVM_DIR:-${HOME}/.nvm}/nvm.sh"
+
+  if [[ ! -e "${nvm_sh}" ]]; then
+    log_error "use_nvm: ${nvm_sh} not found, skipping"
+    return 0
+  fi
+
+  # shellcheck disable=SC1090
+  source "${nvm_sh}"
+
+  if [[ -z "${node_version}" && -f .nvmrc ]]; then
+    node_version="$(<.nvmrc)"
+  fi
+
+  if ! nvm use --silent "${node_version}" >/dev/null 2>&1; then
+    log_error "use_nvm: node ${node_version} not installed (run: nvm install ${node_version}), skipping"
+  fi
+}

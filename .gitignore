@@ -121,7 +121,7 @@
 /.config/*
 
 # !/.config/autostart/
-# !/.config/direnv/
+!/.config/direnv/
 !/.config/gh/
 !/.config/htop/
 !/.config/khal/
