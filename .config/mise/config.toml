@@ -47,7 +47,7 @@ azure-cli = "latest"
 
 [env]
 _.file = { path = "$HOME/.env.secrets", redact = true }
-SONAR_TOKEN = "{{ env.SONARCLOUD_TOKEN }}"
+# SONAR_TOKEN = "{{ env.SONARCLOUD_TOKEN }}"
 
 # TF_WORKSPACE = "development"
 AWS_REGION = "us-east-1"

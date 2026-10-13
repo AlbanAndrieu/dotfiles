@@ -17,12 +17,12 @@
 !/.bash_prompt
 !/.bashit
 !/.bashrc
-!/.checkov.yml
+# !/.checkov.yml
 !/.codeclimate.yml
 !/.coveragerc
 !/.cspell.json
 !/.curlrc
-!/.cursor/
+# !/.cursor/
 !/.deepsource.toml
 !/.dive.yaml
 !/.dockerignore
@@ -119,9 +119,9 @@
 
 !/.config/
 /.config/*
-!/.config/anythingllm-desktop/
-!/.config/autostart/
-!/.config/direnv/
+
+# !/.config/autostart/
+# !/.config/direnv/
 !/.config/gh/
 !/.config/htop/
 !/.config/khal/
@@ -129,9 +129,9 @@
 !/.config/mise/
 !/.config/monitors.xml
 !/.config/opencode/
-!/.config/pypoetry/
+# !/.config/pypoetry/
 !/.config/starship.toml
-!/.config/systemd/
+# !/.config/systemd/
 !/.config/terminator/
 !/.config/gh/
 /.config/gh/*
@@ -142,9 +142,9 @@
 !/.local/bin/
 /.local/bin/*
 !/.local/bin/openclaw-with-vault
-!/.local/share/
+# !/.local/share/
 /.local/share/*
-!/.local/share/applications/
+# !/.local/share/applications/
 
 .gitconfig-override
 
