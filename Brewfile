@@ -30,6 +30,14 @@ brew "avisi-cloud/tools/structurizr-site-generatr"
 cask "font-fira-code-nerd-font"
 
 # Libraries
+# Linked by Python builds from mise (ssl, decimal, readline, lzma, zstd, gettext):
+# keep them declared so "brew autoremove" never deletes them
+brew "openssl@3"
+brew "mpdecimal"
+brew "readline"
+brew "xz"
+brew "zstd"
+brew "gettext"
 brew "sqlite"
 # sudo apt install uuid-dev
 brew "cairo"
@@ -47,6 +55,8 @@ if OS.mac?
   cask "warp-agent-cli"
   # Visual diff and merge tool (diff.tool / merge.tool in ~/.gitconfig)
   cask "meld"
+  # Lightweight IDE (on Ubuntu: sudo apt install geany)
+  cask "geany"
 end
 
 if OS.linux?

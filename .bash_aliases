@@ -171,30 +171,25 @@ alias dockviz="docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock 
 alias ..="cd .."
 alias cls="clear"
 
-if [ "${ARCH}" = sun4sol -o "${ARCH}" = solaris ]
-then
+if [ "${ARCH}" = sun4sol -o "${ARCH}" = solaris ]; then
   alias l='/bin/ls -Fl'
   alias pp='/usr/ucb/ps -auxwww'
   alias m='/usr/ucb/more'
 else
-  if [ "${ARCH}" = sun4 ]
-  then
+  if [ "${ARCH}" = sun4 ]; then
     alias l='/bin/ls -Flg'
     alias pp='/usr/bin/ps -auxwww'
   else
-    if [ "${ARCH}" = rs6000 ]
-    then
+    if [ "${ARCH}" = rs6000 ]; then
       alias l='/bin/ls -Fl'
       alias pp='/usr/bin/ps auxwww'
       alias m='/usr/bin/more'
     else
-      if [ "${ARCH}" = hprisc ]
-      then
+      if [ "${ARCH}" = hprisc ]; then
         alias l='/bin/ls -Fl'
         alias pp='/bin/ps -edf'
       else
-        if [ "${ARCH}" = linux -o "${ARCH}" = cygwin ]
-        then
+        if [ "${ARCH}" = linux -o "${ARCH}" = cygwin ]; then
           alias l='/bin/ls -Fl --color'
           alias pp='/bin/ps -auxwww'
         fi
@@ -233,7 +228,6 @@ alias setEnvFiles="${WORKSPACE_ENV}/config/setEnvFiles.sh ${PROJECT_USER_PROFILE
 alias setEnvFilesAll="${WORKSPACE_ENV}/config/setEnvFiles.allUserDev.sh ${PROJECT_USER_PROFILE}"
 alias setWorkspace="source ${WORKSPACE_ENV}/scripts/setWorkspace.sh"
 
-alias phpstan='docker run -v $PWD:/app --rm ghcr.io/phpstan/phpstan'
 alias lzd='docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v /home/albanandrieu/.config/:/.config/jesseduffield/lazydocker lazyteam/lazydocker'
 
 # Infrastructure tools
@@ -246,11 +240,9 @@ alias azai='az ai'
 alias gcp-ai='gcloud ai'
 
 # alias tctl="docker exec temporal-admin-tools tctl"
-# BEGIN ANSIBLE MANAGED BLOCK profile 
+# BEGIN ANSIBLE MANAGED BLOCK profile
 # openvpn
-#alias jmvpn="sudo openvpn3 session-start --config ~/openvpn.profile"
-#alias jmvpn="sudo tailscale up --login-server https://vpn.jusmundi.com:943 --accept-routes --accept-dns"
-alias jmvpn="sudo tailscale up --login-server https://vpn.jusmundi.com:943 --accept-routes --accept-dns --advertise-connector --advertise-tags=tag:connector --operator=$USER --stateful-filtering && sudo service tailscaled restart"
-alias bssh="ssh -t gra1bastion.int.jusmundi.com --"
-# END ANSIBLE MANAGED BLOCK profile 
+alias nablavpn="sudo tailscale up --login-server https://vpn.albandrieu.com:943 --accept-routes --accept-dns --advertise-connector --advertise-tags=tag:connector --operator=$USER --stateful-filtering && sudo service tailscaled restart"
+alias bssh="ssh -t bastion.int.albandrieu.com --"
+# END ANSIBLE MANAGED BLOCK profile
 alias geany='GDK_BACKEND=x11 geany'

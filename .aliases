@@ -29,8 +29,7 @@ alias mi='mise install'
 alias mc='mise current'
 
 alias cde="cd ${PROJECT_DEV}/${PROJECT_EXTRACTION}"
-# alias cdw="cd ${PROJECT_DEV}"
-alias cdc="cd ${PROJECT_DEV}/env/config"
+alias cdc="cd ${WORKSPACE_ENV:-${PROJECT_DEV}/env}/config"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
@@ -178,28 +177,60 @@ brew() {
 
   if (( rc == 0 )) && [[ "$action" == install || "$action" == uninstall ]]; then
     shift
-    local -a names opts
-    local arg
+    local arg name
+    local -a names
     for arg in "$@"; do
-      case "$arg" in
-        --cask|--casks) opts+=(--cask) ;;
-        -*) ;;
-        *) names+=("$arg") ;;
-      esac
+      [[ "$arg" == -* ]] || names+=("$arg")
     done
-    if (( ${#names[@]} )); then
+    for name in "${names[@]}"; do
       if [[ "$action" == install ]]; then
-        command brew bundle add "${opts[@]}" --file="$HOME/Brewfile" "${names[@]}" >/dev/null 2>&1
+        # "brew install x" may resolve to a cask: detect the real type
+        local -a kind=()
+        command brew list --cask "$name" >/dev/null 2>&1 && kind=(--cask)
+        if command brew bundle add "${kind[@]}" --file="$HOME/Brewfile" "$name" >/dev/null 2>&1; then
+          echo "Brewfile mis à jour : ajout de ${kind[*]:+cask }$name"
+        else
+          echo "Brewfile : $name non ajouté (déjà présent ou erreur), vérifie ~/Brewfile" >&2
+        fi
       else
-        command brew bundle remove "${opts[@]}" --file="$HOME/Brewfile" "${names[@]}" >/dev/null 2>&1
+        # No type flag: removes the entry whatever its type (brew, cask...)
+        if command brew bundle remove --file="$HOME/Brewfile" "$name" >/dev/null 2>&1; then
+          echo "Brewfile mis à jour : retrait de $name"
+        fi
       fi
-      echo "Brewfile mis à jour : $HOME/Brewfile (${action} ${names[*]})"
-    fi
+    done
   fi
 
   return $rc
 }
 
+
+# Portable aliases from ~/.bash_aliases (macOS + Ubuntu, bash + zsh)
+if command -v eza >/dev/null 2>&1; then
+  alias l='eza'
+  alias la='eza -a'
+  alias ll='eza -lahg'
+  alias lt='eza --tree --level=2'
+fi
+# cat with syntax highlighting (bat from mise; batcat on Ubuntu apt)
+if command -v bat >/dev/null 2>&1; then
+  alias cat='bat --paging=never'
+elif command -v batcat >/dev/null 2>&1; then
+  alias cat='batcat --paging=never'
+fi
+alias h='history'
+alias j='jobs -l'
+alias cls='clear'
+alias header='curl -I'
+alias headerc='curl -I --compressed'
+alias sha1='openssl sha1'
+alias ping='ping -c 5'
+# BSD ps (macOS) has no "f" (forest) flag
+alias psmem='ps aux | sort -nr -k 4'
+alias psmem10='ps aux | sort -nr -k 4 | head -10'
+alias pscpu='ps aux | sort -nr -k 3'
+alias pscpu10='ps aux | sort -nr -k 3 | head -10'
+command -v terraform >/dev/null 2>&1 && alias tf='terraform'
 
 # Install missing Brewfile entries without upgrading self-updating casks (Docker, Warp...)
 alias bbi='brew bundle install --no-upgrade --file=~/Brewfile'

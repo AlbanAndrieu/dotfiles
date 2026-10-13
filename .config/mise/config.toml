@@ -40,6 +40,10 @@ hadolint = "latest"
 # Dev tooling (moved from Brewfile)
 dive = "latest"
 fzf = "latest"
+# Modern ls (maintained fork of exa), used by ll/la/l in ~/.aliases
+eza = "latest"
+# cat with syntax highlighting (Ubuntu apt package names it batcat)
+bat = "latest"
 github-markdown-toc = "latest"
 # git pager (core.pager in ~/.gitconfig)
 delta = "latest"

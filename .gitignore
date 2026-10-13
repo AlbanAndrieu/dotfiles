@@ -248,9 +248,6 @@ aws_credentials
 
 # Backup
 
-.*-2024-06-20
-jm.ovpn
-jusmundi-pgadmin-2024-04-08.json
 General-20240426.dbp
 
 # Home made custom exception

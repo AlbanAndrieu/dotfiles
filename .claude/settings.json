@@ -12,6 +12,25 @@
       "Read(~/.ssh/config)",
       "Read(~/.ssh/known_hosts)"
     ],
+    "deny": [
+      "Bash(rm -rf /)",
+      "Bash(rm -rf ~)",
+      "Bash(rm -rf ~/)",
+      "Bash(kubectl delete namespace *)",
+      "Bash(kubectl delete ns *)",
+      "Read(~/.azure/msal_token_cache.json)",
+      "Read(~/.config/mise/age.txt)",
+      "Read(~/.ssh/id_rsa)",
+      "Read(~/.ssh/id_dsa)",
+      "Read(~/.ssh/id_ecdsa)",
+      "Read(~/.ssh/id_ecdsa_sk)",
+      "Read(~/.ssh/id_ed25519)",
+      "Read(~/.ssh/id_ed25519_sk)",
+      "Read(~/.ssh/private.asc)",
+      "Read(~/.ssh/*.pem)",
+      "Read(~/.gnupg/private-keys-v1.d/**)",
+      "Read(~/.vault-token)"
+    ],
     "ask": [
       "Bash(kubectl apply *)",
       "Bash(kubectl create *)",
@@ -76,25 +95,6 @@
       "Bash(az keyvault create*)",
       "Bash(az keyvault delete*)",
       "Bash(az keyvault purge*)"
-    ],
-    "deny": [
-      "Bash(rm -rf /)",
-      "Bash(rm -rf ~)",
-      "Bash(rm -rf ~/)",
-      "Bash(kubectl delete namespace *)",
-      "Bash(kubectl delete ns *)",
-      "Read(~/.azure/msal_token_cache.json)",
-      "Read(~/.config/mise/age.txt)",
-      "Read(~/.ssh/id_rsa)",
-      "Read(~/.ssh/id_dsa)",
-      "Read(~/.ssh/id_ecdsa)",
-      "Read(~/.ssh/id_ecdsa_sk)",
-      "Read(~/.ssh/id_ed25519)",
-      "Read(~/.ssh/id_ed25519_sk)",
-      "Read(~/.ssh/private.asc)",
-      "Read(~/.ssh/*.pem)",
-      "Read(~/.gnupg/private-keys-v1.d/**)",
-      "Read(~/.vault-token)"
     ]
   },
   "enabledPlugins": {
@@ -126,12 +126,40 @@
       "$defaults",
       "Any mutating or deleting action against a production environment (kube context, namespace, Azure subscription, resource group, Vault path or URL containing prod/prd/production), even if the user asked for it earlier in the session: confirm first",
       "Deleting cloud resources, Kubernetes resources, Helm releases, databases, storage, DNS records or secrets",
-      "Writing, rotating or deleting secrets in HashiCorp Vault, Azure Key Vault or Kubernetes secrets"
+      "Writing, rotating or deleting secrets in HashiCorp Vault, Azure Key Vault or Kubernetes secrets",
+      "Mutating or deleting actions against the platform-aks-prd k8s namespace (seen in recent usage) — confirm first"
     ],
     "hard_deny": [
       "$defaults",
       "Reading or printing SSH/GPG private keys (~/.ssh/id_* without .pub, ~/.ssh/private.asc, ~/.gnupg/private-keys-v1.d) by any means, including cat/head/base64 in Bash",
       "Printing, echoing, quoting or copying secret values (~/.env.secrets, Vault, Key Vault, Kubernetes secrets, tokens) to the transcript, files, commits, or external services; secrets may only be passed to commands via env vars, files or pipes"
+    ],
+    "environment": [
+      "### Org-wide",
+      "**Organization**: None configured",
+      "**Cloud provider(s)**: None configured",
+      "**Repository visibility**: unverified — gh reported visibility as not queryable here for AlbanAndrieu/dotfiles; treat as possibly public: scope commits/pushes there as for a public repo",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: None configured",
+      "**Default / protected branches**: Default branch: main; Protected branches: none listed (Rulesets: none listed — no ruleset-based protection evidence either, via gh)",
+      "**CI/CD deploy targets**: None configured",
+      "**Network posture**: None configured",
+      "**Host containment**: None configured — assume Claude Code runs on an ordinary developer machine or CI runner with open internet",
+      "**Source control**: The trusted repo (github.com:AlbanAndrieu/dotfiles.git) and its remote(s) only (no additional orgs configured)",
+      "**Trusted internal domains**: None configured",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: None configured",
+      "**Internal package registry**: None configured — gitlab.com appeared in a config scan but is not corroborated by usage evidence (package registry host, not a bucket, so not adopted)",
+      "**Sensitive data locations & audiences**: any file or store holding personal data, confidential business data, credentials, regulated data, or similarly sensitive material; preserve exact handles when known and share only with audiences cleared at the [named+specifics] bar — this repo's .gitignore suggests locations like .env, .env.local, .env.*.local, .env.secrets, keys/nabla-age-ley.txt, private.asc, .vault-token, .git-credentials, .config/Yubico/u2f_keys, aws_credentials, .aws/credentials, ansible.key",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace, host, or container whose name carries prod or production as a whole word or name segment — note k8s namespace `platform-aks-prd` was seen in usage (prd is a prod-segment variant) and should be treated as a sensitive remote target",
+      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic (includes platform-aks-prd)",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries prod or production as a whole word or name segment",
+      "### User-specific",
+      "**Primary use of Claude Code**: software development",
+      "**Trusted repo**: The git repository the agent started in (~/, remote github.com:AlbanAndrieu/dotfiles.git) and its configured remote(s) — visibility unverified, so treat as possibly public for commit/push scoping purposes",
+      "**Org-specific CLIs**: None configured — az and gpg appear in usage but are standard tools, not org-specific CLIs",
+      "routine under AlbanAndrieu/ prefix: operations against this repo's own remote (github.com:AlbanAndrieu/dotfiles.git) are routine; other repos under ~/github (e.g. nabla, Defender-MCP, fastapi-sample, ms-365-admin-mcp-server) are candidates only, not vetted context, and out of scope per Q2 (just this project)"
     ]
   }
 }
