@@ -1,0 +1,12 @@
+#!/bin/sh
+# git external diff driver (diff.external in ~/.gitconfig)
+# Args: path old-file old-hex old-mode new-file new-hex new-mode
+# Opens meld when git diff is run interactively (terminal or git pager),
+# otherwise prints a unified diff so pipes, scripts and agents keep working.
+# Force text output: git diff --no-ext-diff
+if { [ -t 1 ] || [ "$GIT_PAGER_IN_USE" = "true" ]; } && command -v meld >/dev/null 2>&1; then
+  meld "$2" "$5" >/dev/null 2>&1
+else
+  diff -u -L "a/$1" -L "b/$1" "$2" "$5"
+fi
+exit 0

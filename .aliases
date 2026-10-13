@@ -16,11 +16,20 @@ alias p="cd ~/projects"
 alias g="git"
 alias gco="oco --fgm --no-verify"
 
+# Navigation
 alias cdr="cd ~/w"
-alias cdj="cd ~/w/jm"
-alias cdi="cd ~/w/jm/infra"
+
+# Git
+alias gs='git status'
+alias gd='git diff'
+alias gl='git log --oneline --decorate --graph -20'
+
+# Mise
+alias mi='mise install'
+alias mc='mise current'
+
 alias cde="cd ${PROJECT_DEV}/${PROJECT_EXTRACTION}"
-alias cdw="cd ${PROJECT_DEV}"
+# alias cdw="cd ${PROJECT_DEV}"
 alias cdc="cd ${PROJECT_DEV}/env/config"
 
 # Detect which `ls` flavor is in use
@@ -158,3 +167,36 @@ alias path='echo -e ${PATH//:/\\n}'
 alias mrsort="gawk -v RS=\"\" '{ gsub(\"\n\", \"###\"); print }' .mrconfig | sort -f | gawk -v ORS=\"\n\n\" '{ gsub(\"###\", \"\n\"); print }' > .mrconfig.tmp && mv .mrconfig.tmp .mrconfig"
 
 alias update="${HOME}/w/nabla/env/linux/run-git-update.sh -gc ./"
+
+# Keep ~/Brewfile in sync on install/uninstall without rewriting it
+# (bundle add/remove only touch the given entries; "dump --force" would wipe OS blocks and comments)
+# Note: "status" is a read-only variable in zsh, hence "rc"
+brew() {
+  command brew "$@"
+  local rc=$?
+  local action="$1"
+
+  if (( rc == 0 )) && [[ "$action" == install || "$action" == uninstall ]]; then
+    shift
+    local -a names opts
+    local arg
+    for arg in "$@"; do
+      case "$arg" in
+        --cask|--casks) opts+=(--cask) ;;
+        -*) ;;
+        *) names+=("$arg") ;;
+      esac
+    done
+    if (( ${#names[@]} )); then
+      if [[ "$action" == install ]]; then
+        command brew bundle add "${opts[@]}" --file="$HOME/Brewfile" "${names[@]}" >/dev/null 2>&1
+      else
+        command brew bundle remove "${opts[@]}" --file="$HOME/Brewfile" "${names[@]}" >/dev/null 2>&1
+      fi
+      echo "Brewfile mis à jour : $HOME/Brewfile (${action} ${names[*]})"
+    fi
+  fi
+
+  return $rc
+}
+

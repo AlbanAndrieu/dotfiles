@@ -1,11 +1,10 @@
-# mise.toml
 [tools]
 # terraform = "1.14.0"
 # aws-cli = "2"
 # ruby = "3.4.7"
 # ruby = "3.1.5"
 # node = "lts"
-node = "24"
+node = "26.9.0"
 go = "1.25.5"
 sops = "latest"
 age = "latest"
@@ -20,8 +19,18 @@ krew = "latest"
 python = "3.14"
 "pipx:yamllint" = "latest"
 opencode = "latest"
+bitwarden = "latest"
+# .NET SDK only on macOS (skipped on Ubuntu)
+dotnet = { version = "latest", os = ["macos"] }
+gh = "2.101.0"
+npm = "12.0.2"
+pipx = "1.17.6"
+uv = "latest"
 
 [env]
+_.file = { path = "$HOME/.env.secrets", redact = true }
+SONAR_TOKEN = "{{ env.SONARCLOUD_TOKEN }}"
+
 # TF_WORKSPACE = "development"
 AWS_REGION = "us-east-1"
 # AWS_PROFILE = "dev"

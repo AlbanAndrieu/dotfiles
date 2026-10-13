@@ -1,8 +1,137 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(az rest --method get *)",
+      "Bash(az rest --method post --uri *listSecrets*)",
+      "Bash(az keyvault secret show *)",
+      "Bash(az keyvault secret list *)",
+      "Bash(az keyvault list*)",
+      "Bash(az keyvault show *)",
+      "Read(~/.ssh/*.pub)",
+      "Read(~/.ssh/public.asc)",
+      "Read(~/.ssh/config)",
+      "Read(~/.ssh/known_hosts)"
+    ],
+    "ask": [
+      "Bash(kubectl apply *)",
+      "Bash(kubectl create *)",
+      "Bash(kubectl delete *)",
+      "Bash(kubectl edit *)",
+      "Bash(kubectl patch *)",
+      "Bash(kubectl replace *)",
+      "Bash(kubectl scale *)",
+      "Bash(kubectl rollout *)",
+      "Bash(kubectl drain *)",
+      "Bash(kubectl cordon *)",
+      "Bash(kubectl taint *)",
+      "Bash(kubectl label *)",
+      "Bash(kubectl annotate *)",
+      "Bash(kubectl exec *)",
+      "Bash(kubectl cp *)",
+      "Bash(kubectl port-forward *)",
+      "Bash(kubectl config use-context *)",
+      "Bash(kubectl get secret*)",
+      "Bash(kubectl describe secret*)",
+      "Bash(helm install *)",
+      "Bash(helm upgrade *)",
+      "Bash(helm uninstall *)",
+      "Bash(helm rollback *)",
+      "Bash(vault *)",
+      "Bash(sops *)",
+      "Bash(terraform apply*)",
+      "Bash(terraform destroy*)",
+      "Bash(terraform import *)",
+      "Bash(terraform state rm *)",
+      "Bash(tofu apply*)",
+      "Bash(tofu destroy*)",
+      "Bash(az * delete*)",
+      "Bash(az * purge*)",
+      "Bash(az rest --method delete *)",
+      "Bash(az rest --method put *)",
+      "Bash(az rest --method patch *)",
+      "Bash(aws * delete*)",
+      "Bash(gh repo delete *)",
+      "Bash(docker system prune*)",
+      "Bash(docker volume rm *)",
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "Bash(git push * --force*)",
+      "Bash(git reset --hard*)",
+      "Bash(git clean -f*)",
+      "Bash(rm -rf *)",
+      "Bash(rm -r *)",
+      "Bash(*prod*)",
+      "Bash(*production*)",
+      "Bash(az keyvault secret set*)",
+      "Bash(az keyvault secret delete*)",
+      "Bash(az keyvault secret purge*)",
+      "Bash(az keyvault secret recover*)",
+      "Bash(az keyvault secret restore*)",
+      "Bash(az keyvault secret set-attributes*)",
+      "Bash(az keyvault key *)",
+      "Bash(az keyvault certificate *)",
+      "Bash(az keyvault update*)",
+      "Bash(az keyvault set-policy*)",
+      "Bash(az keyvault delete-policy*)",
+      "Bash(az keyvault create*)",
+      "Bash(az keyvault delete*)",
+      "Bash(az keyvault purge*)"
+    ],
+    "deny": [
+      "Bash(rm -rf /)",
+      "Bash(rm -rf ~)",
+      "Bash(rm -rf ~/)",
+      "Bash(kubectl delete namespace *)",
+      "Bash(kubectl delete ns *)",
+      "Read(~/.azure/msal_token_cache.json)",
+      "Read(~/.config/mise/age.txt)",
+      "Read(~/.ssh/id_rsa)",
+      "Read(~/.ssh/id_dsa)",
+      "Read(~/.ssh/id_ecdsa)",
+      "Read(~/.ssh/id_ecdsa_sk)",
+      "Read(~/.ssh/id_ed25519)",
+      "Read(~/.ssh/id_ed25519_sk)",
+      "Read(~/.ssh/private.asc)",
+      "Read(~/.ssh/*.pem)",
+      "Read(~/.gnupg/private-keys-v1.d/**)",
+      "Read(~/.vault-token)"
+    ]
+  },
   "enabledPlugins": {
+    "oz-harness-support@claude-code-warp": true,
+    "warp@claude-code-warp": true,
+    "chrome-devtools-mcp@claude-plugins-official": true,
+    "playwright@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
     "vercel@claude-plugins-official": true
   },
+  "extraKnownMarketplaces": {
+    "claude-code-warp": {
+      "source": {
+        "source": "github",
+        "repo": "warpdotdev/claude-code-warp"
+      }
+    },
+    "claude-code-workflows": {
+      "source": {
+        "source": "github",
+        "repo": "wshobson/agents"
+      }
+    }
+  },
+  "autoCompactWindow": 500000,
   "theme": "dark",
-  "allowShell": true,
-  "bashClassifier": "enabled"
+  "autoMode": {
+    "soft_deny": [
+      "$defaults",
+      "Any mutating or deleting action against a production environment (kube context, namespace, Azure subscription, resource group, Vault path or URL containing prod/prd/production), even if the user asked for it earlier in the session: confirm first",
+      "Deleting cloud resources, Kubernetes resources, Helm releases, databases, storage, DNS records or secrets",
+      "Writing, rotating or deleting secrets in HashiCorp Vault, Azure Key Vault or Kubernetes secrets"
+    ],
+    "hard_deny": [
+      "$defaults",
+      "Reading or printing SSH/GPG private keys (~/.ssh/id_* without .pub, ~/.ssh/private.asc, ~/.gnupg/private-keys-v1.d) by any means, including cat/head/base64 in Bash",
+      "Printing, echoing, quoting or copying secret values (~/.env.secrets, Vault, Key Vault, Kubernetes secrets, tokens) to the transcript, files, commits, or external services; secrets may only be passed to commands via env vars, files or pipes"
+    ]
+  }
 }

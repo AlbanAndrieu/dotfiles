@@ -105,10 +105,11 @@
 
 	editor = nano
 	
-	pager = delta --paging=always
+	# Fall back to less when delta is not installed (brew install git-delta)
+	pager = "command -v delta >/dev/null 2>&1 && exec delta --paging=always || exec less -FRX"
 
 [interactive]
-    diffFilter = delta --color-only
+    diffFilter = "command -v delta >/dev/null 2>&1 && exec delta --color-only || exec cat"
 
 [delta]
     navigate = true    # use n and N to move between diff sections
@@ -158,6 +159,9 @@
 	# Detect copies as well as renames.
 	renames = copies
 	tool = meld
+	# git diff opens meld in a terminal, plain text when piped (see ~/bin/git-diff-meld)
+	# Text diff anyway: git diff --no-ext-diff
+	external = ~/bin/git-diff-meld
 
 [diff "bin"]
 
@@ -168,7 +172,8 @@
 	prompt = false
 
 [difftool "meld"]
-	path = /usr/bin/meld
+	# No hardcoded path: meld is resolved from PATH (/usr/bin on Ubuntu, /opt/homebrew/bin on macOS)
+	cmd = meld \"$LOCAL\" \"$REMOTE\"
 
 [help]
 
@@ -222,12 +227,12 @@
 
 [safe]
 	directory = /workspace/users/albandrieu30/follow/
-	directory = /media/www/nabla-site-apache
-	directory = /media/www/nabla-servers-bower-sample
 	directory = /workspace/users/albandrieu30/nabla-site-apache
 	directory = /workspace/users/albandrieu30/nabla-servers-bower-sample
 	directory = /workspace/users/albandrieu30/nabla-hooks
-	directory = /workspace/users/albandrieu30/jm/fastapi-sample
+	directory = /workspace/users/albandrieu30/fastapi-sample
+	directory = /media/www/nabla-site-apache
+	directory = /media/www/nabla-servers-bower-sample
 	directory = /var/www/nabla-site-apache
 
 [user]
@@ -243,3 +248,11 @@
 	forceSignAnnotated = true
 [gpg "ssh"]
 	allowedSignersFile = /home/albandrieu/.ssh/allowed_signers
+
+# Work identity override (must stay after [user])
+[includeIf "gitdir:~/w/"]
+	path = ~/.gitconfig-override
+[includeIf "hasconfig:remote.*.url:*@*.ghe.com:*/**"]
+	path = ~/.gitconfig-override
+[includeIf "hasconfig:remote.*.url:https://*.ghe.com/**"]
+	path = ~/.gitconfig-override
