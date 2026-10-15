@@ -9,17 +9,23 @@ decides; any other recursive rm is turned into an "ask".
 A target counts as safe only when it is a literal absolute path (no variable,
 command substitution, glob, ~ or ..), does not end with "/", is not the temp
 root itself, and still lies under the temp root once symlinks are resolved.
-Anything the hook cannot parse is treated as unsafe.
+Heredoc bodies are data, not commands, so they are dropped before parsing.
+A command the hook cannot parse is treated as unsafe only when it still looks
+like it holds a recursive rm.
 """
 
 import json
 import os
+import re
 import shlex
 import sys
 
 TEMP_ROOTS = {os.path.realpath(p) for p in ("/tmp", "/private/tmp") if os.path.isdir(p)}
 SEPARATORS = {";", "&&", "||", "|", "&", "(", ")", "|&", ";;"}
 UNSAFE_CHARS = set("$`*?[]{}~")
+RM_WORD = re.compile(r"(?<![\w.-])rm(?![\w.-])")
+RECURSIVE_RM = re.compile(r"(?<![\w.-])rm\s[^\n;&|]*?(?<!\S)-(?:-recursive|[A-Za-z]*[rR])")
+HEREDOC = re.compile(r"(?<!<)<<(-?)[ \t]*(['\"]?)([A-Za-z_][\w.-]*)\2")
 
 
 def ask(reason):
@@ -55,12 +61,39 @@ def is_safe_target(path):
     return any(real.startswith(root + "/") for root in TEMP_ROOTS)
 
 
-def segments(command):
+def strip_heredocs(command):
+    """Drop heredoc bodies, keeping the lines that open and close them."""
+    kept, pending = [], []
     for line in command.splitlines():
-        lexer = shlex.shlex(line, posix=True, punctuation_chars=True)
-        lexer.whitespace_split = True
+        if pending:
+            strip_tabs, delimiter = pending[0]
+            if (line.lstrip("\t") if strip_tabs else line) == delimiter:
+                pending.pop(0)
+            continue
+        kept.append(line)
+        pending = [(dash == "-", word) for dash, _, word in HEREDOC.findall(line)]
+    return "\n".join(kept)
+
+
+def tokenize(text):
+    lexer = shlex.shlex(text, posix=True, punctuation_chars=True)
+    lexer.whitespace_split = True
+    return list(lexer)
+
+
+def segments(command):
+    # Parse line by line, but carry a line over to the next one while its
+    # quotes are unbalanced, so multi-line quoted strings still parse.
+    buffer = ""
+    for line in command.splitlines():
+        buffer = buffer + "\n" + line if buffer else line
+        try:
+            tokens = tokenize(buffer)
+        except ValueError:
+            continue
+        buffer = ""
         current = []
-        for token in lexer:
+        for token in tokens:
             if token in SEPARATORS:
                 if current:
                     yield current
@@ -69,16 +102,21 @@ def segments(command):
                 current.append(token)
         if current:
             yield current
+    if buffer:
+        raise ValueError("unbalanced quotes")
 
 
 def main():
     command = json.load(sys.stdin).get("tool_input", {}).get("command", "")
-    if "rm" not in command:
+    command = strip_heredocs(command)
+    if not RM_WORD.search(command):
         return
     try:
         parts = list(segments(command))
     except ValueError:
-        ask("Recursive rm guard: could not parse the command, confirm it")
+        if RECURSIVE_RM.search(command):
+            ask("Recursive rm guard: could not parse the command, confirm it")
+        return
     for tokens in parts:
         positions = [i for i, t in enumerate(tokens) if t == "rm" or t.endswith("/rm")]
         if not positions:

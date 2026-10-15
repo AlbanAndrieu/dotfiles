@@ -77,8 +77,6 @@
       "Bash(git push * --force*)",
       "Bash(git reset --hard*)",
       "Bash(git clean -f*)",
-      "Bash(rm -rf *)",
-      "Bash(rm -r *)",
       "Bash(*prod*)",
       "Bash(*production*)",
       "Bash(az keyvault secret set*)",
@@ -95,6 +93,21 @@
       "Bash(az keyvault create*)",
       "Bash(az keyvault delete*)",
       "Bash(az keyvault purge*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/python3 -I ~/.claude/hooks/rm-recursive-guard.py",
+            "timeout": 10,
+            "onFailure": "block"
+          }
+        ]
+      }
     ]
   },
   "enabledPlugins": {

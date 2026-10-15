@@ -628,6 +628,7 @@ Claude\ outputs/
 .claude/*
 !.claude/settings.json
 !.claude/hooks/
+!.claude/CLAUDE.md
 .azure/
 .kube/
 .config/gh/hosts.yml
