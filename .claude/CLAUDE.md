@@ -16,3 +16,18 @@ Pour éviter les demandes de confirmation inutiles du hook `rm-recursive-guard.p
 - Modifier les fichiers avec les outils Edit/Write plutôt qu'avec un heredoc
   Python ou `sed` complexe.
 - Éviter de chaîner trop d'opérations (`&&`, `;`, `|`) dans une seule commande.
+
+## Garde-fous
+
+Appliqués par les hooks de `~/.claude/hooks/` (`guard-quality-gates.sh`,
+`guard-secret-exposure.sh`, `scan-output-for-secrets.sh`) :
+
+- Ne jamais contourner un hook git ou un quality gate (`--no-verify`,
+  `git commit -n`, variables lefthook ou `SKIP_*`, `core.hooksPath`) : corriger
+  le problème, ou signaler le check cassé à l'utilisateur, seul à décider de
+  le sauter.
+- Ne jamais afficher un secret (`echo` d'une variable `*_TOKEN`, `*_API_KEY`,
+  `*_SECRET`, `env`, `printenv`, un fichier `.env`, `az keyvault secret show`,
+  `gh auth token`…) : vérifier qu'il est défini (`[ -n "${VAR:-}" ]`) ou le
+  capturer dans `$(…)`. Un secret affiché doit être révoqué : le dire à
+  l'utilisateur.

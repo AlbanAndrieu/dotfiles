@@ -10,7 +10,9 @@
       "Read(~/.ssh/*.pub)",
       "Read(~/.ssh/public.asc)",
       "Read(~/.ssh/config)",
-      "Read(~/.ssh/known_hosts)"
+      "Read(~/.ssh/known_hosts)",
+      "Read(~/.claude/skills/**)",
+      "Read(~/.agents/skills/**)"
     ],
     "deny": [
       "Bash(rm -rf /)",
@@ -29,7 +31,23 @@
       "Read(~/.ssh/private.asc)",
       "Read(~/.ssh/*.pem)",
       "Read(~/.gnupg/private-keys-v1.d/**)",
-      "Read(~/.vault-token)"
+      "Read(~/.vault-token)",
+      "Read(**/.env)",
+      "Read(**/.env.[!e]*)",
+      "Read(**/secrets.json)",
+      "Read(**/*.secret)",
+      "Read(**/*.secrets)",
+      "Read(**/.env.secrets*)",
+      "Read(**/*credentials)",
+      "Read(**/*credentials.json)",
+      "Read(**/.git-credentials)",
+      "Read(**/http-client.private.env*)",
+      "Read(**/launchSettings.json)",
+      "Read(~/.microsoft/usersecrets/**)",
+      "Read(~/.config/gh/hosts.yml)",
+      "Read(~/.kube/config)",
+      "Read(~/.docker/config.json)",
+      "Read(~/.npmrc)"
     ],
     "ask": [
       "Bash(kubectl apply *)",
@@ -105,6 +123,28 @@
             "command": "/usr/bin/python3 -I ~/.claude/hooks/rm-recursive-guard.py",
             "timeout": 10,
             "onFailure": "block"
+          },
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/guard-quality-gates.sh",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/guard-secret-exposure.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/scan-output-for-secrets.sh",
+            "timeout": 10
           }
         ]
       }
@@ -174,5 +214,6 @@
       "**Org-specific CLIs**: None configured — az and gpg appear in usage but are standard tools, not org-specific CLIs",
       "routine under AlbanAndrieu/ prefix: operations against this repo's own remote (github.com:AlbanAndrieu/dotfiles.git) are routine; other repos under ~/github (e.g. nabla, Defender-MCP, fastapi-sample, ms-365-admin-mcp-server) are candidates only, not vetted context, and out of scope per Q2 (just this project)"
     ]
-  }
+  },
+  "agentPushNotifEnabled": true
 }

@@ -57,13 +57,16 @@ if OS.mac?
   cask "meld"
   # Lightweight IDE (on Ubuntu: sudo apt install geany)
   cask "geany"
+  # Synergy, the keyboard and mouse sharing tool
+  brew "synergy"
+  # Bourne-Again SHell, a UNIX command interpreter
+  brew "bash"
 end
 
 if OS.linux?
   tap "linuxbrew/xorg"
   # On Ubuntu meld comes from apt: sudo apt install meld
 end
-# Bourne-Again SHell, a UNIX command interpreter
-brew "bash"
+
 # Go-based command-line wrapper for easy interaction with Datadog APIs
 brew "datadog-labs/pack/pup"

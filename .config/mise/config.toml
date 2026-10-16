@@ -48,6 +48,7 @@ github-markdown-toc = "latest"
 # git pager (core.pager in ~/.gitconfig)
 delta = "latest"
 azure-cli = "latest"
+shellcheck = "0.11.0"
 
 [env]
 _.file = { path = "$HOME/.env.secrets", redact = true }
