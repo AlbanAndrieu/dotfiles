@@ -17,6 +17,19 @@ Pour éviter les demandes de confirmation inutiles du hook `rm-recursive-guard.p
   Python ou `sed` complexe.
 - Éviter de chaîner trop d'opérations (`&&`, `;`, `|`) dans une seule commande.
 
+## Git
+
+L'utilisateur relit le diff en local et indexe lui-même ce qu'il veut commiter :
+
+- Ne jamais indexer de fichiers : pas de `git add`, `git commit -a`,
+  `git commit <fichiers>`, `git stage` ni `git rm --cached`. Laisser les
+  changements non indexés.
+- Quand l'utilisateur demande un commit, commiter uniquement ce qu'il a déjà
+  indexé (`git commit` seul). Si rien n'est indexé, ou si un fichier modifié
+  semble manquer, le signaler et lui demander d'indexer plutôt que de le faire.
+- En fin de tâche, lister les fichiers modifiés et créés, pour qu'il sache quoi
+  relire (`git diff` ne montre pas les nouveaux fichiers non suivis).
+
 ## Garde-fous
 
 Appliqués par les hooks de `~/.claude/hooks/` (`guard-quality-gates.sh`,
