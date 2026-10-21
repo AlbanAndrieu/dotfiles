@@ -90,6 +90,8 @@ run = "terraform apply -lock=true"
 [tasks."secrets:edit"]
 description = "✏️  Edit an encrypted home secret in $EDITOR (env or kube)"
 usage = 'arg "<target>" help="env or kube"'
+# Interactive: the editor needs the terminal (stdin/stdout not piped by mise)
+raw = true
 run = '"$HOME/run-sops-encrypt.sh" edit "${usage_target}"'
 
 [tasks."secrets:encrypt"]

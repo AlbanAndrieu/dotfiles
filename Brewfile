@@ -11,6 +11,8 @@ tap "michaeldfallen/formula"
 # Security / secrets
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
+# Transparent file encryption in git (~/github/nabla), not in the mise registry
+brew "git-crypt"
 
 # Cloud / IaC (azure-cli, awscli, terraform are managed by mise)
 # Pretty-print terraform plan output
@@ -70,3 +72,5 @@ if OS.linux?
   tap "linuxbrew/xorg"
   # On Ubuntu meld comes from apt: sudo apt install meld
 end
+# Enable transparent encryption/decryption of files in a git repo
+brew "git-crypt"
