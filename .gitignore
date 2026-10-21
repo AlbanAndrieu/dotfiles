@@ -127,6 +127,7 @@
 !/.config/htop/
 !/.config/khal/
 !/.config/kubectl-ai/
+!/.kube/
 !/.config/mise/
 !/.config/monitors.xml
 !/.config/opencode/
@@ -631,7 +632,9 @@ Claude\ outputs/
 !.claude/hooks/
 !.claude/CLAUDE.md
 .azure/
-.kube/
+# Only the sops-encrypted kubeconfig is versioned (mise run kube:encrypt)
+.kube/*
+!.kube/config.sops.yaml
 .config/gh/hosts.yml
 .terraform.d/
 .prefect/

@@ -20,7 +20,8 @@ export PATH="$HOME/.local/bin:$PATH"
     'rg:rg --generate complete-zsh' 'bat:bat --completion zsh' \
     'delta:delta --generate-completion zsh' 'poetry:poetry completions zsh' \
     'dagger:dagger completion zsh' 'act:act completion zsh' \
-    'gitleaks:gitleaks completion zsh' 'opencode:opencode completion'; do
+    'gitleaks:gitleaks completion zsh' 'opencode:opencode completion' \
+    'sops:sops completion zsh' 'pup:pup completions zsh'; do
     name=${spec%%:*}; f=$dir/_$name
     (( $+commands[$name] )) || continue
     if [[ ! -s $f || $commands[$name] -nt $f ]]; then
@@ -29,12 +30,10 @@ export PATH="$HOME/.local/bin:$PATH"
   done
 }
 
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/alban.andrieu/.docker/completions $fpath)
-autoload -Uz compinit
-(( ${+_comps[docker]} )) || compinit
-# End of Docker CLI completions
-# Oh My Zsh: plugins only, no theme (the prompt is starship, see end of file).
+# Oh My Zsh is the chosen zsh framework, on macOS and Ubuntu alike: plugins
+# only, no theme (the prompt is starship, see end of file). Its docker plugin
+# provides the docker completion, so the block Docker Desktop adds (hardcoded
+# ~/.docker/completions + an extra compinit) must not be restored here.
 # Loaded before ~/.aliases and the history settings below so that they win.
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME=""

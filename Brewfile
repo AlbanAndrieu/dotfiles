@@ -58,19 +58,15 @@ if OS.mac?
   # Lightweight IDE (on Ubuntu: sudo apt install geany)
   cask "geany"
   # Synergy, the keyboard and mouse sharing tool
-  brew "synergy"
+  brew "synergy-core"
   # Bourne-Again SHell, a UNIX command interpreter
   brew "bash"
+  # Platform keystore credential helper for Docker (credsStore "osxkeychain"):
+  # not in the mise registry (on Ubuntu: sudo apt install golang-docker-credential-helpers)
+  brew "docker-credential-helper"
 end
 
 if OS.linux?
   tap "linuxbrew/xorg"
   # On Ubuntu meld comes from apt: sudo apt install meld
 end
-
-# Go-based command-line wrapper for easy interaction with Datadog APIs
-brew "datadog-labs/pack/pup"
-# Editor of encrypted files
-brew "sops"
-# Simple, modern, secure file encryption
-brew "age"

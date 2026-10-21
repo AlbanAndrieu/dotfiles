@@ -328,6 +328,8 @@ repos:
       - id: prettier
         name: "✨ misc-files · Format misc web files"
         types_or: [yaml, html, scss]
+        # sops-encrypted files (*.sops.yaml, not the .sops.yaml config) keep sops' own layout
+        exclude: '[^/]+\.sops\.yaml$'
         additional_dependencies:
           - prettier@3.4.2
 
@@ -396,6 +398,8 @@ repos:
       - id: yamllint
         name: "📜 yamllint - Lint Yaml"
         args: [--format, parsable, --strict]
+        # sops-encrypted files are written by sops, not by hand
+        exclude: '[^/]+\.sops\.yaml$'
 
   # ---------------------------------------------------------------------------- #
   #                            📝 Commit Message Hooks                           #

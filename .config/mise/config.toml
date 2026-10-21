@@ -50,6 +50,9 @@ delta = "latest"
 azure-cli = "latest"
 shellcheck = "0.11.0"
 direnv = "2.38.2"
+kubeconform = "0.6.7"
+# Go-based command-line wrapper for Datadog APIs (moved from Brewfile), macOS only
+"github:datadog-labs/pup" = { version = "latest", os = ["macos"] }
 
 [env]
 # _.file = { path = "$HOME/.env.secrets", redact = true }
@@ -80,6 +83,37 @@ terraform validate
 description = "Deploy infrastructure after validation"
 depends = ["validate", "plan"]
 run = "terraform apply -lock=true"
+
+# Home secrets (sops + age), see ~/run-sops-encrypt.sh:
+#   env  : ~/.env.secrets.yaml only (loaded by [env] above), edited with secrets:edit env
+#   kube : ~/.kube/config <-> ~/.kube/config.sops.yaml (versioned)
+[tasks."secrets:edit"]
+description = "✏️  Edit an encrypted home secret in $EDITOR (env or kube)"
+usage = 'arg "<target>" help="env or kube"'
+run = '"$HOME/run-sops-encrypt.sh" edit "${usage_target}"'
+
+[tasks."secrets:encrypt"]
+description = "🔐 Encrypt the home secrets (env, kube or all)"
+usage = 'arg "[target]" default="all" help="env, kube or all"'
+run = '"$HOME/run-sops-encrypt.sh" encrypt "${usage_target:-all}"'
+
+[tasks."secrets:decrypt"]
+description = "🔓 Decrypt the home secrets (env, kube or all), previous files kept as .bak"
+usage = 'arg "[target]" default="all" help="env, kube or all"'
+run = '"$HOME/run-sops-encrypt.sh" decrypt "${usage_target:-all}"'
+
+[tasks."secrets:status"]
+description = "🔎 Show whether the home secrets are present, encrypted and in sync"
+usage = 'arg "[target]" default="all" help="env, kube or all"'
+run = '"$HOME/run-sops-encrypt.sh" status "${usage_target:-all}"'
+
+[tasks."kube:encrypt"]
+description = "🔐 Encrypt ~/.kube/config into ~/.kube/config.sops.yaml"
+run = '"$HOME/run-sops-encrypt.sh" encrypt kube'
+
+[tasks."kube:decrypt"]
+description = "🔓 Decrypt ~/.kube/config.sops.yaml into ~/.kube/config"
+run = '"$HOME/run-sops-encrypt.sh" decrypt kube'
 
 [settings]
 lockfile = true
