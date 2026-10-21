@@ -609,7 +609,9 @@ Claude\ outputs/
 
 .aspnet/
 .dotnet/
-.env.secrets
+.env.secrets*
+.config/mise/age.txt
+.config/sops/age/keys.txt
 
 # Private data, tokens and sessions (never push)
 
