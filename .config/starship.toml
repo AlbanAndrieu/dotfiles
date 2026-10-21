@@ -5,6 +5,8 @@
 #[custom]
 #disabled = false
 
+command_timeout = 1500
+
 # Inserts a blank line between shell prompts
 add_newline = true
 
@@ -210,6 +212,7 @@ format = '\[[$symbol($version)]($style)\]'
 [python]
 format = '\[[${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)\]'
 symbol = " "
+# python_binary = "/usr/bin/python3"
 disabled = true
 
 [red]

@@ -226,7 +226,6 @@ jm.ovpn
 .git-credentials
 
 .creds/graylog
-.docker/config.json
 .novarc
 cloud.conf
 # .config/
@@ -609,7 +608,6 @@ Claude\ outputs/
 .sonarlint/
 
 .aspnet/
-.docker/
 .dotnet/
 .env.secrets
 
@@ -664,9 +662,9 @@ Claude\ outputs/
 !/.warp/
 /.warp/*
 !/.warp/settings.toml
-!/.docker/
-/.docker/*
-!/.docker/daemon.json
+# !/.docker/
+# /.docker/*
+# !/.docker/daemon.json
 !/.agents/
 /.agents/*
 !/.agents/.skill-lock.json
