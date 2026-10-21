@@ -7,6 +7,7 @@ export PATH="$PATH:/Users/alban.andrieu/.docker/bin"
 # End of Docker Desktop section.
 
 eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+export SOPS_AGE_KEY_FILE="$HOME/.config/sops/age/keys.txt"
 eval "$(mise activate zsh)"
 
 # export NODE_OPTIONS=--no-webstorage

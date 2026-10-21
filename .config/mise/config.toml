@@ -24,7 +24,7 @@ just = "1.58.0"
 # .NET SDK only on macOS (skipped on Ubuntu)
 dotnet = { version = "latest", os = ["macos"] }
 gh = "2.101.0"
-npm = "12.0.2"
+npm = "12.2.0"
 pipx = "1.17.6"
 uv = "latest"
 # Shell prompt (config: ~/.config/starship.toml)
@@ -49,9 +49,11 @@ github-markdown-toc = "latest"
 delta = "latest"
 azure-cli = "latest"
 shellcheck = "0.11.0"
+direnv = "2.38.2"
 
 [env]
-_.file = { path = "$HOME/.env.secrets", redact = true }
+# _.file = { path = "$HOME/.env.secrets", redact = true }
+_.file = { path = "$HOME/.env.secrets.yaml", redact = true }
 # SONAR_TOKEN = "{{ env.SONARCLOUD_TOKEN }}"
 
 # TF_WORKSPACE = "development"

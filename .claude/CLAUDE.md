@@ -1,5 +1,11 @@
 # Instructions globales
 
+## Langue
+
+- Répondre à l'utilisateur en français (résumés, explications, questions).
+  Le code, les identifiants et les messages de commit suivent les conventions
+  du dépôt.
+
 ## Style de code
 
 - Respecter le `.editorconfig` du projet (et `~/.editorconfig` à défaut)

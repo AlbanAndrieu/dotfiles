@@ -70,3 +70,7 @@ end
 
 # Go-based command-line wrapper for easy interaction with Datadog APIs
 brew "datadog-labs/pack/pup"
+# Editor of encrypted files
+brew "sops"
+# Simple, modern, secure file encryption
+brew "age"

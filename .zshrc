@@ -93,3 +93,7 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Wakam monorepo: the Trivy pre-commit hooks (scripts/hooks/scan-trivy.sh) block only on
+# CRITICAL findings; lower severities are still printed. Unset to get the default (any finding).
+export TRIVY_FAIL_ON=critical
