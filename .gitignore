@@ -108,6 +108,7 @@
 !/run-ansible-setup.sh
 !/run-ansible.sh
 !/run-python.sh
+!/run-sops-encrypt.sh
 !/step-0-color.sh
 !/step-1-os.sh
 !/synergy.conf

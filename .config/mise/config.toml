@@ -85,3 +85,4 @@ run = "terraform apply -lock=true"
 lockfile = true
 experimental = true
 auto_update = true
+sops.rops = false
