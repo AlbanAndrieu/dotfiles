@@ -156,7 +156,8 @@
     "chrome-devtools-mcp@claude-plugins-official": true,
     "playwright@claude-plugins-official": true,
     "frontend-design@claude-plugins-official": true,
-    "vercel@claude-plugins-official": true
+    "vercel@claude-plugins-official": true,
+    "mattpocock-skills@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "claude-code-warp": {
@@ -174,6 +175,7 @@
   },
   "autoCompactWindow": 500000,
   "theme": "dark",
+  "agentPushNotifEnabled": true,
   "autoMode": {
     "soft_deny": [
       "$defaults",
@@ -214,6 +216,5 @@
       "**Org-specific CLIs**: None configured — az and gpg appear in usage but are standard tools, not org-specific CLIs",
       "routine under AlbanAndrieu/ prefix: operations against this repo's own remote (github.com:AlbanAndrieu/dotfiles.git) are routine; other repos under ~/github (e.g. nabla, Defender-MCP, fastapi-sample, ms-365-admin-mcp-server) are candidates only, not vetted context, and out of scope per Q2 (just this project)"
     ]
-  },
-  "agentPushNotifEnabled": true
+  }
 }

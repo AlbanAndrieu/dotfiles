@@ -74,3 +74,5 @@ if OS.linux?
 end
 # Enable transparent encryption/decryption of files in a git repo
 brew "git-crypt"
+# Test your LLM app locally
+brew "promptfoo"
