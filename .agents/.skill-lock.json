@@ -18,6 +18,15 @@
       "skillFolderHash": "76a98a285cb0434f3d39e1a873823556330e398b",
       "installedAt": "2026-09-29T08:17:34.581Z",
       "updatedAt": "2026-09-29T08:17:34.581Z"
+    },
+    "setup-matt-pocock-skills": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/sickn33/antigravity-awesome-skills.git",
+      "skillPath": "skills/setup-matt-pocock-skills/SKILL.md",
+      "skillFolderHash": "51ee6600ade5ec6108ed3f854bd65d9c00d2f028",
+      "installedAt": "2026-10-23T15:37:24.251Z",
+      "updatedAt": "2026-10-23T15:37:24.251Z"
     }
   },
   "dismissed": {
