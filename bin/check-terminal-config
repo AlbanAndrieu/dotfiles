@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Offline checks only: never source the user's shell, secrets, or cloud tools.
+set -euo pipefail
+root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+bash -n "$root/.bashrc"
+python3 - "$root" <<'PY'
+from pathlib import Path
+import sys
+import tomllib
+
+root = Path(sys.argv[1])
+config = tomllib.loads((root / ".config/starship.toml").read_text())
+assert config["add_newline"] is False
+assert config["directory"]["truncation_length"] == 2
+assert config["kubernetes"]["disabled"] is False
+terminator = (root / ".config/terminator/config").read_text()
+assert "font = JetBrainsMono Nerd Font 11" in terminator
+assert "cell_width = 1.0" in terminator
+ignore = (root / ".gitignore").read_text().splitlines()
+assert "*.bak" in ignore and "*.bak-*" in ignore
+bashrc = (root / ".bashrc").read_text()
+assert "declare -F _direnv_hook" in bashrc
+assert 'if [ -r "$HOME/.openclaw/completions/openclaw.bash" ]' in bashrc
+print("PASS: Bash syntax, Starship TOML, Terminator font, backup ignore rules and hooks")
+PY
