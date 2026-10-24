@@ -20,6 +20,8 @@ ignore = (root / ".gitignore").read_text().splitlines()
 assert "*.bak" in ignore and "*.bak-*" in ignore
 bashrc = (root / ".bashrc").read_text()
 assert "declare -F _direnv_hook" in bashrc
+# In the fallback prompt do not fetch remotes during command evaluation.
+assert 'PS1="$PS1\\$(git-radar --bash --fetch' not in bashrc
 assert 'if [ -r "$HOME/.openclaw/completions/openclaw.bash" ]' in bashrc
 print("PASS: Bash syntax, Starship TOML, Terminator font, backup ignore rules and hooks")
 PY
