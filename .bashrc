@@ -78,11 +78,9 @@ else
   PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 
-if [ -d "${HOME}/.linuxbrew/bin" -o -d "${HOME}/.git-radar" -o -f "/home/linuxbrew/.linuxbrew/bin/git-radar" ]; then
-  PS1="$PS1\$(git-radar --bash --fetch 2>&1)"
-else
-  PS1=$PS1'$(__git_ps1 "(%s)")'
-fi
+# Offline-first fallback. Starship replaces PS1 later in an interactive shell.
+# Do not use git-radar --fetch: an interactive prompt must not contact remotes.
+PS1=$PS1'$(__git_ps1 "(%s)")'
 
 if [ "$color_prompt" = yes ]; then
   PS1="$PS1 🦊 \$ \[\e[1;37m\]"
