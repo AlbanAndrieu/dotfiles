@@ -6,6 +6,7 @@
 #disabled = false
 
 command_timeout = 1500
+scan_timeout = 200
 
 # Inserts a blank line between shell prompts
 add_newline = true

@@ -1,10 +1,22 @@
 [global_config]
+  cell_width = 1.0
+  cell_height = 1.0
+
 [keybindings]
+
 [profiles]
   [[default]]
-    foreground_color = "#ffffff"
-    font = FiraCode Nerd Font Mono 12
     use_system_font = False
+    font = JetBrainsMono Nerd Font 11
+
+    use_theme_colors = False
+    background_type = solid
+    background_color = "#000000"
+    foreground_color = "#d8dee9"
+
+    cursor_blink = False
+    scrollback_lines = 10000
+
 [layouts]
   [[default]]
     [[[window0]]]
@@ -13,4 +25,6 @@
     [[[child1]]]
       type = Terminal
       parent = window0
+      profile = default
+
 [plugins]
