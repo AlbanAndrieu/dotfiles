@@ -163,7 +163,9 @@ fi
 
 export NIX_PATH="nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixpkgs:/nix/var/nix/profiles/per-user/root/channels"
 
-eval "$(direnv hook bash)"
+if command -v direnv >/dev/null 2>&1 && ! declare -F _direnv_hook >/dev/null 2>&1; then
+  eval "$(direnv hook bash)"
+fi
 
 if [[ $TERM_PROGRAM != "WarpTerminal" && $TERM_PROGRAM != "vscode" ]]; then
   # Unsupported plugin/prompt code here, i.e.
@@ -204,7 +206,7 @@ esac
 # pnpm end
 
 # END ANSIBLE MANAGED BLOCK - OpenClaw config
-export XDG_RUNTIME_DIR=/run/user/$(id -u)
+export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
 # BEGIN ANSIBLE MANAGED BLOCK - DBus config
 # DBus session bus configuration
 if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
@@ -213,16 +215,18 @@ fi
 # END ANSIBLE MANAGED BLOCK - DBus config
 
 # OpenClaw Completion
-source "/home/albandrieu/.openclaw/completions/openclaw.bash"
+if [ -r "$HOME/.openclaw/completions/openclaw.bash" ]; then
+  source "$HOME/.openclaw/completions/openclaw.bash"
+fi
 
 # source <(usage g completion-init bash)
 
-# opencode
-export PATH=/home/albanandrieu/.opencode/bin:$PATH
 
 # kubescape
 export PATH=$PATH:$HOME/.kubescape/bin
 
-# opencode
-export PATH=/home/albandrieu/.opencode/bin:$PATH
+# opencode: only add the directory when present; avoid duplicate PATH entries.
+if [ -d "$HOME/.opencode/bin" ] && [[ ":$PATH:" != *":$HOME/.opencode/bin:"* ]]; then
+  export PATH="$HOME/.opencode/bin:$PATH"
+fi
 
