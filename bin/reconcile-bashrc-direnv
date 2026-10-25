@@ -68,9 +68,9 @@ hook = incoming[incoming.index(marker):].strip() + "\n"
 if text.count(marker) > 1:
     raise SystemExit("REFUSED: multiple local Direnv tail blocks")
 if marker in text:
-    # Refuse to discard a customized hook or unrelated local tail content.
+    # A customized hook could contain important local edits; keep it intact.
     if not text.endswith(hook):
-        raise SystemExit("REFUSED: customized Direnv tail; review conflict privately")
+        raise SystemExit("REFUSED: customized Direnv tail; inspect locally")
     text = text[:-len(hook)]
 candidate.write_text(text.rstrip() + "\n\n" + hook)
 PY
@@ -102,34 +102,14 @@ PY
     grep -q 'declare -p PROMPT_COMMAND' "$SESSION/candidate" ||
       die "Candidate is missing the Direnv prompt guard"
 
-    # Refuse an otherwise unrelated dirty tracked file that would conflict
-    # with a changed upstream file during the fast-forward.
+    # Refuse other locally modified tracked files touched by the remote.
     conflicting="$(comm -12 \
       <(git -C "$ROOT" diff --name-only "$HEAD" "$REF" | LC_ALL=C sort -u) \
       <({ git -C "$ROOT" diff --name-only; \
           git -C "$ROOT" diff --cached --name-only; } | LC_ALL=C sort -u) \
-      | grep -v '^\\.bashrc    cp -p "$ROOT/.bashrc" "$SESSION/pre-apply-backup"
-    if ! git -C "$ROOT" diff --quiet -- .bashrc; then
-      git -C "$ROOT" stash push -m \
-        "safety/bashrc before direnv rebase $HEAD" -- .bashrc ||
-        die "Cannot save local .bashrc in Git stash"
-    fi
-    if ! git -C "$ROOT" merge --ff-only "$REF"; then
-      die "Fast-forward blocked. Backup in $SESSION/pre-apply-backup; do not reset."
-    fi
-    cat "$SESSION/candidate" > "$ROOT/.bashrc"
-    bash -n "$ROOT/.bashrc" || die "Post-apply Bash syntax invalid; backup retained"
-    note "APPLIED: local edits reconciled with remote HEAD, no other files discarded."
-    note "Backup: $SESSION/pre-apply-backup; Git stash also retained when applicable."
-    note "Run bash '$ROOT/bin/check-terminal-config', then test in a NEW terminal."
-    ;;
-  *)
-    die "Usage: bash SCRIPT_PATH --preview | --apply SESSION_DIR"
-    ;;
-esac
- || true)"
+      | grep -v '^\.bashrc$' || true)"
     if [ -n "$conflicting" ]; then
-      die "Upstream touches other locally modified tracked files; review before applying."
+      die "Remote touches other locally modified files: $conflicting"
     fi
 
     # The full preview remains available, and a separate backup persists.
