@@ -81,7 +81,7 @@ PY
     note "PREVIEW ONLY: no local files or Git state changed."
     note "Backup and candidate: $SESSION (private mode 700)"
     note "Review: diff -u '$SESSION/local' '$SESSION/candidate'"
-    note "Apply:  bash SCRIPT_PATH --apply '$SESSION'"
+    printf 'Apply after review: bash %q --apply %q\n' "$0" "$SESSION"
     ;;
   --apply)
     test -n "$SESSION" || die "Pass the preview session directory"
