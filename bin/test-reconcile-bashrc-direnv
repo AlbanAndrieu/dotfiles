@@ -105,6 +105,14 @@ class ReconcileBashrcContract(unittest.TestCase):
         self.assertTrue((session / "conflicts").exists())
         self.assertNotIn("<<<<<<<", merged)
 
+    def test_preview_prints_actual_apply_command(self):
+        result = self.run_tool("--preview")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("Apply after review: bash ", result.stdout)
+        self.assertIn(" --apply ", result.stdout)
+        self.assertNotIn("SCRIPT_PATH", result.stdout)
+        self.assertNotIn("/chemin/session.affiché", result.stdout)
+
     def test_apply_preserves_local_edits_and_stash(self):
         session = self.preview()
         result = self.run_tool("--apply", str(session))
