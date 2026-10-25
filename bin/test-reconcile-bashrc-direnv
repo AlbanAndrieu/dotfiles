@@ -38,6 +38,8 @@ class ReconcileBashrcContract(unittest.TestCase):
         git(self.home, "init", "-b", BRANCH)
         git(self.home, "config", "user.name", "Local Test")
         git(self.home, "config", "user.email", "test@example.invalid")
+        git(self.home, "config", "commit.gpgsign", "false")
+        git(self.home, "config", "core.hooksPath", "/dev/null")
         (self.home / ".bashrc").write_text("PS1='base'\nPROMPT_COMMAND='history -a'\n")
         (self.home / "keep.txt").write_text("keep\n")
         git(self.home, "add", ".bashrc", "keep.txt")
@@ -56,6 +58,8 @@ class ReconcileBashrcContract(unittest.TestCase):
         )
         git(self.other, "config", "user.name", "Remote Test")
         git(self.other, "config", "user.email", "test@example.invalid")
+        git(self.other, "config", "commit.gpgsign", "false")
+        git(self.other, "config", "core.hooksPath", "/dev/null")
         (self.other / ".bashrc").write_text(
             "PS1='remote'\nPROMPT_COMMAND='history -a'\n\n" + HOOK
         )
