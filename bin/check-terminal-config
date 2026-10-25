@@ -4,6 +4,7 @@ set -euo pipefail
 root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 bash -n "$root/.bashrc"
 bash -n "$root/bin/reconcile-bashrc-direnv"
+bash -n "$root/bin/repair-bash-prompt-hooks"
 python3 - "$root" <<'PY'
 from pathlib import Path
 import sys
@@ -26,6 +27,9 @@ assert "declare -F _direnv_hook" in bashrc
 assert bashrc.rfind('eval "$(direnv hook bash)"') > bashrc.find('. ${WORKSPACE_ENV}/home/dev.env.sh')
 assert 'declare -p PROMPT_COMMAND' in bashrc
 assert '"$_nabla_direnv_prompt" != *"_direnv_hook"*' in bashrc
+assert bashrc.rfind('source "$HOME/bin/repair-bash-prompt-hooks"') > bashrc.find('. ${WORKSPACE_ENV}/home/dev.env.sh')
+assert bashrc.rfind('source "$HOME/bin/repair-bash-prompt-hooks"') < bashrc.rfind('eval "$(direnv hook bash)"')
+assert (root / "bin/repair-bash-prompt-hooks").is_file()
 # In the fallback prompt do not fetch remotes during command evaluation.
 assert 'PS1="$PS1\\$(git-radar --bash --fetch' not in bashrc
 assert 'if [ -r "$HOME/.openclaw/completions/openclaw.bash" ]' in bashrc
