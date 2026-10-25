@@ -48,6 +48,15 @@ _nabla_repair_prompt_commands() {
     else
       PROMPT_COMMAND="${result[0]}"
     fi
+
+    # The malformed token may have swallowed mise's active prompt hook.
+    # Ask mise to restore its OWN hook only when it was already enabled.
+    # Do not invent names, replace valid hooks or run a mise command.
+    if [[ "${__MISE_HOOK_ENABLED:-0}" == "1" ]] &&
+       declare -F _mise_add_prompt_command >/dev/null 2>&1 &&
+       declare -F _mise_hook_prompt_command >/dev/null 2>&1; then
+      _mise_add_prompt_command
+    fi
   fi
 }
 
