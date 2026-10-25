@@ -37,6 +37,33 @@ python3 bin/test-reconcile-bashrc-direnv
 These checks do not source the full Nabla runtime, unlock secrets, run
 network probes, install tools, or apply Ansible.
 
+## After a Git fast-forward in an already-open terminal
+
+A `git fetch`/`git merge --ff-only` updates `.bashrc` on disk, **not**
+the running Bash process. The previous prompt functions and
+`PROMPT_COMMAND` continue to execute until a fresh shell starts.
+Static checks can pass while that stale shell still prints
+`_mise_hookhistory: command not found`.
+
+For a non-destructive test **in the existing interactive Bash** after the
+files have been updated:
+
+```bash
+# Use only the reviewed, locally checked-out script.
+source "$HOME/bin/repair-bash-prompt-hooks"
+
+# The next prompt will run the updated prompt command.
+# If an error persists, diagnose without printing private shell commands.
+cd /workspace/users/albandrieu30/ansible-workstation
+source scripts/diagnose-direnv-shell.sh
+```
+
+This source-only helper changes the current shell's prompt command in
+memory, if the known invalid token is present. It does not replay all of
+`~/.bashrc`, start downloads, reinstall hooks or alter `.venv`. It may
+not repair a dynamically constructed invalid token. A **new terminal** is
+the authoritative test of startup order.
+
 ## Final verification in a new terminal
 
 ```bash
