@@ -3,6 +3,7 @@
 set -euo pipefail
 root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 bash -n "$root/.bashrc"
+bash -n "$root/bin/reconcile-bashrc-direnv"
 python3 - "$root" <<'PY'
 from pathlib import Path
 import sys
