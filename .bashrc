@@ -228,6 +228,13 @@ fi
 # OpenClaw Completion
 [ -f '/home/albandrieu/.openclaw/completions/openclaw.bash' ] && source '/home/albandrieu/.openclaw/completions/openclaw.bash'
 
+# Sanitize only the recognized invalid mise/history prompt token.
+# Do not overwrite unrelated PROMPT_COMMAND entries (Starship, Bash history).
+if [[ $- == *i* ]] && [ -r "$HOME/bin/repair-bash-prompt-hooks" ]; then
+  # shellcheck disable=SC1091
+  source "$HOME/bin/repair-bash-prompt-hooks"
+fi
+
 # Direnv must be the last prompt integration (after Nabla, mise and Starship).
 # Checking only the function is insufficient: another prompt setup can replace
 # PROMPT_COMMAND while leaving _direnv_hook defined but no longer executed.
