@@ -29,14 +29,18 @@ _nabla_repair_prompt_commands() {
         ;;
     esac
 
-    # Match complete commands delimited by semicolons, never arbitrary
-    # substrings such as quoted messages or names with the same prefix.
-    repaired="${repaired//;_mise_hookhistory -a;/;history -a;}"
-    repaired="${repaired//;_mise_hookhistory;/;history -a;}"
-    if [[ "$repaired" == *';_mise_hookhistory -a' ]]; then
-      repaired="${repaired%;_mise_hookhistory -a};history -a"
-    elif [[ "$repaired" == *';_mise_hookhistory' ]]; then
-      repaired="${repaired%;_mise_hookhistory};history -a"
+    # Avoid rewriting semicolons inside quoted shell commands. If the
+    # current value contains quotes/backticks, repair only exact leading
+    # tokens handled by the case statement above.
+    if [[ "$repaired" != *"'"* && "$repaired" != *'"'* &&
+          "$repaired" != *'`'* ]]; then
+      repaired="${repaired//;_mise_hookhistory -a;/;history -a;}"
+      repaired="${repaired//;_mise_hookhistory;/;history -a;}"
+      if [[ "$repaired" == *';_mise_hookhistory -a' ]]; then
+        repaired="${repaired%;_mise_hookhistory -a};history -a"
+      elif [[ "$repaired" == *';_mise_hookhistory' ]]; then
+        repaired="${repaired%;_mise_hookhistory};history -a"
+      fi
     fi
     [[ "$current" == "$repaired" ]] || changed=1
     result+=("$repaired")
