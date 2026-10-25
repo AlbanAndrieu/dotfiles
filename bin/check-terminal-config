@@ -35,3 +35,4 @@ assert 'PS1="$PS1\\$(git-radar --bash --fetch' not in bashrc
 assert 'if [ -r "$HOME/.openclaw/completions/openclaw.bash" ]' in bashrc
 print("PASS: Bash syntax, Starship TOML, Terminator font, backup ignore rules and hooks")
 PY
+python3 "$root/bin/test-repair-bash-prompt-hooks.py"
