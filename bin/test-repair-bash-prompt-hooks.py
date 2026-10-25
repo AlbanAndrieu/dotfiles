@@ -58,6 +58,9 @@ source "$1"
 PROMPT_COMMAND='printf "_mise_hookhistory in a log";history -a'
 source "$1"
 [[ "$PROMPT_COMMAND" == 'printf "_mise_hookhistory in a log";history -a' ]]
+PROMPT_COMMAND='printf "quoted;_mise_hookhistory;value";history -a'
+source "$1"
+[[ "$PROMPT_COMMAND" == 'printf "quoted;_mise_hookhistory;value";history -a' ]]
 ''')
 
     def test_restores_only_previously_enabled_mise_hook(self):
