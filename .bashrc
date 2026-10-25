@@ -210,7 +210,6 @@ if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
 fi
 # END ANSIBLE MANAGED BLOCK - DBus config
 
-# OpenClaw Completion
 if [ -r "$HOME/.openclaw/completions/openclaw.bash" ]; then
   source "$HOME/.openclaw/completions/openclaw.bash"
 fi
@@ -225,6 +224,9 @@ export PATH=$PATH:$HOME/.kubescape/bin
 if [ -d "$HOME/.opencode/bin" ] && [[ ":$PATH:" != *":$HOME/.opencode/bin:"* ]]; then
   export PATH="$HOME/.opencode/bin:$PATH"
 fi
+
+# OpenClaw Completion
+[ -f '/home/albandrieu/.openclaw/completions/openclaw.bash' ] && source '/home/albandrieu/.openclaw/completions/openclaw.bash'
 
 # Direnv must be the last prompt integration (after Nabla, mise and Starship).
 # Checking only the function is insufficient: another prompt setup can replace
