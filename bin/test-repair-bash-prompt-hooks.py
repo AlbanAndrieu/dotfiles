@@ -60,6 +60,23 @@ source "$1"
 [[ "$PROMPT_COMMAND" == 'printf "_mise_hookhistory in a log";history -a' ]]
 ''')
 
+    def test_restores_only_previously_enabled_mise_hook(self):
+        self.run_bash('''
+__MISE_HOOK_ENABLED=1
+_mise_hook_prompt_command() { :; }
+_mise_add_prompt_command() {
+  case ";$PROMPT_COMMAND;" in
+    *";_mise_hook_prompt_command;"*) ;;
+    *) PROMPT_COMMAND="_mise_hook_prompt_command;$PROMPT_COMMAND" ;;
+  esac
+}
+PROMPT_COMMAND='_mise_hookhistory -a'
+source "$1"
+[[ "$PROMPT_COMMAND" == '_mise_hook_prompt_command;history -a' ]]
+source "$1"
+[[ "$PROMPT_COMMAND" == '_mise_hook_prompt_command;history -a' ]]
+''')
+
     def test_idempotent_and_does_not_execute_prompt_on_source(self):
         self.run_bash('''
 PROMPT_COMMAND='_mise_hookhistory -a'
