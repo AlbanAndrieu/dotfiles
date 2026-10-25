@@ -161,9 +161,7 @@ fi
 
 export NIX_PATH="nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixpkgs:/nix/var/nix/profiles/per-user/root/channels"
 
-if command -v direnv >/dev/null 2>&1 && ! declare -F _direnv_hook >/dev/null 2>&1; then
-  eval "$(direnv hook bash)"
-fi
+# Direnv is finalized at the END of this file, after prompt integrations.
 
 if [[ $TERM_PROGRAM != "WarpTerminal" && $TERM_PROGRAM != "vscode" ]]; then
   # Unsupported plugin/prompt code here, i.e.
@@ -228,3 +226,13 @@ if [ -d "$HOME/.opencode/bin" ] && [[ ":$PATH:" != *":$HOME/.opencode/bin:"* ]];
   export PATH="$HOME/.opencode/bin:$PATH"
 fi
 
+# Direnv must be the last prompt integration (after Nabla, mise and Starship).
+# Checking only the function is insufficient: another prompt setup can replace
+# PROMPT_COMMAND while leaving _direnv_hook defined but no longer executed.
+if command -v direnv >/dev/null 2>&1; then
+  _nabla_direnv_prompt="$(declare -p PROMPT_COMMAND 2>/dev/null || true)"
+  if ! declare -F _direnv_hook >/dev/null 2>&1 || [[ "$_nabla_direnv_prompt" != *"_direnv_hook"* ]]; then
+    eval "$(direnv hook bash)"
+  fi
+  unset _nabla_direnv_prompt
+fi
