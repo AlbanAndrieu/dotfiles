@@ -20,6 +20,11 @@ ignore = (root / ".gitignore").read_text().splitlines()
 assert "*.bak" in ignore and "*.bak-*" in ignore
 bashrc = (root / ".bashrc").read_text()
 assert "declare -F _direnv_hook" in bashrc
+# The Direnv hook must be final, after Nabla/Starship prompt initialization.
+# A function existing is not sufficient if PROMPT_COMMAND lost the hook.
+assert bashrc.rfind('eval "$(direnv hook bash)"') > bashrc.find('. ${WORKSPACE_ENV}/home/dev.env.sh')
+assert 'declare -p PROMPT_COMMAND' in bashrc
+assert '"$_nabla_direnv_prompt" != *"_direnv_hook"*' in bashrc
 # In the fallback prompt do not fetch remotes during command evaluation.
 assert 'PS1="$PS1\\$(git-radar --bash --fetch' not in bashrc
 assert 'if [ -r "$HOME/.openclaw/completions/openclaw.bash" ]' in bashrc
