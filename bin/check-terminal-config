@@ -39,3 +39,5 @@ assert "source '/home/albandrieu/.openclaw/completions/openclaw.bash'" not in ba
 print("PASS: Bash syntax, Starship TOML, Terminator font, backup ignore rules and hooks")
 PY
 python3 "$root/bin/test-repair-bash-prompt-hooks.py"
+# Real Bash prompt execution, but in a sealed temporary HOME and pseudo-terminal.
+python3 "$root/bin/test-real-bash-prompt.py"
