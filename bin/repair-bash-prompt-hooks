@@ -3,7 +3,7 @@
 # Preserve valid Bash history, mise, Starship and custom PROMPT_COMMAND items.
 # Only repair the known malformed token created by a legacy prompt merger.
 _nabla_repair_prompt_commands() {
-  local declaration current repaired changed=0
+  local declaration current repaired changed=0 starship_seen=0
   local -a entries=() result=()
 
   declaration="$(declare -p PROMPT_COMMAND 2>/dev/null || true)"
@@ -40,6 +40,18 @@ _nabla_repair_prompt_commands() {
         repaired="${repaired%;_mise_hookhistory -a};history -a"
       elif [[ "$repaired" == *';_mise_hookhistory' ]]; then
         repaired="${repaired%;_mise_hookhistory};history -a"
+      fi
+    fi
+    # Starship may install several exact starship_precmd entries in a
+    # PROMPT_COMMAND array after repeated Bash initialization. Keep the
+    # first and preserve the order of every unrelated prompt function.
+    # Do not attempt to parse/sculpt scalar Bash command strings.
+    if [[ "$declaration" == "declare -a"* &&
+          "$repaired" == "starship_precmd" ]]; then
+      starship_seen=$((starship_seen + 1))
+      if (( starship_seen > 1 )); then
+        changed=1
+        continue
       fi
     fi
     [[ "$current" == "$repaired" ]] || changed=1
