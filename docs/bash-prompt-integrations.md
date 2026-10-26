@@ -25,6 +25,42 @@ A Direnv export normally happens **when Bash next draws its prompt**.
 Therefore `VIRTUAL_ENV` can be absent when a command prints diagnostics
 and become set immediately afterward. Check again after the prompt returns.
 
+## Compatibility decision: two environment managers
+
+mise currently documents simultaneous interactive shell environment management
+by **mise + Direnv as unsupported**. Both may change `PATH` at directory
+boundaries. This is an upstream compatibility limitation, even if our present
+workstation smoke is passing.
+
+Current **non-disruptive decision**: retain the existing tool versions selected
+by mise and the opt-in project `.envrc` used by Direnv. Do **not** remove
+either shell hook or change the user's startup policy as part of these prompt
+fixes. Maintain explicit verification of the effective Python/Ansible binary
+and keep `mise run` for reviewed, reproducible tasks.
+
+Future, separately approved decision: migrate to a **single authoritative
+environment activator**, either through `mise.toml` or a Direnv-only shell
+hook. Before any switch, compare the effective environment, security defaults,
+project requirements, and startup latency for `dotfiles`, `nabla`,
+`ansible-workstation` and `fastapi-sample`. Roll back on missing shell
+hooks or any change to the selected Ansible executable.
+
+References:
+- https://mise.jdx.dev/direnv.html
+- https://direnv.net/docs/hook.html
+- https://github.com/jdx/mise/blob/main/src/assets/bash/activate.sh
+
+## Prompt startup optimizations
+
+- Source OpenClaw's Bash completion **once** from `$HOME`, never from a
+  hard-coded username path.
+- The small `repair-bash-prompt-hooks` helper removes duplicate
+  **exact** `starship_precmd` entries only when `PROMPT_COMMAND` is
+  an indexed Bash array. It does not parse scalar commands, quoted text,
+  function bodies or full shell syntax.
+- A source-only, isolated test checks idempotence, valid mise hooks, Direnv,
+  history commands and the Starship duplicate case.
+
 ## Offline contract tests
 
 ```bash
