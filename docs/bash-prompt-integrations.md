@@ -61,6 +61,29 @@ References:
 - A source-only, isolated test checks idempotence, valid mise hooks, Direnv,
   history commands and the Starship duplicate case.
 
+## Real Bash prompt regression test (isolated PTY)
+
+The earlier static tests passed while the actual terminal sometimes still
+printed `_mise_hookhistory: command not found`. The new
+`bin/test-real-bash-prompt.py` starts a **real interactive Bash** inside
+a temporary pseudo-terminal, but uses a **controlled** `--rcfile`,
+a temporary `HOME`, a restricted `PATH`, `HISTFILE=/dev/null`, and
+mocked mise/Direnv/Starship functions.
+
+It verifies that:
+- an unrepaired `_mise_hookhistory` fails **at the actual prompt** (negative control);
+- sourcing the narrowly scoped repair removes that error at every prompt;
+- legitimate mise and Direnv hooks continue to execute;
+- a duplicated `starship_precmd` executes once per prompt.
+
+This is a functional test of the helper, not a replacement for a new-terminal
+test of the user's real Bash startup. It never sources `~/.bashrc`, Nabla,
+`~/.profile`, credentials or other actual user startup scripts. No
+network request, installation, Git mutation or Ansible execution occurs.
+
+The test is now part of `bash bin/check-terminal-config`; run it after
+the next branch fast-forward. PTY support is required (Linux workstation).
+
 ## Offline contract tests
 
 ```bash
