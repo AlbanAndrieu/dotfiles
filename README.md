@@ -83,6 +83,36 @@ When setting up a new Mac, you may want to install some common [Homebrew](https:
 
 Some of the functionality of these dotfiles depends on formulae installed by `brew.sh`. If you don’t plan to run `brew.sh`, you should look carefully through the script and manually install any particularly important ones. A good example is Bash/Git completion: the dotfiles use a special version from Homebrew.
 
+### Schedule Homebrew auto-update
+
+To keep Homebrew up to date automatically, use [`domt4/autoupdate`](https://github.com/DomT4/homebrew-autoupdate):
+
+```bash
+brew tap domt4/autoupdate
+brew trust --command domt4/autoupdate/autoupdate
+brew autoupdate start 09:00 --upgrade
+```
+
+This schedules Homebrew to run every day at 09:00. It will update Homebrew’s package metadata and upgrade installed formulae and casks.
+
+To check the current configuration:
+
+```bash
+brew autoupdate status
+```
+
+To view the logs:
+
+```bash
+brew autoupdate logs
+```
+
+To stop and remove the schedule:
+
+```bash
+brew autoupdate delete
+```
+
 ## Feedback
 
 Suggestions/improvements
