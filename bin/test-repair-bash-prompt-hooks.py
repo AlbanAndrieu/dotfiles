@@ -63,6 +63,26 @@ source "$1"
 [[ "$PROMPT_COMMAND" == 'printf "quoted;_mise_hookhistory;value";history -a' ]]
 ''')
 
+    def test_deduplicates_only_exact_starship_array_hook(self):
+        self.run_bash('''
+PROMPT_COMMAND=('history -a' 'starship_precmd' '_mise_hook_prompt_command' 'starship_precmd' '_direnv_hook')
+source "$1"
+[[ ${#PROMPT_COMMAND[@]} == 4 ]]
+[[ "${PROMPT_COMMAND[0]}" == 'history -a' ]]
+[[ "${PROMPT_COMMAND[1]}" == 'starship_precmd' ]]
+[[ "${PROMPT_COMMAND[2]}" == '_mise_hook_prompt_command' ]]
+[[ "${PROMPT_COMMAND[3]}" == '_direnv_hook' ]]
+source "$1"
+[[ ${#PROMPT_COMMAND[@]} == 4 ]]
+''')
+
+    def test_does_not_parse_scalar_starship_commands(self):
+        self.run_bash('''
+PROMPT_COMMAND='starship_precmd;starship_precmd'
+source "$1"
+[[ "$PROMPT_COMMAND" == 'starship_precmd;starship_precmd' ]]
+''')
+
     def test_restores_only_previously_enabled_mise_hook(self):
         self.run_bash('''
 __MISE_HOOK_ENABLED=1
