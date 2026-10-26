@@ -33,6 +33,9 @@ assert (root / "bin/repair-bash-prompt-hooks").is_file()
 # In the fallback prompt do not fetch remotes during command evaluation.
 assert 'PS1="$PS1\\$(git-radar --bash --fetch' not in bashrc
 assert 'if [ -r "$HOME/.openclaw/completions/openclaw.bash" ]' in bashrc
+# Avoid sourcing the same completion twice, especially through a hard-coded HOME.
+assert bashrc.count('source "$HOME/.openclaw/completions/openclaw.bash"') == 1
+assert "source '/home/albandrieu/.openclaw/completions/openclaw.bash'" not in bashrc
 print("PASS: Bash syntax, Starship TOML, Terminator font, backup ignore rules and hooks")
 PY
 python3 "$root/bin/test-repair-bash-prompt-hooks.py"
