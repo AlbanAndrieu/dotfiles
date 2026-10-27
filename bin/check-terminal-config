@@ -41,3 +41,4 @@ PY
 python3 "$root/bin/test-repair-bash-prompt-hooks.py"
 # Real Bash prompt execution, but in a sealed temporary HOME and pseudo-terminal.
 python3 "$root/bin/test-real-bash-prompt.py"
+python3 -B "$root/bin/test-workstation-system-inventory.py"
