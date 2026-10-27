@@ -184,11 +184,35 @@ def main():
     if args.format == "json":
         print(json.dumps(data, indent=2, sort_keys=True, ensure_ascii=False))
     else:
-        print("WORKSTATION SYSTEM INVENTORY (read only, identifiers omitted)")
-        for key in ("system", "hardware", "storage_and_boot", "security", "packages"):
-            print("\n" + key.upper())
-            print(json.dumps(data[key], indent=2, sort_keys=True, ensure_ascii=False))
-        print("\nNOTES: no hostname, IP, MAC, UUID, serial or secrets. Unknown != fail.")
+        print("WORKSTATION SYSTEM INVENTORY (read only, no identifiers)")
+        system, hw = data["system"], data["hardware"]
+        boot, sec = data["storage_and_boot"], data["security"]
+        print(f"OS: {system['os'].get('pretty_name') or 'unknown'}")
+        print(f"Kernel: {system['kernel_release'] or 'unknown'}")
+        print(f"CPU: {hw['cpu_model'] or 'unknown'}")
+        print(f"Memory GiB: {hw['memory_gib'] or 'unknown'}")
+        print(f"Motherboard: {hw['motherboard_model'] or 'unknown'}")
+        print(f"BIOS: {hw['bios_version'] or 'unknown'} ({hw['bios_date'] or 'unknown'})")
+        print(f"GPU: {hw['nvidia_gpu'] or 'unknown'} / NVIDIA driver: {hw['nvidia_driver'] or 'unknown'}")
+        print(f"UEFI: {boot['uefi_detected']} / Secure Boot: {boot['secure_boot']} / TPM: {boot['tpm_device_detected']}")
+        print(f"LUKS detected: {boot['luks_device_detected']} / dm-crypt detected: {boot['dm_crypt_device_detected']}")
+        print("Expected mounts:", ", ".join(
+            key + "=" + ("yes" if value else "no")
+            for key, value in boot["mounts_present"].items()
+        ))
+        print(f"AppArmor kernel enabled: {sec['apparmor_kernel_enabled']}")
+        print("Selected sysctls:")
+        for key, value in sec["sysctls"].items():
+            print(f"  {key}: {value if value is not None else 'unknown'}")
+        print("Selected systemd units (active / enabled):")
+        for unit, state in sec["unit_states"].items():
+            print(f"  {unit}: {state['is-active']} / {state['is-enabled']}")
+        present = [
+            f"{pkg}={version}" for pkg, version in data["packages"].items()
+            if version
+        ]
+        print("Selected installed security packages:", ", ".join(present) or "none detected")
+        print("NOTE: unknown != fail; no hostname, IP, MAC, UUID, serial or secrets.")
 
 if __name__ == "__main__":
     main()
