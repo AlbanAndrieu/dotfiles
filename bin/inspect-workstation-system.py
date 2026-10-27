@@ -57,7 +57,9 @@ def execute(tool, *args):
             text=True, timeout=3, check=False,
             env={"PATH": "/usr/bin:/bin", "LC_ALL": "C"},
         )
-        return result.stdout[:8192] if result.returncode == 0 else ""
+        # systemctl reports 'inactive'/'disabled' with a nonzero exit status.
+        # Only callers with explicit allowlists may accept its stdout.
+        return result.stdout[:8192]
     except (OSError, subprocess.TimeoutExpired):
         return ""
 
