@@ -1,5 +1,8 @@
 # Workstation system inventory outside `$HOME`
 
+> **Architecture Option A (27 octobre 2026) :** voir [ownership](workstation-ownership.md) et [roadmap du dépôt](roadmap-workstation.md). Le script d'inventaire ici est transitoire ; la collecte système canonique appartient à `ansible-workstation` après validation d'équivalence.
+
+
 ## Purpose
 
 The repository tracks the user's dotfiles in `$HOME`. It does **not** establish
