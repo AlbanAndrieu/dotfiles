@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+# Source from the end of ~/.bashrc before Direnv's final prompt hook.
+# Preserve valid Bash history, mise, Starship and custom PROMPT_COMMAND items.
+# Only repair the known malformed token created by a legacy prompt merger.
+_nabla_repair_prompt_commands() {
+  local declaration current repaired changed=0 starship_seen=0
+  local -a entries=() result=()
+
+  declaration="$(declare -p PROMPT_COMMAND 2>/dev/null || true)"
+  if [[ "$declaration" == "declare -a"* ]]; then
+    entries=("${PROMPT_COMMAND[@]}")
+  elif [[ -n "${PROMPT_COMMAND+x}" ]]; then
+    entries=("$PROMPT_COMMAND")
+  else
+    return 0
+  fi
+
+  for current in "${entries[@]}"; do
+    repaired="$current"
+    case "$repaired" in
+      '_mise_hookhistory'|'_mise_hookhistory -a')
+        repaired='history -a'
+        ;;
+      '_mise_hookhistory;'*)
+        repaired="history -a;${repaired#_mise_hookhistory;}"
+        ;;
+      '_mise_hookhistory -a;'*)
+        repaired="history -a;${repaired#_mise_hookhistory -a;}"
+        ;;
+    esac
+
+    # Avoid rewriting semicolons inside quoted shell commands. If the
+    # current value contains quotes/backticks, repair only exact leading
+    # tokens handled by the case statement above.
+    if [[ "$repaired" != *"'"* && "$repaired" != *'"'* &&
+          "$repaired" != *'`'* ]]; then
+      repaired="${repaired//;_mise_hookhistory -a;/;history -a;}"
+      repaired="${repaired//;_mise_hookhistory;/;history -a;}"
+      if [[ "$repaired" == *';_mise_hookhistory -a' ]]; then
+        repaired="${repaired%;_mise_hookhistory -a};history -a"
+      elif [[ "$repaired" == *';_mise_hookhistory' ]]; then
+        repaired="${repaired%;_mise_hookhistory};history -a"
+      fi
+    fi
+    # Starship may install several exact starship_precmd entries in a
+    # PROMPT_COMMAND array after repeated Bash initialization. Keep the
+    # first and preserve the order of every unrelated prompt function.
+    # Do not attempt to parse/sculpt scalar Bash command strings.
+    if [[ "$declaration" == "declare -a"* &&
+          "$repaired" == "starship_precmd" ]]; then
+      starship_seen=$((starship_seen + 1))
+      if (( starship_seen > 1 )); then
+        changed=1
+        continue
+      fi
+    fi
+    [[ "$current" == "$repaired" ]] || changed=1
+    result+=("$repaired")
+  done
+
+  if (( changed )); then
+    if [[ "$declaration" == "declare -a"* ]]; then
+      PROMPT_COMMAND=("${result[@]}")
+    else
+      PROMPT_COMMAND="${result[0]}"
+    fi
+
+    # The malformed token may have swallowed mise's active prompt hook.
+    # Ask mise to restore its OWN hook only when it was already enabled.
+    # Do not invent names, replace valid hooks or run a mise command.
+    if [[ "${__MISE_HOOK_ENABLED:-0}" == "1" ]] &&
+       declare -F _mise_add_prompt_command >/dev/null 2>&1 &&
+       declare -F _mise_hook_prompt_command >/dev/null 2>&1; then
+      _mise_add_prompt_command
+    fi
+  fi
+}
+
+_nabla_repair_prompt_commands
+unset -f _nabla_repair_prompt_commands

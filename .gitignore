@@ -323,6 +323,8 @@ _minted-*/
 .sizecache.json
 .groovy/
 *.bak
+# Legacy backups created as config.bak-YYYYMMDD-HHMMSS (prefer config.DATE.bak).
+*.bak-*
 gui/target_junit/
 *rebel.xml
 #/docs/

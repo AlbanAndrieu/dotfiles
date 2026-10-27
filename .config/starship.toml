@@ -9,7 +9,7 @@ command_timeout = 1500
 scan_timeout = 200
 
 # Inserts a blank line between shell prompts
-add_newline = true
+add_newline = false
 
 [line_break]
 disabled = false
@@ -80,7 +80,7 @@ format = '\[[$symbol($version)]($style)\]'
 symbol = " "
 
 [directory]
-truncation_length = 8
+truncation_length = 2
 truncation_symbol = "…/"
 truncate_to_repo = false
 read_only = " "
@@ -165,6 +165,8 @@ symbol = " "
 format = '\[[$symbol($version)]($style)\]'
 
 [kubernetes]
+# Always display the active cluster and namespace before kubectl/helm commands.
+disabled = false
 format = '\[[$symbol$context( \($namespace\))]($style)\]'
 
 [lua]

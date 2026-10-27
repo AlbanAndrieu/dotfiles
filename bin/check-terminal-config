@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# Offline checks only: never source the user's shell, secrets, or cloud tools.
+set -euo pipefail
+root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+bash -n "$root/.bashrc"
+bash -n "$root/bin/reconcile-bashrc-direnv"
+bash -n "$root/bin/repair-bash-prompt-hooks"
+python3 - "$root" <<'PY'
+from pathlib import Path
+import sys
+import tomllib
+
+root = Path(sys.argv[1])
+config = tomllib.loads((root / ".config/starship.toml").read_text())
+assert config["add_newline"] is False
+assert config["directory"]["truncation_length"] == 2
+assert config["kubernetes"]["disabled"] is False
+terminator = (root / ".config/terminator/config").read_text()
+assert "font = JetBrainsMono Nerd Font 11" in terminator
+assert "cell_width = 1.0" in terminator
+ignore = (root / ".gitignore").read_text().splitlines()
+assert "*.bak" in ignore and "*.bak-*" in ignore
+bashrc = (root / ".bashrc").read_text()
+assert "declare -F _direnv_hook" in bashrc
+# The Direnv hook must be final, after Nabla/Starship prompt initialization.
+# A function existing is not sufficient if PROMPT_COMMAND lost the hook.
+assert bashrc.rfind('eval "$(direnv hook bash)"') > bashrc.find('. ${WORKSPACE_ENV}/home/dev.env.sh')
+assert 'declare -p PROMPT_COMMAND' in bashrc
+assert '"$_nabla_direnv_prompt" != *"_direnv_hook"*' in bashrc
+assert bashrc.rfind('source "$HOME/bin/repair-bash-prompt-hooks"') > bashrc.find('. ${WORKSPACE_ENV}/home/dev.env.sh')
+assert bashrc.rfind('source "$HOME/bin/repair-bash-prompt-hooks"') < bashrc.rfind('eval "$(direnv hook bash)"')
+assert (root / "bin/repair-bash-prompt-hooks").is_file()
+# In the fallback prompt do not fetch remotes during command evaluation.
+assert 'PS1="$PS1\\$(git-radar --bash --fetch' not in bashrc
+assert 'if [ -r "$HOME/.openclaw/completions/openclaw.bash" ]' in bashrc
+# Avoid sourcing the same completion twice, especially through a hard-coded HOME.
+assert bashrc.count('source "$HOME/.openclaw/completions/openclaw.bash"') == 1
+assert "source '/home/albandrieu/.openclaw/completions/openclaw.bash'" not in bashrc
+print("PASS: Bash syntax, Starship TOML, Terminator font, backup ignore rules and hooks")
+PY
+python3 "$root/bin/test-repair-bash-prompt-hooks.py"
+# Real Bash prompt execution, but in a sealed temporary HOME and pseudo-terminal.
+python3 "$root/bin/test-real-bash-prompt.py"
+python3 -B "$root/bin/test-workstation-system-inventory.py"

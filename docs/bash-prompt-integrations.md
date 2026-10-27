@@ -1,0 +1,145 @@
+# Bash prompt integration: mise, Starship, Direnv
+
+Scope: Ubuntu workstation shell startup. Keep prompt initialization offline,
+non-destructive and independent of Git remotes or Vaultwarden availability.
+
+## Ownership and order
+
+1. `~/.bashrc` initializes the interactive shell and may source Nabla's
+   `env/home/dev.env.sh`.
+2. Nabla configures mise and Starship and removes only complete, obsolete
+   prompt commands. The Nabla implementation is in PR #68.
+3. At the **end** of `~/.bashrc`, source `bin/repair-bash-prompt-hooks`
+   to correct the known invalid token `_mise_hookhistory`. Keep valid
+   `history -a`, `_mise_hook_prompt_command`, Starship and other entries.
+4. Initialize or restore the official `direnv hook bash` last. Never blindly
+   replace `PROMPT_COMMAND` or install the hook on every prompt.
+
+The original operator error was `_mise_hookhistory: command not found`.
+The exact earlier `PROMPT_COMMAND` has not been provided, so the mechanism
+that concatenated the strings is not fully established. The code only fixes
+the known invalid token, including when it occurs as a semicolon-separated
+prompt command.
+
+A Direnv export normally happens **when Bash next draws its prompt**.
+Therefore `VIRTUAL_ENV` can be absent when a command prints diagnostics
+and become set immediately afterward. Check again after the prompt returns.
+
+## Compatibility decision: two environment managers
+
+mise currently documents simultaneous interactive shell environment management
+by **mise + Direnv as unsupported**. Both may change `PATH` at directory
+boundaries. This is an upstream compatibility limitation, even if our present
+workstation smoke is passing.
+
+Current **non-disruptive decision**: retain the existing tool versions selected
+by mise and the opt-in project `.envrc` used by Direnv. Do **not** remove
+either shell hook or change the user's startup policy as part of these prompt
+fixes. Maintain explicit verification of the effective Python/Ansible binary
+and keep `mise run` for reviewed, reproducible tasks.
+
+Future, separately approved decision: migrate to a **single authoritative
+environment activator**, either through `mise.toml` or a Direnv-only shell
+hook. Before any switch, compare the effective environment, security defaults,
+project requirements, and startup latency for `dotfiles`, `nabla`,
+`ansible-workstation` and `fastapi-sample`. Roll back on missing shell
+hooks or any change to the selected Ansible executable.
+
+References:
+- https://mise.jdx.dev/direnv.html
+- https://direnv.net/docs/hook.html
+- https://github.com/jdx/mise/blob/main/src/assets/bash/activate.sh
+
+## Prompt startup optimizations
+
+- Source OpenClaw's Bash completion **once** from `$HOME`, never from a
+  hard-coded username path.
+- The small `repair-bash-prompt-hooks` helper removes duplicate
+  **exact** `starship_precmd` entries only when `PROMPT_COMMAND` is
+  an indexed Bash array. It does not parse scalar commands, quoted text,
+  function bodies or full shell syntax.
+- A source-only, isolated test checks idempotence, valid mise hooks, Direnv,
+  history commands and the Starship duplicate case.
+
+## Real Bash prompt regression test (isolated PTY)
+
+The earlier static tests passed while the actual terminal sometimes still
+printed `_mise_hookhistory: command not found`. The new
+`bin/test-real-bash-prompt.py` starts a **real interactive Bash** inside
+a temporary pseudo-terminal, but uses a **controlled** `--rcfile`,
+a temporary `HOME`, a restricted `PATH`, `HISTFILE=/dev/null`, and
+mocked mise/Direnv/Starship functions.
+
+It verifies that:
+- an unrepaired `_mise_hookhistory` fails **at the actual prompt** (negative control);
+- sourcing the narrowly scoped repair removes that error at every prompt;
+- legitimate mise and Direnv hooks continue to execute;
+- a duplicated `starship_precmd` executes once per prompt.
+
+This is a functional test of the helper, not a replacement for a new-terminal
+test of the user's real Bash startup. It never sources `~/.bashrc`, Nabla,
+`~/.profile`, credentials or other actual user startup scripts. No
+network request, installation, Git mutation or Ansible execution occurs.
+
+The test is now part of `bash bin/check-terminal-config`; run it after
+the next branch fast-forward. PTY support is required (Linux workstation).
+
+## Offline contract tests
+
+```bash
+cd "$HOME"
+bash bin/check-terminal-config
+python3 bin/test-repair-bash-prompt-hooks.py
+python3 bin/test-reconcile-bashrc-direnv
+```
+
+These checks do not source the full Nabla runtime, unlock secrets, run
+network probes, install tools, or apply Ansible.
+
+## After a Git fast-forward in an already-open terminal
+
+A `git fetch`/`git merge --ff-only` updates `.bashrc` on disk, **not**
+the running Bash process. The previous prompt functions and
+`PROMPT_COMMAND` continue to execute until a fresh shell starts.
+Static checks can pass while that stale shell still prints
+`_mise_hookhistory: command not found`.
+
+For a non-destructive test **in the existing interactive Bash** after the
+files have been updated:
+
+```bash
+# Use only the reviewed, locally checked-out script.
+source "$HOME/bin/repair-bash-prompt-hooks"
+
+# The next prompt will run the updated prompt command.
+# If an error persists, diagnose without printing private shell commands.
+cd /workspace/users/albandrieu30/ansible-workstation
+source scripts/diagnose-direnv-shell.sh
+```
+
+This source-only helper changes the current shell's prompt command in
+memory, if the known invalid token is present. It does not replay all of
+`~/.bashrc`, start downloads, reinstall hooks or alter `.venv`. It may
+not repair a dynamically constructed invalid token. A **new terminal** is
+the authoritative test of startup order.
+
+## Final verification in a new terminal
+
+```bash
+cd /workspace/users/albandrieu30/ansible-workstation
+source scripts/diagnose-direnv-shell.sh
+
+# Run after the prompt has returned, not in the same multi-command paste.
+printf 'VIRTUAL_ENV=%s\n' "${VIRTUAL_ENV:-unset}"
+type -P python
+type -P ansible
+```
+
+Expected: the diagnostic reports an installed `_direnv_hook`, its presence
+in `PROMPT_COMMAND`, and **no invalid mise/history token**. Python and
+Ansible must resolve to this project's `.venv/bin`. No `uv sync` is
+necessary merely to repair the shell integration.
+
+Do not disclose the entire `PROMPT_COMMAND` to public CI logs: its contents
+may include custom shell commands or local paths. The diagnostic reports
+only known hook names and statuses.

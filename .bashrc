@@ -78,11 +78,9 @@ else
   PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 
-if [ -d "${HOME}/.linuxbrew/bin" -o -d "${HOME}/.git-radar" -o -f "/home/linuxbrew/.linuxbrew/bin/git-radar" ]; then
-  PS1="$PS1\$(git-radar --bash --fetch 2>&1)"
-else
-  PS1=$PS1'$(__git_ps1 "(%s)")'
-fi
+# Offline-first fallback. Starship replaces PS1 later in an interactive shell.
+# Do not use git-radar --fetch: an interactive prompt must not contact remotes.
+PS1=$PS1'$(__git_ps1 "(%s)")'
 
 if [ "$color_prompt" = yes ]; then
   PS1="$PS1 🦊 \$ \[\e[1;37m\]"
@@ -163,7 +161,7 @@ fi
 
 export NIX_PATH="nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixpkgs:/nix/var/nix/profiles/per-user/root/channels"
 
-eval "$(direnv hook bash)"
+# Direnv is finalized at the END of this file, after prompt integrations.
 
 if [[ $TERM_PROGRAM != "WarpTerminal" && $TERM_PROGRAM != "vscode" ]]; then
   # Unsupported plugin/prompt code here, i.e.
@@ -204,7 +202,7 @@ esac
 # pnpm end
 
 # END ANSIBLE MANAGED BLOCK - OpenClaw config
-export XDG_RUNTIME_DIR=/run/user/$(id -u)
+export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
 # BEGIN ANSIBLE MANAGED BLOCK - DBus config
 # DBus session bus configuration
 if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
@@ -212,17 +210,35 @@ if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
 fi
 # END ANSIBLE MANAGED BLOCK - DBus config
 
-# OpenClaw Completion
-source "/home/albandrieu/.openclaw/completions/openclaw.bash"
+if [ -r "$HOME/.openclaw/completions/openclaw.bash" ]; then
+  source "$HOME/.openclaw/completions/openclaw.bash"
+fi
 
 # source <(usage g completion-init bash)
 
-# opencode
-export PATH=/home/albanandrieu/.opencode/bin:$PATH
 
 # kubescape
 export PATH=$PATH:$HOME/.kubescape/bin
 
-# opencode
-export PATH=/home/albandrieu/.opencode/bin:$PATH
+# opencode: only add the directory when present; avoid duplicate PATH entries.
+if [ -d "$HOME/.opencode/bin" ] && [[ ":$PATH:" != *":$HOME/.opencode/bin:"* ]]; then
+  export PATH="$HOME/.opencode/bin:$PATH"
+fi
 
+# Sanitize only the recognized invalid mise/history prompt token.
+# Do not overwrite unrelated PROMPT_COMMAND entries (Starship, Bash history).
+if [[ $- == *i* ]] && [ -r "$HOME/bin/repair-bash-prompt-hooks" ]; then
+  # shellcheck disable=SC1091
+  source "$HOME/bin/repair-bash-prompt-hooks"
+fi
+
+# Direnv must be the last prompt integration (after Nabla, mise and Starship).
+# Checking only the function is insufficient: another prompt setup can replace
+# PROMPT_COMMAND while leaving _direnv_hook defined but no longer executed.
+if command -v direnv >/dev/null 2>&1; then
+  _nabla_direnv_prompt="$(declare -p PROMPT_COMMAND 2>/dev/null || true)"
+  if ! declare -F _direnv_hook >/dev/null 2>&1 || [[ "$_nabla_direnv_prompt" != *"_direnv_hook"* ]]; then
+    eval "$(direnv hook bash)"
+  fi
+  unset _nabla_direnv_prompt
+fi
