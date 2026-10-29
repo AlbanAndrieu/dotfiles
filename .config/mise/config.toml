@@ -53,6 +53,7 @@ direnv = "2.38.2"
 kubeconform = "0.6.7"
 # Go-based command-line wrapper for Datadog APIs (moved from Brewfile), macOS only
 "github:datadog-labs/pup" = { version = "latest", os = ["macos"] }
+helmfile = { version = "1.8.2", workflow = "releaser.yaml" }
 
 [env]
 # _.file = { path = "$HOME/.env.secrets", redact = true }
