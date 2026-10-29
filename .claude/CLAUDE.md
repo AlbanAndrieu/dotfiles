@@ -11,6 +11,8 @@
 - Respecter le `.editorconfig` du projet (et `~/.editorconfig` à défaut)
   avant d'écrire un fichier.
 - Indentation : 2 espaces. Jamais de tabulations, sauf dans les `Makefile`.
+- Commenter seulement le pourquoi que le code ne peut pas montrer, en une
+  ligne (règle de ponytail).
 
 ## Commandes Bash
 
