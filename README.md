@@ -1,5 +1,8 @@
 # Mathias’s dotfiles
 
+> **Usage dans cette workstation :** ce dépôt est un checkout Git directement dans `$HOME`, pas une opération de copie depuis un clone séparé. Avant toute synchronisation, préserver les modifications locales de `.bashrc`. Voir [contrat Option A](docs/workstation-ownership.md) et [roadmap workstation](docs/roadmap-workstation.md).
+
+
 ![Screenshot of my shell prompt](https://i.imgur.com/EkEtphC.png)
 
 ## Installation
