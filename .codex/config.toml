@@ -173,6 +173,12 @@ trust_level = "trusted"
 [projects."/home/albandrieu/w/nabla-openclaw"]
 trust_level = "trusted"
 
+[projects."/home/albandrieu/ChatGPT/nabla-site-bababou"]
+trust_level = "trusted"
+
+[projects."/home/albandrieu/w/nabla-site-alban"]
+trust_level = "trusted"
+
 [mcp_servers.next-devtools]
 command = "npx"
 args = [
@@ -197,8 +203,8 @@ BROWSER_USE_TINYSKY_ENABLED = "1"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.1021.22027"
-NODE_REPL_TRUSTED_SERVICES = '{"browser":"/home/albandrieu/.codex/plugins/cache/openai-bundled/browser/26.1021.22027/scripts/browser-service.mjs"}'
+BROWSER_USE_CODEX_APP_VERSION = "26.1027.30824"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/home/albandrieu/.codex/plugins/cache/openai-bundled/browser/26.1027.30824/scripts/browser-service.mjs"}'
 CODEX_CLI_PATH = "/usr/lib/chatgpt/resources/codex"
 
 [mcp_servers.GitKraken]
@@ -270,6 +276,7 @@ source = "https://github.com/obra/superpowers-marketplace.git"
 
 [features]
 js_repl = false
+memories = true
 
 [desktop]
 external-agent-import-sync-enabled = true
@@ -283,3 +290,7 @@ screen_reader_detection_done = true
 
 [tui.model_availability_nux]
 "gpt-6.1-sol" = 2
+
+[memories]
+generate_memories = true
+use_memories = true

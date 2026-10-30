@@ -53,7 +53,7 @@ provenance = "github-attestations"
 version = "2.91.0"
 backend = "pypi:azure-cli"
 specifiers = ["latest"]
-uv = { path = "locks/azure-cli/2.91.0~a837e014", digest = "sha256:73800d0fa3483744ef57a61e9b22b5522e48aa1af3446e720a0c26396730aa8a" }
+uv = { path = "locks/azure-cli/2.91.0~a837e014", digest = "sha256:050fc2a838661c424b411249e843e8f0f3fabbf00c39d07dcd305578030b3142" }
 
 [tools.azure-cli.options]
 dependency_prereleases = "allow"
@@ -1133,7 +1133,7 @@ url_api = "https://api.github.com/repos/pypa/pipx/releases/assets/582499741"
 version = "1.38.0"
 backend = "pipx:yamllint"
 specifiers = ["latest"]
-uv = { path = "locks/pipx-yamllint/1.38.0", digest = "sha256:7fbcd37397eaf659a435531fb4fd04dd19179365c3a1f9a8b1bd123e0495325b" }
+uv = { path = "locks/pipx-yamllint/1.38.0", digest = "sha256:121caf1641b4f806800ab7ca8d9a9ed92b6d15631ba0ed299e9e2a17e1895a04" }
 
 [[tools.popeye]]
 version = "0.22.1"

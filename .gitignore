@@ -115,6 +115,11 @@
 !/step-0-color.sh
 !/step-1-os.sh
 !/synergy.conf
+!/skills/
+/skills/*
+!/skills/ponytail/
+/skills/ponytail/*
+!/skills/ponytail/SKILL.md
 
 # Second level whitelist
 !/.claude/
@@ -684,3 +689,5 @@ Claude\ outputs/
 !/.agents/
 /.agents/*
 !/.agents/.skill-lock.json
+!/.agents/skills/
+!/.agents/skills/**

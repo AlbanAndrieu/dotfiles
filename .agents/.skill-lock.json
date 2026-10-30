@@ -17,7 +17,7 @@
       "skillPath": "skills/find-skills/SKILL.md",
       "skillFolderHash": "76a98a285cb0434f3d39e1a873823556330e398b",
       "installedAt": "2026-09-29T08:17:34.581Z",
-      "updatedAt": "2026-09-29T08:17:34.581Z"
+      "updatedAt": "2026-10-30T13:46:42.856Z"
     },
     "setup-matt-pocock-skills": {
       "source": "sickn33/antigravity-awesome-skills",
@@ -27,9 +27,65 @@
       "skillFolderHash": "51ee6600ade5ec6108ed3f854bd65d9c00d2f028",
       "installedAt": "2026-10-23T15:31:53.071Z",
       "updatedAt": "2026-10-23T15:31:53.071Z"
+    },
+    "docker-compose-patterns": {
+      "source": "docker/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/docker/skills.git",
+      "skillPath": "skills/docker-compose-patterns/SKILL.md",
+      "skillFolderHash": "d602abc2459830dbc66a8aae7c91d80820584f25",
+      "installedAt": "2026-10-30T13:39:34.613Z",
+      "updatedAt": "2026-10-30T13:39:34.613Z"
+    },
+    "kubernetes-specialist": {
+      "source": "jeffallan/claude-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/jeffallan/claude-skills.git",
+      "skillPath": "skills/kubernetes-specialist/SKILL.md",
+      "skillFolderHash": "c987ec225fa1d4bac6d8ef6315a0a8fa026b33ed",
+      "installedAt": "2026-10-30T13:40:02.905Z",
+      "updatedAt": "2026-10-30T13:40:02.905Z"
+    },
+    "talos-os-expert": {
+      "source": "martinholovsky/claude-skills-generator",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/martinholovsky/claude-skills-generator.git",
+      "skillPath": "skills/talos-os-expert/SKILL.md",
+      "skillFolderHash": "36d556de91474d8d67dfec667f9a2e22da44b81e",
+      "installedAt": "2026-10-30T13:41:12.849Z",
+      "updatedAt": "2026-10-30T13:41:12.849Z"
+    },
+    "agent-browser": {
+      "source": "vercel-labs/agent-browser",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/agent-browser.git",
+      "skillPath": "skills/agent-browser/SKILL.md",
+      "skillFolderHash": "aee3afd3dd9c879a14816dd6dca77c938f8c9c10",
+      "pluginName": "agent-browser",
+      "installedAt": "2026-10-30T13:48:11.095Z",
+      "updatedAt": "2026-10-30T13:48:11.095Z"
     }
   },
   "dismissed": {
     "findSkillsPrompt": true
-  }
+  },
+  "lastSelectedAgents": [
+    "amp",
+    "cline",
+    "codex",
+    "cursor",
+    "droid",
+    "fx",
+    "gemini-cli",
+    "github-copilot",
+    "kilo",
+    "kimi-code-cli",
+    "opencode",
+    "pi",
+    "warp",
+    "zed",
+    "claude-code",
+    "openclaw",
+    "hermes-agent"
+  ]
 }
