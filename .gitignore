@@ -23,6 +23,9 @@
 !/.cspell.json
 !/.curlrc
 # !/.cursor/
+!/.codex/
+/.codex/*
+!/.codex/config.toml
 !/.deepsource.toml
 !/.dive.yaml
 !/.dockerignore
