@@ -52,11 +52,8 @@ provenance = "github-attestations"
 [[tools.azure-cli]]
 version = "2.91.0"
 backend = "pypi:azure-cli"
-specifiers = [
-    "2.91.0",
-    "latest",
-]
-uv = { path = "locks/azure-cli/2.91.0~a837e014", digest = "sha256:050fc2a838661c424b411249e843e8f0f3fabbf00c39d07dcd305578030b3142" }
+specifiers = ["latest"]
+uv = { path = "locks/azure-cli/2.91.0~a837e014", digest = "sha256:73800d0fa3483744ef57a61e9b22b5522e48aa1af3446e720a0c26396730aa8a" }
 
 [tools.azure-cli.options]
 dependency_prereleases = "allow"
@@ -546,26 +543,6 @@ version = "2.0.1"
 backend = "github:datadog-labs/pup"
 specifiers = ["latest"]
 
-[tools."github:datadog-labs/pup"."platforms.linux-arm64"]
-checksum = "sha256:a7a0bd038e6d63f836a4d6c307091182c0b344ee7f535829a4271151aaea4b76"
-url = "https://github.com/DataDog/pup/releases/download/v2.0.1/pup_2.0.1_Linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/DataDog/pup/releases/assets/658085642"
-
-[tools."github:datadog-labs/pup"."platforms.linux-arm64-musl"]
-checksum = "sha256:a7a0bd038e6d63f836a4d6c307091182c0b344ee7f535829a4271151aaea4b76"
-url = "https://github.com/DataDog/pup/releases/download/v2.0.1/pup_2.0.1_Linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/DataDog/pup/releases/assets/658085642"
-
-[tools."github:datadog-labs/pup"."platforms.linux-x64"]
-checksum = "sha256:02e53b9ff176dc2cff81b9736a7cecf550f0e3eedbd0d994ae38c1f9fd3ae6b5"
-url = "https://github.com/DataDog/pup/releases/download/v2.0.1/pup_2.0.1_Linux_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/DataDog/pup/releases/assets/658085660"
-
-[tools."github:datadog-labs/pup"."platforms.linux-x64-musl"]
-checksum = "sha256:02e53b9ff176dc2cff81b9736a7cecf550f0e3eedbd0d994ae38c1f9fd3ae6b5"
-url = "https://github.com/DataDog/pup/releases/download/v2.0.1/pup_2.0.1_Linux_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/DataDog/pup/releases/assets/658085660"
-
 [tools."github:datadog-labs/pup"."platforms.macos-arm64"]
 checksum = "sha256:49f9b370141e3e0850fd650b34ba6262fc011319726d3403e6317ec542ce3573"
 url = "https://github.com/datadog-labs/pup/releases/download/v2.0.1/pup_2.0.1_Darwin_arm64.tar.gz"
@@ -575,11 +552,6 @@ url_api = "https://api.github.com/repos/datadog-labs/pup/releases/assets/6580856
 checksum = "sha256:4f27cc19e12aac5e16e44be7944b4403465139f48c8d07314099b311fe756640"
 url = "https://github.com/datadog-labs/pup/releases/download/v2.0.1/pup_2.0.1_Darwin_x86_64.tar.gz"
 url_api = "https://api.github.com/repos/datadog-labs/pup/releases/assets/658085638"
-
-[tools."github:datadog-labs/pup"."platforms.windows-x64"]
-checksum = "sha256:69b7c8e5597a7c828e578696800d88c01fa75af742f4ae548146573f824bb1c6"
-url = "https://github.com/DataDog/pup/releases/download/v2.0.1/pup_2.0.1_Windows_x86_64.zip"
-url_api = "https://api.github.com/repos/DataDog/pup/releases/assets/658085682"
 
 [[tools."github:getplumber/plumber"]]
 version = "0.7.9"
@@ -1135,11 +1107,8 @@ url_api = "https://api.github.com/repos/pypa/pipx/releases/assets/582499741"
 [[tools."pipx:yamllint"]]
 version = "1.38.0"
 backend = "pipx:yamllint"
-specifiers = [
-    "1.38.0",
-    "latest",
-]
-uv = { path = "locks/pipx-yamllint/1.38.0", digest = "sha256:121caf1641b4f806800ab7ca8d9a9ed92b6d15631ba0ed299e9e2a17e1895a04" }
+specifiers = ["latest"]
+uv = { path = "locks/pipx-yamllint/1.38.0", digest = "sha256:7fbcd37397eaf659a435531fb4fd04dd19179365c3a1f9a8b1bd123e0495325b" }
 
 [[tools.popeye]]
 version = "0.22.1"
@@ -1290,11 +1259,6 @@ url_api = "https://api.github.com/repos/BurntSushi/ripgrep/releases/assets/47811
 checksum = "sha256:af7825fcc69a2afc7a7aea55fc9af90e26421d8f20fe59df32e233c0b8a231c1"
 url = "https://github.com/BurntSushi/ripgrep/releases/download/15.2.0/ripgrep-15.2.0-x86_64-apple-darwin.tar.gz"
 url_api = "https://api.github.com/repos/BurntSushi/ripgrep/releases/assets/478119585"
-
-[tools.ripgrep."platforms.windows-x64"]
-checksum = "sha256:71b2fef860abe467217a538ff31de02f5258807c0129f771846f87bd029aafc5"
-url = "https://github.com/BurntSushi/ripgrep/releases/download/15.2.0/ripgrep-15.2.0-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/BurntSushi/ripgrep/releases/assets/478119643"
 
 [[tools.shellcheck]]
 version = "0.11.0"
