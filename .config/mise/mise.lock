@@ -52,8 +52,11 @@ provenance = "github-attestations"
 [[tools.azure-cli]]
 version = "2.91.0"
 backend = "pypi:azure-cli"
-specifiers = ["latest"]
-uv = { path = "locks/azure-cli/2.91.0~a837e014", digest = "sha256:73800d0fa3483744ef57a61e9b22b5522e48aa1af3446e720a0c26396730aa8a" }
+specifiers = [
+    "2.91.0",
+    "latest",
+]
+uv = { path = "locks/azure-cli/2.91.0~a837e014", digest = "sha256:050fc2a838661c424b411249e843e8f0f3fabbf00c39d07dcd305578030b3142" }
 
 [tools.azure-cli.options]
 dependency_prereleases = "allow"
@@ -355,7 +358,7 @@ repository_ids = { repository = "1078762196" }
 checksum = "sha256:a9297e0c3d7a079745b25509344fd3ea471d7af5bec1d293c8feaab312cb494a"
 url = "https://github.com/jdx/fnox/releases/download/v1.41.0/fnox-x86_64-unknown-linux-gnu.tar.gz"
 signer = "sigstore-oidc:https://github.com/jdx/fnox/.github/workflows/release.yml"
-repository_ids = { repository = "1078762196" }
+repository_ids = { repository = "1078762196", owner = "216188" }
 
 [tools.fnox."platforms.linux-x64-musl"]
 checksum = "sha256:326d77bb95782ea3f6ccd5cc7b67b940296ea327b8ba3950c975bf9d3bb548cb"
@@ -766,7 +769,7 @@ repository_ids = { repository = "474521466" }
 checksum = "sha256:f179485c5bb9f8e20fbd8ea16d8807915988aba4d60131ee864fb3232452716e"
 url = "https://github.com/helmfile/helmfile/releases/download/v1.8.2/helmfile_1.8.2_linux_amd64.tar.gz"
 signer = "sigstore-oidc:https://github.com/helmfile/helmfile/.github/workflows/releaser.yaml"
-repository_ids = { repository = "474521466" }
+repository_ids = { repository = "474521466", owner = "83191469" }
 
 [tools.helmfile."platforms.linux-x64-musl"]
 checksum = "sha256:f179485c5bb9f8e20fbd8ea16d8807915988aba4d60131ee864fb3232452716e"
@@ -1016,8 +1019,43 @@ url = "https://registry.npmjs.org/npm/-/npm-12.2.0.tgz"
 
 [[tools.opencode]]
 version = "1.19.0"
-backend = "npm:@opencode/cli"
+backend = "aqua:anomalyco/opencode"
 specifiers = ["latest"]
+
+[tools.opencode."platforms.linux-arm64"]
+checksum = "sha256:e9841d43d3e1a8f36ed2691592d3b8b4fb097e606c8b559a277a1b845840e26b"
+url = "https://github.com/anomalyco/opencode/releases/download/v1.19.0/opencode-linux-arm64.tar.gz"
+url_api = "https://api.github.com/repos/anomalyco/opencode/releases/assets/629455336"
+
+[tools.opencode."platforms.linux-arm64-musl"]
+checksum = "sha256:e9841d43d3e1a8f36ed2691592d3b8b4fb097e606c8b559a277a1b845840e26b"
+url = "https://github.com/anomalyco/opencode/releases/download/v1.19.0/opencode-linux-arm64.tar.gz"
+url_api = "https://api.github.com/repos/anomalyco/opencode/releases/assets/629455336"
+
+[tools.opencode."platforms.linux-x64"]
+checksum = "sha256:7bb9e61ad6feacf2e89c10a6a2c1840e3de4220bb50ba1fc7110f31806076aec"
+url = "https://github.com/anomalyco/opencode/releases/download/v1.19.0/opencode-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/anomalyco/opencode/releases/assets/629455299"
+
+[tools.opencode."platforms.linux-x64-musl"]
+checksum = "sha256:7bb9e61ad6feacf2e89c10a6a2c1840e3de4220bb50ba1fc7110f31806076aec"
+url = "https://github.com/anomalyco/opencode/releases/download/v1.19.0/opencode-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/anomalyco/opencode/releases/assets/629455299"
+
+[tools.opencode."platforms.macos-arm64"]
+checksum = "sha256:0d5f511948d6fbfedf9bb16753c0ac42613dcc8de75d9deb7e8d0cf584c8fba6"
+url = "https://github.com/anomalyco/opencode/releases/download/v1.19.0/opencode-darwin-arm64.zip"
+url_api = "https://api.github.com/repos/anomalyco/opencode/releases/assets/629459345"
+
+[tools.opencode."platforms.macos-x64"]
+checksum = "sha256:515380b03f3410f2178c8c1c7ba6d1e9556a3bdee2a01d114e7b1681952131a0"
+url = "https://github.com/anomalyco/opencode/releases/download/v1.19.0/opencode-darwin-x64.zip"
+url_api = "https://api.github.com/repos/anomalyco/opencode/releases/assets/629459348"
+
+[tools.opencode."platforms.windows-x64"]
+checksum = "sha256:17108e9448c4fdad48eb8714c4ed6f5dfc9cf86c2eb8f2ce5d02043fef806eb5"
+url = "https://github.com/anomalyco/opencode/releases/download/v1.19.0/opencode-windows-x64.zip"
+url_api = "https://api.github.com/repos/anomalyco/opencode/releases/assets/629458990"
 
 [[tools.osv-scanner]]
 version = "2.7.0"
@@ -1097,8 +1135,11 @@ url_api = "https://api.github.com/repos/pypa/pipx/releases/assets/582499741"
 [[tools."pipx:yamllint"]]
 version = "1.38.0"
 backend = "pipx:yamllint"
-specifiers = ["latest"]
-uv = { path = "locks/pipx-yamllint/1.38.0", digest = "sha256:7fbcd37397eaf659a435531fb4fd04dd19179365c3a1f9a8b1bd123e0495325b" }
+specifiers = [
+    "1.38.0",
+    "latest",
+]
+uv = { path = "locks/pipx-yamllint/1.38.0", digest = "sha256:121caf1641b4f806800ab7ca8d9a9ed92b6d15631ba0ed299e9e2a17e1895a04" }
 
 [[tools.popeye]]
 version = "0.22.1"
