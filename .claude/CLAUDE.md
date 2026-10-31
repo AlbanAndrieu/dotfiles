@@ -6,6 +6,16 @@
   Le code, les identifiants et les messages de commit suivent les conventions
   du dépôt.
 
+## Contexte perso / Job
+
+- **Job** : MacBook Pro (macOS), shell ZSH, remotes GitHub Enterprise.
+  Livrables (code, docs, commits, PR) en anglais.
+- **Perso** : workstation Linux, Bash, remotes `github.com/AlbanAndrieu`.
+  Documentation et PR en français, sauf convention contraire du dépôt.
+- Ne jamais écrire le nom de l'employeur : écrire *Job*, *Office* ou *Mac*.
+  Dans un dépôt perso, aucune référence interne au Job (organisation, dépôt,
+  ticket ou URL GitHub Enterprise), y compris dans les commits, PR et CHANGELOG.
+
 ## Style de code
 
 - Respecter le `.editorconfig` du projet (et `~/.editorconfig` à défaut)

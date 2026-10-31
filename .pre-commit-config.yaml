@@ -128,7 +128,7 @@ repos:
         name: "🔒 security · Detect private keys"
 
   - repo: https://github.com/pre-commit/pre-commit.git
-    rev: v4.5.0
+    rev: v4.7.0
     hooks:
       - id: validate_manifest
         name: "🤖 manifest · Validate manifest scripts"
@@ -149,12 +149,12 @@ repos:
 
   ### Python Tools ###
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.21.2
+    rev: v3.22.0
     hooks:
       - id: pyupgrade
         name: "🐍 python · Py Upgrade"
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.6
+    rev: v0.17.3
     hooks:
       - id: ruff-format
         name: "🐍 python · Format with Ruff"
@@ -171,7 +171,7 @@ repos:
   #     - id: pyright
   #       name: "🐍 python · Check types"
   - repo: https://github.com/abravalheri/validate-pyproject
-    rev: v0.24.1
+    rev: v0.27
     hooks:
       - id: validate-pyproject
         name: "🐍 python · Validate pyproject.toml"
@@ -181,7 +181,7 @@ repos:
   # This helps ensure cross-compatibility with people who don't wish to use uv
   - repo: https://github.com/astral-sh/uv-pre-commit
     # uv version.
-    rev: 0.9.12
+    rev: 0.13.6
     hooks:
       - id: uv-sync
         name: "⚡️ uv · Sync dependencies with uv"
@@ -246,7 +246,7 @@ repos:
 
   ### Makefile ###
   - repo: https://github.com/mrtazz/checkmake.git
-    rev: 0.2.2
+    rev: v0.3.0
     hooks:
       - id: checkmake
         name: "🐮 Makefile · Lint Makefile"
@@ -281,7 +281,7 @@ repos:
   #         - mdformat-frontmatter # YAML frontmatter support
   #         - ruff # Required for mdformat-ruff
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.49.1
+    rev: v0.50.0
     hooks:
       - id: markdownlint
         name: "📝 markdown · Lint markdown"
@@ -335,7 +335,7 @@ repos:
 
   ### Data & Config Validation ###
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.35.0
+    rev: 0.39.0
     hooks:
       - id: check-github-workflows
         name: "🧩 github-actions · Validate gh workflow files"
@@ -344,7 +344,7 @@ repos:
         name: "✅ taskfile · Validate Task configuration"
 
   - repo: https://github.com/hadolint/hadolint
-    rev: v2.14.0
+    rev: v2.15.1
     hooks:
       - id: hadolint-docker
         name: "🐳 hadolint · Validate Dockerfile"
@@ -357,7 +357,7 @@ repos:
       - id: encryption-check
         name: "🔒 security · Detect encryption"
   - repo: https://github.com/zricethezav/gitleaks
-    rev: v8.29.1
+    rev: v8.30.0
     hooks:
       # Uses the gitleaks binary from PATH (installed by mise), no Docker needed
       - id: gitleaks-system
@@ -393,7 +393,7 @@ repos:
   #         )$
 
   - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.37.1
+    rev: v1.38.0
     hooks:
       - id: yamllint
         name: "📜 yamllint - Lint Yaml"
@@ -409,7 +409,7 @@ repos:
 
   ### Commit Message Standards ###
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: v4.10.0
+    rev: v4.19.3
     hooks:
       - id: commitizen
         name: "🌳 git · Validate commit message"

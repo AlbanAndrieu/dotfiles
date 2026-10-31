@@ -59,8 +59,6 @@ enabled = true
 [plugins."superpowers@superpowers-marketplace"]
 enabled = true
 
-[hooks.state]
-
 [hooks.state."vercel-plugin@plugins-cli:hooks/hooks.json:session_start:0:0"]
 trusted_hash = "sha256:146eedfa10f48cfcb6d2cfb2c8fc36e8d8bb8751d2167ba205fa0b967c8a7f6e"
 
@@ -189,7 +187,11 @@ args = [
 [mcp_servers.node_repl]
 args = []
 command = "/usr/lib/chatgpt/resources/cua_node/bin/node_repl"
-env_vars = ["BROWSER_USE_ACCESS_EXECUTOR_ID", "BROWSER_USE_ACCESS_PIPE_PATH", "BROWSER_USE_ACCESS_VERIFYING_IDENTITY"]
+env_vars = [
+    "BROWSER_USE_ACCESS_EXECUTOR_ID",
+    "BROWSER_USE_ACCESS_PIPE_PATH",
+    "BROWSER_USE_ACCESS_VERIFYING_IDENTITY",
+]
 startup_timeout_sec = 120
 
 [mcp_servers.node_repl.env]
@@ -249,6 +251,9 @@ args = ["mcp-server-docker"]
 
 [mcp_servers.supabase]
 url = "https://mcp.supabase.com/mcp?project_ref=hxvovczuiqwatrbkomvz"
+
+[mcp_servers.Notion]
+url = "https://mcp.notion.com/mcp"
 
 [marketplaces.openai-bundled]
 source_type = "local"

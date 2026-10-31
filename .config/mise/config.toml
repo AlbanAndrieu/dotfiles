@@ -19,7 +19,8 @@ krew = "latest"
 python = "3.14"
 "pipx:yamllint" = "latest"
 opencode = "latest"
-bitwarden = "latest"
+# Vaultwarden 1.37.3 supports clients up to 2026.6; 2026.10 unlock fails (key id backfill 404).
+bitwarden = "2026.6.0"
 just = "1.58.0"
 # .NET SDK only on macOS (skipped on Ubuntu)
 dotnet = { version = "latest", os = ["macos"] }
@@ -54,6 +55,7 @@ kubeconform = "0.6.7"
 # Go-based command-line wrapper for Datadog APIs (moved from Brewfile), macOS only
 "github:datadog-labs/pup" = { version = "latest", os = ["macos"] }
 helmfile = { version = "1.8.2", workflow = "releaser.yaml" }
+trivy = "latest"
 
 [env]
 # _.file = { path = "$HOME/.env.secrets", redact = true }
