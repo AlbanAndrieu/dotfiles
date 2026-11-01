@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Unlock Vaultwarden without typing the master password: it is stored in pass (GPG).
+# Once the OpenPGP encryption subkey is on the YubiKey (nabla-yubikey roadmap, step 0),
+# reading it needs the YubiKey (touch + OpenPGP PIN). No PIV slot is used.
+# Usage: export BW_SESSION="$(bw-unlock)"
+# One-time setup: bw-unlock --setup
+set -euo pipefail
+
+entry="${BW_PASS_ENTRY:-vaultwarden/master}"
+
+if [ "${1:-}" = "--setup" ]; then
+  pass insert "${entry}"
+  exit 0
+fi
+
+BW_PASSWORD="$(pass show "${entry}" | head -n 1)"
+export BW_PASSWORD
+bw unlock --raw --passwordenv BW_PASSWORD
