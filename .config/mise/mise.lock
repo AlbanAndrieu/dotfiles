@@ -147,44 +147,51 @@ url_api = "https://api.github.com/repos/betterleaks/betterleaks/releases/assets/
 provenance = "cosign"
 
 [[tools.bitwarden]]
-version = "2026.10.0"
+version = "2026.6.0"
 backend = "aqua:bitwarden/clients"
-specifiers = ["latest"]
+specifiers = ["2026.6.0"]
 
 [tools.bitwarden."platforms.linux-arm64"]
-checksum = "sha256:2fe9d8a18dc4c35ea2f9e3e42a4021f14f129ef47e80b6cea1e3b34176f1583a"
-url = "https://github.com/bitwarden/clients/releases/download/cli-v2026.10.0/bw-linux-arm64-2026.10.0.zip"
-url_api = "https://api.github.com/repos/bitwarden/clients/releases/assets/644458240"
+checksum = "sha256:626156e0ca60606c85b5b8ede0dd4e546b886a36e7f827b81d8cd5b8b487ee7c"
+checksum_source = "mise-versions"
+url = "https://github.com/bitwarden/clients/releases/download/cli-v2026.6.0/bw-linux-arm64-2026.6.0.zip"
+url_api = "https://api.github.com/repos/bitwarden/clients/releases/assets/457887228"
 
 [tools.bitwarden."platforms.linux-arm64-musl"]
-checksum = "sha256:2fe9d8a18dc4c35ea2f9e3e42a4021f14f129ef47e80b6cea1e3b34176f1583a"
-url = "https://github.com/bitwarden/clients/releases/download/cli-v2026.10.0/bw-linux-arm64-2026.10.0.zip"
-url_api = "https://api.github.com/repos/bitwarden/clients/releases/assets/644458240"
+checksum = "sha256:626156e0ca60606c85b5b8ede0dd4e546b886a36e7f827b81d8cd5b8b487ee7c"
+checksum_source = "mise-versions"
+url = "https://github.com/bitwarden/clients/releases/download/cli-v2026.6.0/bw-linux-arm64-2026.6.0.zip"
+url_api = "https://api.github.com/repos/bitwarden/clients/releases/assets/457887228"
 
 [tools.bitwarden."platforms.linux-x64"]
-checksum = "sha256:269b67559caab860d1737f7554b32bdb8be9285d5689fee55193c137a0df9973"
-url = "https://github.com/bitwarden/clients/releases/download/cli-v2026.10.0/bw-linux-2026.10.0.zip"
-url_api = "https://api.github.com/repos/bitwarden/clients/releases/assets/644458067"
+checksum = "sha256:392549496c712ab86bfbd6c27302df9fd2c431cfc7a47e26941ac3e3893f4d27"
+checksum_source = "mise-versions"
+url = "https://github.com/bitwarden/clients/releases/download/cli-v2026.6.0/bw-linux-2026.6.0.zip"
+url_api = "https://api.github.com/repos/bitwarden/clients/releases/assets/457887162"
 
 [tools.bitwarden."platforms.linux-x64-musl"]
-checksum = "sha256:269b67559caab860d1737f7554b32bdb8be9285d5689fee55193c137a0df9973"
-url = "https://github.com/bitwarden/clients/releases/download/cli-v2026.10.0/bw-linux-2026.10.0.zip"
-url_api = "https://api.github.com/repos/bitwarden/clients/releases/assets/644458067"
+checksum = "sha256:392549496c712ab86bfbd6c27302df9fd2c431cfc7a47e26941ac3e3893f4d27"
+checksum_source = "mise-versions"
+url = "https://github.com/bitwarden/clients/releases/download/cli-v2026.6.0/bw-linux-2026.6.0.zip"
+url_api = "https://api.github.com/repos/bitwarden/clients/releases/assets/457887162"
 
 [tools.bitwarden."platforms.macos-arm64"]
-checksum = "sha256:062c880508678b8d936ab2522a3a1e92d60f52b5c534e71406e9b47329e95207"
-url = "https://github.com/bitwarden/clients/releases/download/cli-v2026.10.0/bw-macos-arm64-2026.10.0.zip"
-url_api = "https://api.github.com/repos/bitwarden/clients/releases/assets/644457665"
+checksum = "sha256:57d1e60d7748c6efed96559833ce0423a5c825cbf1356d952970c87a497a64d4"
+checksum_source = "mise-versions"
+url = "https://github.com/bitwarden/clients/releases/download/cli-v2026.6.0/bw-macos-arm64-2026.6.0.zip"
+url_api = "https://api.github.com/repos/bitwarden/clients/releases/assets/457887093"
 
 [tools.bitwarden."platforms.macos-x64"]
-checksum = "sha256:39602a597ca63127c22ee3844546f3fe06079e4f67be7b9a7ea4e30ede8721d0"
-url = "https://github.com/bitwarden/clients/releases/download/cli-v2026.10.0/bw-macos-2026.10.0.zip"
-url_api = "https://api.github.com/repos/bitwarden/clients/releases/assets/644457548"
+checksum = "sha256:c668bb3875029a2b6000aab0abf9579182a79f8e25304a602256685387ef52c6"
+checksum_source = "mise-versions"
+url = "https://github.com/bitwarden/clients/releases/download/cli-v2026.6.0/bw-macos-2026.6.0.zip"
+url_api = "https://api.github.com/repos/bitwarden/clients/releases/assets/457887071"
 
 [tools.bitwarden."platforms.windows-x64"]
-checksum = "sha256:7b4528962fa1dccc6fdb9ddbec57981004bb6146dedbb5c4c2637756376818e7"
-url = "https://github.com/bitwarden/clients/releases/download/cli-v2026.10.0/bw-windows-2026.10.0.zip"
-url_api = "https://api.github.com/repos/bitwarden/clients/releases/assets/644457178"
+checksum = "sha256:a7d0fee49ebf11101f59e2e366d85e94569ae5cd700a60423c495144ca9f0400"
+checksum_source = "mise-versions"
+url = "https://github.com/bitwarden/clients/releases/download/cli-v2026.6.0/bw-windows-2026.6.0.zip"
+url_api = "https://api.github.com/repos/bitwarden/clients/releases/assets/457887017"
 
 [[tools.delta]]
 version = "0.20.1"
@@ -543,26 +550,6 @@ version = "2.0.1"
 backend = "github:datadog-labs/pup"
 specifiers = ["latest"]
 
-[tools."github:datadog-labs/pup"."platforms.linux-arm64"]
-checksum = "sha256:a7a0bd038e6d63f836a4d6c307091182c0b344ee7f535829a4271151aaea4b76"
-url = "https://github.com/DataDog/pup/releases/download/v2.0.1/pup_2.0.1_Linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/DataDog/pup/releases/assets/658085642"
-
-[tools."github:datadog-labs/pup"."platforms.linux-arm64-musl"]
-checksum = "sha256:a7a0bd038e6d63f836a4d6c307091182c0b344ee7f535829a4271151aaea4b76"
-url = "https://github.com/DataDog/pup/releases/download/v2.0.1/pup_2.0.1_Linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/DataDog/pup/releases/assets/658085642"
-
-[tools."github:datadog-labs/pup"."platforms.linux-x64"]
-checksum = "sha256:02e53b9ff176dc2cff81b9736a7cecf550f0e3eedbd0d994ae38c1f9fd3ae6b5"
-url = "https://github.com/DataDog/pup/releases/download/v2.0.1/pup_2.0.1_Linux_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/DataDog/pup/releases/assets/658085660"
-
-[tools."github:datadog-labs/pup"."platforms.linux-x64-musl"]
-checksum = "sha256:02e53b9ff176dc2cff81b9736a7cecf550f0e3eedbd0d994ae38c1f9fd3ae6b5"
-url = "https://github.com/DataDog/pup/releases/download/v2.0.1/pup_2.0.1_Linux_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/DataDog/pup/releases/assets/658085660"
-
 [tools."github:datadog-labs/pup"."platforms.macos-arm64"]
 checksum = "sha256:49f9b370141e3e0850fd650b34ba6262fc011319726d3403e6317ec542ce3573"
 url = "https://github.com/datadog-labs/pup/releases/download/v2.0.1/pup_2.0.1_Darwin_arm64.tar.gz"
@@ -572,11 +559,6 @@ url_api = "https://api.github.com/repos/datadog-labs/pup/releases/assets/6580856
 checksum = "sha256:4f27cc19e12aac5e16e44be7944b4403465139f48c8d07314099b311fe756640"
 url = "https://github.com/datadog-labs/pup/releases/download/v2.0.1/pup_2.0.1_Darwin_x86_64.tar.gz"
 url_api = "https://api.github.com/repos/datadog-labs/pup/releases/assets/658085638"
-
-[tools."github:datadog-labs/pup"."platforms.windows-x64"]
-checksum = "sha256:69b7c8e5597a7c828e578696800d88c01fa75af742f4ae548146573f824bb1c6"
-url = "https://github.com/DataDog/pup/releases/download/v2.0.1/pup_2.0.1_Windows_x86_64.zip"
-url_api = "https://api.github.com/repos/DataDog/pup/releases/assets/658085682"
 
 [[tools."github:getplumber/plumber"]]
 version = "0.7.9"
@@ -1285,11 +1267,6 @@ checksum = "sha256:af7825fcc69a2afc7a7aea55fc9af90e26421d8f20fe59df32e233c0b8a23
 url = "https://github.com/BurntSushi/ripgrep/releases/download/15.2.0/ripgrep-15.2.0-x86_64-apple-darwin.tar.gz"
 url_api = "https://api.github.com/repos/BurntSushi/ripgrep/releases/assets/478119585"
 
-[tools.ripgrep."platforms.windows-x64"]
-checksum = "sha256:71b2fef860abe467217a538ff31de02f5258807c0129f771846f87bd029aafc5"
-url = "https://github.com/BurntSushi/ripgrep/releases/download/15.2.0/ripgrep-15.2.0-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/BurntSushi/ripgrep/releases/assets/478119643"
-
 [[tools.shellcheck]]
 version = "0.11.0"
 backend = "aqua:koalaman/shellcheck"
@@ -1456,6 +1433,53 @@ url_api = "https://api.github.com/repos/tenable/terrascan/releases/assets/193327
 checksum = "sha256:2585e0ae7121bfa28a471175ec3cabe810680fcbeb064eefab93a8c6c475b094"
 url = "https://github.com/tenable/terrascan/releases/download/v1.19.9/terrascan_1.19.9_Windows_x86_64.zip"
 url_api = "https://api.github.com/repos/tenable/terrascan/releases/assets/193327485"
+
+[[tools.trivy]]
+version = "0.76.1"
+backend = "aqua:aquasecurity/trivy"
+specifiers = ["latest"]
+
+[tools.trivy."platforms.linux-arm64"]
+checksum = "sha256:e174dff2a6dba5e3ae41f8d0537a6324405bd08132497340304c6b20e0f16a1f"
+url = "https://github.com/aquasecurity/trivy/releases/download/v0.76.1/trivy_0.76.1_Linux-ARM64.tar.gz"
+url_api = "https://api.github.com/repos/aquasecurity/trivy/releases/assets/662254480"
+provenance = "cosign"
+
+[tools.trivy."platforms.linux-arm64-musl"]
+checksum = "sha256:e174dff2a6dba5e3ae41f8d0537a6324405bd08132497340304c6b20e0f16a1f"
+url = "https://github.com/aquasecurity/trivy/releases/download/v0.76.1/trivy_0.76.1_Linux-ARM64.tar.gz"
+url_api = "https://api.github.com/repos/aquasecurity/trivy/releases/assets/662254480"
+provenance = "cosign"
+
+[tools.trivy."platforms.linux-x64"]
+checksum = "sha256:c7cbe3137fb8a48a17574bede3dd6beb16742d1e9772929940fc90082c39d9c0"
+url = "https://github.com/aquasecurity/trivy/releases/download/v0.76.1/trivy_0.76.1_Linux-64bit.tar.gz"
+url_api = "https://api.github.com/repos/aquasecurity/trivy/releases/assets/662254617"
+provenance = "cosign"
+
+[tools.trivy."platforms.linux-x64-musl"]
+checksum = "sha256:c7cbe3137fb8a48a17574bede3dd6beb16742d1e9772929940fc90082c39d9c0"
+url = "https://github.com/aquasecurity/trivy/releases/download/v0.76.1/trivy_0.76.1_Linux-64bit.tar.gz"
+url_api = "https://api.github.com/repos/aquasecurity/trivy/releases/assets/662254617"
+provenance = "cosign"
+
+[tools.trivy."platforms.macos-arm64"]
+checksum = "sha256:11a9b6cd2752011b54f01ea4bd0dbfa9f0c41dc6538d5a3f9d23955f471bf4e5"
+url = "https://github.com/aquasecurity/trivy/releases/download/v0.76.1/trivy_0.76.1_macOS-ARM64.tar.gz"
+url_api = "https://api.github.com/repos/aquasecurity/trivy/releases/assets/662254764"
+provenance = "cosign"
+
+[tools.trivy."platforms.macos-x64"]
+checksum = "sha256:7aa762eacd582052d053b62dcf972a1ab058abe39a57ccae234ed8894945b6b7"
+url = "https://github.com/aquasecurity/trivy/releases/download/v0.76.1/trivy_0.76.1_macOS-64bit.tar.gz"
+url_api = "https://api.github.com/repos/aquasecurity/trivy/releases/assets/662254481"
+provenance = "cosign"
+
+[tools.trivy."platforms.windows-x64"]
+checksum = "sha256:1051f49cb22d5284f43425f72aad9cda63ca12ceb92e7caa06903490c82dc9bf"
+url = "https://github.com/aquasecurity/trivy/releases/download/v0.76.1/trivy_0.76.1_windows-64bit.zip"
+url_api = "https://api.github.com/repos/aquasecurity/trivy/releases/assets/662254788"
+provenance = "cosign"
 
 [[tools.uv]]
 version = "0.13.4"

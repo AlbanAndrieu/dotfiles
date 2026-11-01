@@ -25,6 +25,7 @@
 # !/.cursor/
 !/.codex/
 /.codex/*
+!/.codex/AGENTS.md
 !/.codex/config.toml
 !/.deepsource.toml
 !/.dive.yaml
@@ -132,6 +133,7 @@
 
 # !/.config/autostart/
 !/.config/direnv/
+!/.config/environment.d/
 !/.config/htop/
 !/.config/khal/
 !/.config/kubectl-ai/
@@ -143,6 +145,8 @@
 !/.config/opencode/
 # !/.config/pypoetry/
 !/.config/starship.toml
+# Public SSH defaults only; host inventory stays in the unversioned ~/.ssh/config.
+!/.config/ssh/
 # !/.config/systemd/
 !/.config/terminator/
 !/.config/gh/

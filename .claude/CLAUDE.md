@@ -6,6 +6,16 @@
   Le code, les identifiants et les messages de commit suivent les conventions
   du dépôt.
 
+## Contexte perso / Job
+
+- **Job** : MacBook Pro (macOS), shell ZSH, remotes GitHub Enterprise.
+  Livrables (code, docs, commits, PR) en anglais.
+- **Perso** : workstation Linux, Bash, remotes `github.com/AlbanAndrieu`.
+  Documentation et PR en français, sauf convention contraire du dépôt.
+- Ne jamais écrire le nom de l'employeur : écrire *Job*, *Office* ou *Mac*.
+  Dans un dépôt perso, aucune référence interne au Job (organisation, dépôt,
+  ticket ou URL GitHub Enterprise), y compris dans les commits, PR et CHANGELOG.
+
 ## Style de code
 
 - Respecter le `.editorconfig` du projet (et `~/.editorconfig` à défaut)
@@ -27,14 +37,16 @@ Pour éviter les demandes de confirmation inutiles du hook `rm-recursive-guard.p
 
 ## Git
 
-L'utilisateur relit le diff en local et indexe lui-même ce qu'il veut commiter :
+L'utilisateur relit le diff avant le push ou dans la PR :
 
-- Ne jamais indexer de fichiers : pas de `git add`, `git commit -a`,
-  `git commit <fichiers>`, `git stage` ni `git rm --cached`. Laisser les
-  changements non indexés.
-- Quand l'utilisateur demande un commit, commiter uniquement ce qu'il a déjà
-  indexé (`git commit` seul). Si rien n'est indexé, ou si un fichier modifié
-  semble manquer, le signaler et lui demander d'indexer plutôt que de le faire.
+- Indexer et commiter moi-même les fichiers que j'ai créés ou modifiés pour la
+  tâche en cours, en les nommant (`git add <fichier>`,
+  `git commit -- <fichiers>`). Jamais `git add -A`, `git add .` ni
+  `git commit -a`.
+- Ne jamais indexer, désindexer ni commiter les changements de l'utilisateur
+  (fichiers qu'il a modifiés ou indexés, non suivis qui ne sont pas les miens).
+- Lui demander d'indexer seulement si le commit touche au moins 20 fichiers,
+  ou si un même fichier mélange ses changements et les miens.
 - En fin de tâche, lister les fichiers modifiés et créés, pour qu'il sache quoi
   relire (`git diff` ne montre pas les nouveaux fichiers non suivis).
 
