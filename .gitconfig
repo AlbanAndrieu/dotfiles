@@ -201,11 +201,18 @@
 
 # URL shorthands
 
+# Fetch over HTTPS (gh token, no YubiKey): only pushes go through SSH and the FIDO2 key.
+[url "https://github.com/"]
+  insteadOf = "git@github.com:"
+  insteadOf = "github.com:"
+  insteadOf = "gh:"
 [url "git@github.com:"]
-
-	insteadOf = "gh:"
-	pushInsteadOf = "github:"
-	pushInsteadOf = "git://github.com/"
+  pushInsteadOf = "git@github.com:"
+  pushInsteadOf = "github.com:"
+  pushInsteadOf = "gh:"
+  pushInsteadOf = "https://github.com/"
+  pushInsteadOf = "github:"
+  pushInsteadOf = "git://github.com/"
 [url "git@gist.github.com:"]
 
 	insteadOf = "gst:"
@@ -247,3 +254,6 @@
 
 [credential]
 	helper = libsecret
+[credential "https://github.com"]
+  helper =
+  helper = !gh auth git-credential
