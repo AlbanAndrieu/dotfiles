@@ -1,0 +1,3 @@
+# nodeenv "latest" picks Node.js alpha releases (v27.0.0-alpha) and crashes parsing them
+[nodeenv]
+node = lts

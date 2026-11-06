@@ -3,7 +3,7 @@ creation_rules:
   # age only, so it decrypts without AWS credentials
   - path_regex: \.kube/config\.sops\.yaml$
     age: age1t8wn2gqcpzxwvwhjwxwtdwp0tvr6k2z9j39v4q2fr55qhmqz7f2qvn25cp
-  - path_regex: test.*\.yaml
+  - path_regex: \.env\.secrets\.yaml
     key_groups:
       # First key group
       - age:

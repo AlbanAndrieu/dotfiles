@@ -76,3 +76,5 @@ end
 brew "git-crypt"
 # Test your LLM app locally
 brew "promptfoo"
+# Collection of Linux utilities
+brew "util-linux"
