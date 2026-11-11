@@ -1,6 +1,6 @@
 # Workstation system inventory outside `$HOME`
 
-> **Architecture Option A (27 octobre 2026) :** voir [ownership](workstation-ownership.md) et [roadmap du dépôt](roadmap-workstation.md). Le script d'inventaire ici est transitoire ; la collecte système canonique appartient à `ansible-workstation` après validation d'équivalence.
+> **Architecture Option A (27 octobre 2026) :** voir [ownership](workstation-ownership.md) et [roadmap du dépôt](roadmap-workstation.md). Depuis le 11 novembre 2026, `bin/inspect-workstation-system.py` n'est plus qu'un wrapper : il lance `scripts/audit-workstation-inventory.py` du checkout `ansible-workstation` (`~/w/ansible-workstation`, ou `ANSIBLE_WORKSTATION_DIR`). Sorties comparées avant la bascule : même JSON v1, plus `provenance`, et même résumé. Les contrats du collecteur vivent dans `ansible-workstation`.
 
 
 ## Purpose
