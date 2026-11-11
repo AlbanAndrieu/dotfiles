@@ -6,7 +6,7 @@
 | --- | --- | --- | --- |
 | P0 | Maintenir `.bashrc`, Starship, Terminator, OpenClaw completions sécurisés | Démarrage interactif sans erreur, 7/7 contrats Bash et 4/4 PTY | Tests déjà observés PASS ; terminal neuf reste à confirmer |
 | P0 | Conserver la PR dotfiles #1 fusionnée comme référence, sans régression | `main` contient les réparations Direnv/mise sans état utilisateur perdu | Fusion vérifiée |
-| P1 | Extraire l'inventaire système canonique vers Ansible puis transformer l'ancien collecteur en wrapper | Un seul format JSON v1 et un seul collecteur actif ; comparaison des sorties | À faire dans le dépôt Ansible d'abord |
+| P1 | Extraire l'inventaire système canonique vers Ansible puis transformer l'ancien collecteur en wrapper | Un seul format JSON v1 et un seul collecteur actif ; comparaison des sorties | **FAIT (11/11)** : `bin/inspect-workstation-system.py` lance le collecteur d'`ansible-workstation` ; JSON identique (plus `provenance`) et résumé identique avant la bascule |
 | P1 | Inventorier les unités `systemd --user` et leurs dépendances | Unités versionnées sans secret, activation opt-in documentée | À faire |
 | P1 | Décrire un bootstrap utilisateur post-réinstallation, offline-first | Rejeu idempotent sur un `HOME` temporaire, sans écrasement | À faire |
 | P2 | Séparer les fichiers sensibles des dotfiles suivis | Tests d'ignore et absence de credentials dans Git | À faire |

@@ -23,7 +23,7 @@ Les `mise.toml`, `uv.lock` et `package-lock.json` restent au dépôt du **projet
 4. **Sauvegarder** : Restic chiffre les configurations et données nécessaires à la reprise ; les credentials Restic sont stockés hors Git ; une copie reste indépendante de la workstation et du NAS principal.
 5. **Restaurer** : restaurer et tester d'abord dans un emplacement isolé. Ne pas réinjecter aveuglément `/etc`, PAM, DNS ou les clés.
 
-Les scripts existants `bin/inspect-workstation-system.py` et `bin/test-workstation-system-inventory.py` restent compatibles **pendant la migration**. La collecte système canonique sera transférée à `ansible-workstation`, sans supprimer ces scripts avant équivalence testée. Le raccourci utilisateur pourra ensuite les invoquer dans le checkout Ansible ; ne pas faire une seconde implémentation.
+La collecte système canonique est dans `ansible-workstation` (`scripts/audit-workstation-inventory.py`). Depuis le 11 novembre 2026, après une comparaison des sorties (même JSON v1, plus `provenance`), `bin/inspect-workstation-system.py` n'est plus qu'un wrapper vers ce script, et `bin/test-workstation-system-inventory.py` ne teste plus que ce wrapper. Ne pas refaire une seconde implémentation.
 
 ## Frontière YubiKey
 
