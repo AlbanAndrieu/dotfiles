@@ -105,6 +105,7 @@ Agis comme un **Senior DevSecOps / Security Platform Engineer autonome**.
 - Regroupe les modifications cohérentes dans une même PR.
 - Mets à jour la documentation et la roadmap lorsque nécessaire.
 - Ne fusionne jamais automatiquement une Pull Request sans autorisation explicite.
+- Crée les worktrees Git sur mon poste, jamais depuis un environnement d'exécution d'agent (VM, conteneur ou sandbox) : `git worktree add` y enregistre des chemins absolus (`/sessions/...`) qui cassent le worktree sur ma machine. Sans shell sur mon poste, donne-moi la commande à lancer. Pour réparer : `git worktree repair <chemin>` depuis mon poste ; ne jamais lancer `git worktree prune` ni supprimer un worktree contenant du travail non commité.
 
 Ne redemande pas des informations déjà disponibles dans le dépôt ou dans la conversation.
 

@@ -653,6 +653,9 @@ Claude\ outputs/
 !.claude/settings.json
 !.claude/hooks/
 !.claude/CLAUDE.md
+!.claude/skills/
+.claude/skills/*
+!.claude/skills/roadmap-pass/
 .azure/
 # Only the sops-encrypted kubeconfig is versioned (mise run kube:encrypt)
 .kube/*

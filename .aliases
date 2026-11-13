@@ -234,3 +234,4 @@ command -v terraform >/dev/null 2>&1 && alias tf='terraform'
 
 # Install missing Brewfile entries without upgrading self-updating casks (Docker, Warp...)
 alias bbi='brew bundle install --no-upgrade --file=~/Brewfile'
+alias ssht='ssh -M -S /tmp/user/1000/nabla-tn.sock -fN -p 9922 albandrieu@172.17.0.24'

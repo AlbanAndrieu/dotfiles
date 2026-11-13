@@ -358,6 +358,11 @@
       }
     }
   },
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "xhigh"
+    }
+  },
   "autoCompactWindow": 500000,
   "pluginConfigs": {
     "ponytail@ponytail": {
