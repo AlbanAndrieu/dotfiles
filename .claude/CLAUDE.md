@@ -1,66 +1,25 @@
-# Instructions globales
+# Instructions globales — Claude Code
 
-## Langue
+Communiquer en **français**, avec le niveau d'expertise DevSecOps/sécurité d'un ingénieur senior. Les instructions de chaque dépôt restent prioritaires sur les préférences générales.
 
-- Répondre à l'utilisateur en français (résumés, explications, questions).
-  Le code, les identifiants et les messages de commit suivent les conventions
-  du dépôt.
+## Contexte et livrables
 
-## Contexte perso / Job
+- **Personnel** : workstation Linux/Bash, GitHub personnel ; documentation, roadmaps et descriptions de PR en français. Code/identifiants selon le dépôt.
+- **Job** : Mac/ZSH, GitHub Enterprise ; conversation en français, livrables professionnels (code, docs, commits et PR) en anglais. Ne jamais citer le nom de l'employeur ni réutiliser un identifiant interne dans un dépôt personnel.
+- Confirmer le contexte par le checkout/remote ; ne pas inférer Job/perso du système d'exploitation seul.
 
-- **Job** : MacBook Pro (macOS), shell ZSH, remotes GitHub Enterprise.
-  Livrables (code, docs, commits, PR) en anglais.
-- **Perso** : workstation Linux, Bash, remotes `github.com/AlbanAndrieu`.
-  Documentation et PR en français, sauf convention contraire du dépôt.
-- Ne jamais écrire le nom de l'employeur : écrire *Job*, *Office* ou *Mac*.
-  Dans un dépôt perso, aucune référence interne au Job (organisation, dépôt,
-  ticket ou URL GitHub Enterprise), y compris dans les commits, PR et CHANGELOG.
+## Accès et coût des diagnostics
 
-## Style de code
+- **Claude Code sur workstation réellement connectée** : choisir explicitement `AGENT_EXECUTION_MODE=workstation`; utiliser CPU local, outils déjà installés, `uv`/Just/mise, tests ciblés et sondes LAN à délai borné. Seul un accès réellement vérifié autorise la conclusion runtime.
+- **Codex distant / API-only / environnement restreint** : garder `AGENT_EXECUTION_MODE=offline` (défaut). Se limiter au code, GitHub PR/CI, à la documentation et aux tests exécutables ; ne jamais tenter SSH/Docker/TrueNAS/pfSense/Vaultwarden ou inventer un PASS. Fournir la commande de réception à exécuter sur la workstation.
+- Lire `AGENTS.md` du dépôt et **un skill pertinent à la fois** ; charger les références lourdes seulement pour un besoin identifié. Préférer `git diff`/recherches ciblées aux lectures récursives et aux logs entiers.
 
-- Respecter le `.editorconfig` du projet (et `~/.editorconfig` à défaut)
-  avant d'écrire un fichier.
-- Indentation : 2 espaces. Jamais de tabulations, sauf dans les `Makefile`.
-- Commenter seulement le pourquoi que le code ne peut pas montrer, en une
-  ligne (règle de ponytail).
+## Édition, Git et sécurité
 
-## Commandes Bash
+- Respecter `.editorconfig` (par défaut 2 espaces, Makefile excepté) ; commenter le pourquoi, sans verbosité inutile.
+- Indexer uniquement **ses propres fichiers explicitement** (`git add <fichier>`), jamais `git add -A`, `git add .` ni `git commit -a`. Ne pas mélanger les modifications de l'utilisateur ; demander arbitrage si un fichier mélange les deux ou si le commit dépasse 20 fichiers.
+- Travailler sur une branche de fonctionnalité, tester avant publication, conserver la PR Draft tant que les contrôles requis manquent ; ne jamais fusionner sans autorisation.
+- Ne jamais contourner hooks, quality gates, SAST/SCA/DAST ou scan secrets. Ne pas afficher `.env`, `env`/`printenv`, tokens, PIN ou clés ; vérifier uniquement la présence sans afficher la valeur. Pas de commande destructive/secret enchaînée dans un heredoc opaque.
+- Distinguer `CODED`, `TESTED`, `DEPLOYED`, `ACCEPTED`, `NOT_RUN` ; signifier les preuves absentes et le SHA visé.
 
-Pour éviter les demandes de confirmation inutiles du hook `rm-recursive-guard.py`
-(« Recursive rm guard: could not parse the command, confirm it ») :
-
-- Séparer les modifications, la validation (lint, tests, pre-commit) et la
-  création de PR en commandes distinctes.
-- Modifier les fichiers avec les outils Edit/Write plutôt qu'avec un heredoc
-  Python ou `sed` complexe.
-- Éviter de chaîner trop d'opérations (`&&`, `;`, `|`) dans une seule commande.
-
-## Git
-
-L'utilisateur relit le diff avant le push ou dans la PR :
-
-- Indexer et commiter moi-même les fichiers que j'ai créés ou modifiés pour la
-  tâche en cours, en les nommant (`git add <fichier>`,
-  `git commit -- <fichiers>`). Jamais `git add -A`, `git add .` ni
-  `git commit -a`.
-- Ne jamais indexer, désindexer ni commiter les changements de l'utilisateur
-  (fichiers qu'il a modifiés ou indexés, non suivis qui ne sont pas les miens).
-- Lui demander d'indexer seulement si le commit touche au moins 20 fichiers,
-  ou si un même fichier mélange ses changements et les miens.
-- En fin de tâche, lister les fichiers modifiés et créés, pour qu'il sache quoi
-  relire (`git diff` ne montre pas les nouveaux fichiers non suivis).
-
-## Garde-fous
-
-Appliqués par les hooks de `~/.claude/hooks/` (`guard-quality-gates.sh`,
-`guard-secret-exposure.sh`, `scan-output-for-secrets.sh`) :
-
-- Ne jamais contourner un hook git ou un quality gate (`--no-verify`,
-  `git commit -n`, variables lefthook ou `SKIP_*`, `core.hooksPath`) : corriger
-  le problème, ou signaler le check cassé à l'utilisateur, seul à décider de
-  le sauter.
-- Ne jamais afficher un secret (`echo` d'une variable `*_TOKEN`, `*_API_KEY`,
-  `*_SECRET`, `env`, `printenv`, un fichier `.env`, `az keyvault secret show`,
-  `gh auth token`…) : vérifier qu'il est défini (`[ -n "${VAR:-}" ]`) ou le
-  capturer dans `$(…)`. Un secret affiché doit être révoqué : le dire à
-  l'utilisateur.
+Le skill spécialisé [Talos](../.agents/skills/talos-os-expert/SKILL.md) et les guides tiers doivent être ouverts **à la demande**, jamais préchargés.
