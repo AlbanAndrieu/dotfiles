@@ -9,7 +9,7 @@ Read the project `AGENTS.md` and verify the **installed** Talos/Kubernetes versi
 
 ## Execution mode
 
-- **Codex offline / API-only:** inspect versioned `machineconfig`, manifests, Helm and test contracts; run available static checks and propose a targeted workstation acceptance procedure. Never attempt `talosctl`/LAN/secret commands or assert node health.
+- **Codex offline / API-only (`AGENT_EXECUTION_MODE=offline`):** inspect versioned `machineconfig`, manifests, Helm and test contracts; run available static checks and propose a targeted workstation acceptance procedure. Never attempt `talosctl`/LAN/secret commands or assert node health.
 - **Claude Code on a connected workstation:** explicit `AGENT_EXECUTION_MODE=workstation`; use installed `talosctl`, `kubectl` and local CPU for scoped read-only preflight, bounded by node/namespace/timeouts. A live mutation needs the project authorization, impact/recovery plan and rollback proof.
 - Talos has **no SSH/host apt**. Confirm etcd backup, API/RBAC, CNI, DNS, storage class, reclaim and multi-worker RWX before moving stateful workloads. Never silently replace the actual TrueNAS CSI driver with a historical `democratic-csi` reference.
 - Do not apply old default versions, disk paths, IPs or secrets from examples. Security and integrity are mandatory, even when homelab downtime is acceptable.
