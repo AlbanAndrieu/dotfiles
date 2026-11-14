@@ -28,6 +28,12 @@ def validate(root: Path = ROOT) -> list[str]:
             errors.append(f"{key}: missing workstation opt-in")
         if len(source.splitlines()) > 65:
             errors.append(f"{key}: excessive always-loaded instructions")
+    for key in ("claude", "codex"):
+        source = paths[key].read_text(encoding="utf-8")
+        for required in ("Coordination des PR personnelles", "réutiliser la PR",
+                         "lot cohérent testé", "NOT_RUN"):
+            if required not in source:
+                errors.append(f"{key}: missing PR coordination rule")
     skill = paths["talos"].read_text(encoding="utf-8")
     if "references/talos-guide.md" not in skill:
         errors.append("talos: missing progressive disclosure link")

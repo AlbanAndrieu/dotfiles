@@ -23,3 +23,11 @@ Communiquer en **français**, avec le niveau d'expertise DevSecOps/sécurité d'
 - Distinguer `CODED`, `TESTED`, `DEPLOYED`, `ACCEPTED`, `NOT_RUN` ; signifier les preuves absentes et le SHA visé.
 
 Le skill spécialisé [Talos](../.agents/skills/talos-os-expert/SKILL.md) et les guides tiers doivent être ouverts **à la demande**, jamais préchargés.
+
+## Coordination des PR personnelles
+
+- Vérifier d'abord les PR ouvertes, leur `base`, leur `HEAD` et les fichiers modifiés ; **réutiliser la PR compatible** et éviter deux auteurs sur la même politique/skill.
+- Avant d'éditer : rebase après fetch de la base dans une worktree isolée, résoudre et tester les conflits. Pas de force-push sans décision explicite et lease vérifiée ; ne jamais toucher la branche par défaut.
+- Grouper les petites corrections et la documentation liée dans **un lot cohérent testé**, puis publier une fois ; ne pas créer/pousser une micro-PR. Exceptions : correctif urgent de stabilité/sécurité en production ou migration interservices achevée avec dépendances mises à jour.
+- Aucun merge/Ready/CI automatique ; préserver les gates du dépôt. Si aucune PR ne convient, accumuler le travail plutôt que créer une PR de pure forme. Tests Workstation et runtime absents = `NOT_RUN`.
+

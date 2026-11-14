@@ -25,3 +25,19 @@ Utiliser les scripts `agent-diagnostics.sh` propres aux dépôts
 Le skill Talos global, auparavant très volumineux, est désormais un point de
 routage ; les exemples complets se trouvent dans
 [la référence Talos](../.agents/skills/talos-os-expert/references/talos-guide.md).
+
+## Protocole multi-dépôts — un seul propriétaire de modification
+
+La préférence opérateur est **PR existante d'abord**, mise à jour de la branche
+sur la base courante et résolution des conflits **avant les changements**.
+Une PR reste propriétaire des fichiers agents/skills/roadmap qu'elle modifie ;
+une deuxième PR fonctionnelle ne les réécrit pas en parallèle. Pour un rebase
+qui exige de réécrire l'historique publié, ne faire qu'un `--force-with-lease`
+explicitement autorisé et réinspecter la tête ; sinon choisir un merge revu.
+
+**Cadence :** accumuler les petits correctifs et publier une seule unité
+fonctionnelle ou documentaire cohérente après les tests ciblés et le gate
+local du dépôt. Exceptions : sécurité/disponibilité en production et migration
+structurante terminée nécessitant la synchronisation des dépendants. Une
+approbation de coupure du homelab ne vaut ni autorisation de perdre des données
+ni de contourner les secrets. L'automatisation n'effectue pas le merge.
