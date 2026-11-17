@@ -451,3 +451,11 @@ repos:
   #         - --filesonly
   #         - --flavor
   #         - "python"
+
+  # Analyze GitHub Actions security on staged workflow files, using the
+  # same pinned project-level zizmor version as nabla-compose.
+  - repo: https://github.com/zizmorcore/zizmor-pre-commit
+    rev: v1.31.1
+    hooks:
+      - id: zizmor
+        args: [--offline]
