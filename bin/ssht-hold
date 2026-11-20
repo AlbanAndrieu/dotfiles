@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+# Vacation exception for `ssht`: keep the TrueNAS SSH master open until a date.
+# The master is opened now (one YubiKey PIN + touch at the desk); no new touch is needed
+# while it lives. Meanwhile any process of this user can run commands on the host through
+# the socket: the window is capped, logged to the journal and hard-closed by a user timer.
+set -euo pipefail
+
+host="${2:-truenas}"
+max_days=31
+unit="ssht-hold-${host//[^A-Za-z0-9_-]/_}"
+
+usage() {
+  echo "Usage: ssht-hold YYYY-MM-DD[ HH:MM] [host]   open until that date (max ${max_days} days)" >&2
+  echo "       ssht-hold --status [host] | --cancel [host]" >&2
+  exit 2
+}
+
+case "${1:-}" in
+  ''|-h|--help) usage ;;
+  --status)
+    ssh -O check "${host}" || true
+    systemctl --user list-timers "${unit}.timer" --no-pager
+    exit 0 ;;
+  --cancel)
+    systemctl --user stop "${unit}.timer" 2>/dev/null || true
+    ssh -O exit "${host}" || true
+    logger -t ssht-hold "exception for ${host} cancelled"
+    exit 0 ;;
+esac
+
+end="$(date -d "$1" +%s 2>/dev/null)" || { echo "ERROR: unreadable date: $1" >&2; usage; }
+secs=$((end - $(date +%s)))
+((secs > 0)) || { echo "ERROR: $1 is in the past" >&2; exit 2; }
+((secs <= max_days * 86400)) || { echo "ERROR: more than ${max_days} days, renew it instead" >&2; exit 2; }
+until_txt="$(date -d "@${end}" '+%F %T')"
+
+# A running master keeps the ControlPersist it was opened with (4h for ssht): reopen it.
+ssh -O exit "${host}" 2>/dev/null || true
+ssh -fN -o ControlMaster=yes -o ControlPersist="${secs}s" \
+  -o ServerAliveInterval=60 -o ServerAliveCountMax=5 "${host}"
+
+# ControlPersist only counts idle time, so late use would outlive the window: hard stop at the end.
+systemctl --user stop "${unit}.timer" 2>/dev/null || true
+systemd-run --user --quiet --collect --unit="${unit}" --on-calendar="${until_txt}" ssh -O exit "${host}"
+
+logger -t ssht-hold "exception for ${host}: master open until ${until_txt}"
+echo "ssht-hold: ${host} open until ${until_txt}"
+echo "  check: ssht-hold --status ${host}   stop now: ssht-hold --cancel ${host}"
