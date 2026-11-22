@@ -48,7 +48,9 @@ bat = "latest"
 github-markdown-toc = "latest"
 # git pager (core.pager in ~/.gitconfig)
 delta = "latest"
-azure-cli = "2.91.0"
+# Azure CLI Python wheels/extensions are not yet reliably compatible with
+# the global Python 3.14 used by development tools. Keep only az on 3.12.
+azure-cli = { version = "2.91.0", python = "3.12" }
 shellcheck = "0.11.0"
 direnv = "2.38.2"
 kubeconform = "0.6.7"
