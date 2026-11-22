@@ -121,9 +121,13 @@ description = "🔓 Decrypt ~/.kube/config.sops.yaml into ~/.kube/config"
 run = '"$HOME/run-sops-encrypt.sh" decrypt kube'
 
 # Azure CLI and zizmor are already declared globally above.
-# These tasks add read-only Microsoft Graph access, not a new credential.
+# Login uses personal Entra Nabla browser/FIDO2; Graph tasks remain read-only.
+[tasks."entra:login"]
+description = "Interactive personal Entra Nabla browser sign-in; prefer YubiKey FIDO2"
+run = 'bash "$HOME/scripts/entra-graph-readonly.sh" login'
+
 [tasks."entra:verify-tenant"]
-description = "Read-only guard: ensure Azure CLI is using personal Entra test tenant"
+description = "Read-only guard: ensure Azure CLI is using personal Entra Nabla tenant"
 run = 'bash "$HOME/scripts/entra-graph-readonly.sh" verify'
 
 [tasks."entra:graph:me"]
