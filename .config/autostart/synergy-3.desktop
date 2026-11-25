@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Synergy 3
+Exec=/opt/Synergy/synergy-service
+# Disabled for now: on Wayland its server mode asks for the Capture Input portal in a loop.
+# Same name as /etc/xdg/autostart/synergy-3.desktop: only an identical name masks it.
+Hidden=true

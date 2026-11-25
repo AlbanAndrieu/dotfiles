@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=ExpressVPN Agent
+Exec=sleep 60 & /usr/bin/expressvpn-agent --daemon
+Icon=/usr/lib/expressvpn/icon.png
+Terminal=false
+Comment[en_US]=ExpressVPN Agent
+Comment=ExpressVPN Agent
+X-GNOME-Autostart-enabled=false

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=NVIDIA X Server Settings
+Comment=Configure NVIDIA X Server Settings
+Exec=sleep 500 && /usr/bin/nvidia-settings
+Terminal=false
+Icon=nvidia-settings
+Categories=System;Settings;
+X-GNOME-Autostart-enabled=false

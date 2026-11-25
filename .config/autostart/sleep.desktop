@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=sleep 500 && /home/albandrieu/.conky/conky-startup.sh
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=Conky
+Name=Conky
+Comment[en_US]=Conky
+Comment=Conky
