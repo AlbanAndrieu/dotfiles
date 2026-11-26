@@ -1,6 +1,8 @@
 {
   "permissions": {
     "allow": [
+      "Bash(gitleaks *)",
+      "Bash(pre-commit *)",
       "Bash(az rest --method get *)",
       "Bash(az rest --method post --uri *listSecrets*)",
       "Bash(az keyvault secret show *)",
@@ -133,6 +135,12 @@
             "type": "command",
             "command": "~/.claude/hooks/guard-secret-exposure.sh",
             "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "/usr/bin/python3 -I ~/.claude/hooks/block-apim-writes.py",
+            "timeout": 10,
+            "onFailure": "block"
           }
         ]
       },
@@ -380,7 +388,8 @@
     "hard_deny": [
       "$defaults",
       "Reading or printing SSH/GPG private keys (~/.ssh/id_* without .pub, ~/.ssh/private.asc, ~/.gnupg/private-keys-v1.d) by any means, including cat/head/base64 in Bash",
-      "Printing, echoing, quoting or copying secret values (~/.env.secrets, Vault, Key Vault, Kubernetes secrets, tokens) to the transcript, files, commits, or external services; secrets may only be passed to commands via env vars, files or pipes"
+      "Printing, echoing, quoting or copying secret values (~/.env.secrets, Vault, Key Vault, Kubernetes secrets, tokens) to the transcript, files, commits, or external services; secrets may only be passed to commands via env vars, files or pipes",
+      "Any change to Azure API Management, by any means (ARM or az rest PUT/PATCH/DELETE/POST on Microsoft.ApiManagement, *.azure-api.net management or Git endpoints, az apim create/update/delete/import/restore, Terraform or Bicep applies, clicks that save in the Azure portal APIM blades or the developer portal admin): no policy, logger, named value, subscription, backend, identity provider, diagnostic setting or role assignment change, even if the user asks; give the user the exact command or diff, its impact and its rollback to run themselves"
     ],
     "environment": [
       "### Org-wide",
