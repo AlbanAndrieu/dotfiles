@@ -170,6 +170,19 @@
 /.local/share/*
 # !/.local/share/applications/
 
+# Flatpak data: re-open each parent level, keep everything else ignored
+!/.var/
+/.var/*
+!/.var/app/
+/.var/app/*
+!/.var/app/org.deskflow.deskflow/
+/.var/app/org.deskflow.deskflow/*
+!/.var/app/org.deskflow.deskflow/config/
+/.var/app/org.deskflow.deskflow/config/*
+!/.var/app/org.deskflow.deskflow/config/Deskflow/
+/.var/app/org.deskflow.deskflow/config/Deskflow/*
+!/.var/app/org.deskflow.deskflow/config/Deskflow/deskflow-server.conf
+
 .gitconfig-override
 
 # Local env files may contain tokens
