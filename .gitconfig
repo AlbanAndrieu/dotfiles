@@ -254,7 +254,8 @@
 	path = ~/.gitconfig-override
 
 [credential]
-	helper = libsecret
+	# Keychain on the work Mac, libsecret on Ubuntu (includeIf has no OS condition)
+	helper = "!f() { if [ \"$(uname)\" = Darwin ]; then git credential-osxkeychain \"$@\"; else git credential-libsecret \"$@\"; fi; }; f"
 [credential "https://github.com"]
   helper =
   helper = !gh auth git-credential

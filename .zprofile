@@ -1,6 +1,5 @@
-# The following lines were added by Docker Desktop to add commands to your PATH.
-export PATH="$PATH:/Users/alban.andrieu/.docker/bin"
-# End of Docker Desktop section.
+# Docker Desktop CLI tools (absent when Docker Desktop is not installed)
+[ -d "$HOME/.docker/bin" ] && export PATH="$PATH:$HOME/.docker/bin"
 
 # macOS Terminal: disable per-tab history files (~/.zsh_sessions) so that
 # ~/.zsh_history is shared across tabs (see SHARE_HISTORY in ~/.zshrc)
