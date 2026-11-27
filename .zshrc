@@ -1,6 +1,3 @@
-grep -qxF '[[ -f ~/.aliases ]] && source ~/.aliases' ~/.zshrc || \
-  echo '[[ -f ~/.aliases ]] && source ~/.aliases' >> ~/.zshrc
-
 export PATH="$HOME/.local/bin:$PATH"
 
 # Completions for CLI tools (mostly installed by mise), cached as zsh

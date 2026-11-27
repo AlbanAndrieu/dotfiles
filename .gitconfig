@@ -242,9 +242,10 @@
 [tag]
 	forceSignAnnotated = true
 [gpg "ssh"]
-	allowedSignersFile = /home/albandrieu/.ssh/allowed_signers
+	allowedSignersFile = ~/.ssh/allowed_signers
 
-# Work identity override (must stay after [user])
+# Work identity override (must stay after [user]). ~/.gitconfig-override exists
+# only on the work Mac, so the ~/w rule is inert on the personal Ubuntu.
 [includeIf "gitdir:~/w/"]
 	path = ~/.gitconfig-override
 [includeIf "hasconfig:remote.*.url:*@*.ghe.com:*/**"]

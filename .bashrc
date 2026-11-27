@@ -165,7 +165,7 @@ export NIX_PATH="nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixpkgs:/n
 
 if [[ $TERM_PROGRAM != "WarpTerminal" && $TERM_PROGRAM != "vscode" ]]; then
   # Unsupported plugin/prompt code here, i.e.
-  
+
   echo "Loading env variables"
 
   if [ -f ${WORKSPACE_ENV}/home/dev.env.sh ]; then
@@ -174,8 +174,8 @@ if [[ $TERM_PROGRAM != "WarpTerminal" && $TERM_PROGRAM != "vscode" ]]; then
   fi
 
   # The next line updates PATH for the Google Cloud SDK.
-  if [ -f '/home/albandrieu/google-cloud-sdk/path.bash.inc' ]; then
-    . '/home/albandrieu/google-cloud-sdk/path.bash.inc';
+  if [ -f "$HOME/google-cloud-sdk/path.bash.inc" ]; then
+    . "$HOME/google-cloud-sdk/path.bash.inc";
   fi
 
   # The next line enables shell command completion for gcloud.
