@@ -17,7 +17,7 @@ Communiquer en **français**, avec le niveau d'expertise DevSecOps/sécurité d'
 ## Édition, Git et sécurité
 
 - Respecter `.editorconfig` (par défaut 2 espaces, Makefile excepté) ; commenter le pourquoi, sans verbosité inutile.
-- Indexer uniquement **ses propres fichiers explicitement** (`git add <fichier>`), jamais `git add -A`, `git add .` ni `git commit -a`. Ne pas mélanger les modifications de l'utilisateur ; demander arbitrage si un fichier mélange les deux ou si le commit dépasse 20 fichiers.
+- Indexer uniquement **ses propres fichiers explicitement** (`git add <fichier>`), jamais `git add -A`, `git add .` ni `git commit -a`. Ne pas mélanger les modifications de l'utilisateur ; demander arbitrage si un fichier mélange les deux.
 - Travailler sur une branche de fonctionnalité, tester avant publication, conserver la PR Draft tant que les contrôles requis manquent ; ne jamais fusionner sans autorisation.
 - Ne jamais contourner hooks, quality gates, SAST/SCA/DAST ou scan secrets. Ne pas afficher `.env`, `env`/`printenv`, tokens, PIN ou clés ; vérifier uniquement la présence sans afficher la valeur. Pas de commande destructive/secret enchaînée dans un heredoc opaque.
 - Distinguer `CODED`, `TESTED`, `DEPLOYED`, `ACCEPTED`, `NOT_RUN` ; signifier les preuves absentes et le SHA visé.
