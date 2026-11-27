@@ -27,6 +27,9 @@ alias gl='git log --oneline --decorate --graph -20'
 # Mise
 alias mi='mise install'
 alias mc='mise current'
+# Claude Code inside the current project's mise env, so .mcp.json ${VAR} headers
+# (MCP_OPS_KEY, DIAGNOSTICS_ACCESS_KEY from .env.local) reach the MCP clients.
+alias claudem='mise exec -- claude'
 
 # Homelab SSH masters: one PIN + touch each. ~/.config/ssh/common.conf names the socket
 # ~/.ssh/cm-%r@%h:%p, so scripts and BatchMode calls reuse it; never pass -S here.
