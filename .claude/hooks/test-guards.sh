@@ -93,6 +93,41 @@ check "${secrets}" 0 'set -euo pipefail'
 check "${secrets}" 0 'dotnet build'
 check "${secrets}" 0 'cat README.md'
 
+apim=block-apim-writes.py
+# The APIM markers are built at run time, so this file can run under the guard it tests.
+apim_type="Microsoft.$(printf Api)Management"
+apim_cli="az $(printf apim)"
+arm="https://management.azure.com/subscriptions/s/resourceGroups/r/providers/${apim_type}/service/a"
+check "${apim}" 2 "curl -sS -X PUT -H 'Content-Type: application/json' --data @p.json \"${arm}/apis/x/policies/policy?api-version=2024-05-01\""
+check "${apim}" 2 "B=${arm}; curl -sS -X DELETE -H 'If-Match: *' \"\$B/loggers/l?api-version=2024-05-01\""
+check "${apim}" 2 "az rest --method patch --url ${arm}/tenant/gitAccess --body '{}'"
+check "${apim}" 2 "az rest -m PUT --uri ${arm}/namedValues/n --body @nv.json"
+check "${apim}" 2 "az rest --method post --uri ${arm}/subscriptions/master/listSecrets"
+check "${apim}" 2 "curl --data '{}' https://a.management.azure-$(printf api).net/apis"
+check "${apim}" 2 "${apim_cli} nv update -g r -n a --named-value-id x --value y"
+check "${apim}" 2 "${apim_cli} delete -g r -n a --yes"
+check "${apim}" 2 "az monitor diagnostic-settings create --resource ${arm} -n d --logs '[]'"
+check "${apim}" 2 "az resource update --ids ${arm} --set properties.x=y"
+check "${apim}" 2 "az role assignment create --scope ${arm} --role Reader --assignee x"
+check "${apim}" 2 "python3 - <<'EOF'
+import urllib.request
+urllib.request.Request('${arm}/loggers/l', method='DELETE')
+EOF"
+check "${apim}" 2 "pwsh -c \"Invoke-RestMethod -Method Patch -Uri ${arm}\""
+printf 'import urllib.request\nurllib.request.Request("%s/apis/x", data=b"{}")\n' "${arm}" >"${fixture}/apim_write.py"
+check "${apim}" 2 "python3 -I ${fixture}/apim_write.py"
+check "${apim}" 0 "az rest --method get --url ${arm}/apis"
+check "${apim}" 0 "curl -sS -H 'Authorization: Bearer x' \"${arm}/apis?api-version=2024-05-01\""
+printf '{"note": "%s", "rule": "az rest --method post"}\n' "${apim_type}" >"${fixture}/apim_cfg.json"
+check "${apim}" 2 "az rest --method put --uri https://example.com/x --body @${fixture}/apim_cfg.json"
+check "${apim}" 0 "jq . ${fixture}/apim_cfg.json"
+check "${apim}" 0 "${apim_cli} show -g r -n a"
+check "${apim}" 0 "${apim_cli} api list -g r -n a"
+check "${apim}" 0 "az monitor activity-log list --namespace ${apim_type} --query \"[?contains(operationName.value, 'delete')]\""
+check "${apim}" 0 'curl -X PUT https://example.com/x'
+check "${apim}" 0 'az keyvault list'
+check "${apim}" 0 'gh workflow run apim-backup-daily'
+
 # The output scanner needs betterleaks; the fake token is built at run time so no file holds one.
 # The fixture repo has no .betterleaks.toml, so this also covers the default-rules fallback.
 if command -v betterleaks >/dev/null || mise which betterleaks >/dev/null 2>&1; then

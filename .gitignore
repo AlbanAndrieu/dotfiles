@@ -648,6 +648,8 @@ Claude\ outputs/
 .CFUserTextEncoding
 .localized
 .claude.json
+# Snowflake credentials: explicit even though /* already ignores it, so no future "!" re-include can expose it.
+/.snowflake/connections.toml
 .claude.json.backup*
 .claude/*
 !.claude/settings.json

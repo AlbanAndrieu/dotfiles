@@ -154,7 +154,7 @@ repos:
       - id: pyupgrade
         name: "🐍 python · Py Upgrade"
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.17.4
+    rev: v0.17.6
     hooks:
       - id: ruff-format
         name: "🐍 python · Format with Ruff"
@@ -181,7 +181,7 @@ repos:
   # This helps ensure cross-compatibility with people who don't wish to use uv
   - repo: https://github.com/astral-sh/uv-pre-commit
     # uv version.
-    rev: 0.13.7
+    rev: 0.13.10
     hooks:
       - id: uv-sync
         name: "⚡️ uv · Sync dependencies with uv"
@@ -253,7 +253,7 @@ repos:
 
   ### Notebooks ###
   - repo: https://github.com/nbQA-dev/nbQA
-    rev: 1.9.1
+    rev: 1.10.0
     hooks:
       - id: nbqa
         entry: nbqa mdformat
@@ -281,7 +281,7 @@ repos:
   #         - mdformat-frontmatter # YAML frontmatter support
   #         - ruff # Required for mdformat-ruff
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.50.0
+    rev: v0.50.1
     hooks:
       - id: markdownlint
         name: "📝 markdown · Lint markdown"
@@ -323,7 +323,7 @@ repos:
 
   ### Additional File Types ###
   - repo: https://github.com/rbubley/mirrors-prettier
-    rev: v3.9.10
+    rev: v3.10.1
     hooks:
       - id: prettier
         name: "✨ misc-files · Format misc web files"
@@ -410,7 +410,7 @@ repos:
 
   ### Commit Message Standards ###
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: v4.19.3
+    rev: v4.20.1
     hooks:
       - id: commitizen
         name: "🌳 git · Validate commit message"

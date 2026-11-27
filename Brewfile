@@ -78,3 +78,5 @@ brew "git-crypt"
 brew "promptfoo"
 # Collection of Linux utilities
 brew "util-linux"
+# Mouse and keyboard sharing utility
+cask "deskflow/tap/deskflow"
