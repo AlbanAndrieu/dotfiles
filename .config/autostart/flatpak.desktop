@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=flatpak run org.fkoehler.KTailctl
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=false
+Name[en_US]=KTailctl
+Name=KTailctl
+Comment[en_US]=KTailctl
+Comment=KTailctl

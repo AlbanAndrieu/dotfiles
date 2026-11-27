@@ -65,9 +65,8 @@ _.file = { path = "$HOME/.env.secrets.yaml", redact = true }
 # SONAR_TOKEN = "{{ env.SONARCLOUD_TOKEN }}"
 
 # TF_WORKSPACE = "development"
-AWS_REGION = "us-east-1"
-# AWS_PROFILE = "dev"
-AWS_PROFILE = "eks"
+# AWS_REGION = "us-east-1"
+# AWS_PROFILE = "eks"
 
 [tasks.plan]
 description = "Run terraform plan with configured workspace"

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Deskflow
+Comment=Mouse and keyboard sharing server (replaces Barrier and Synergy)
+# Named after the Flatpak app id, like the Background portal would; startCoreWithGui starts the server.
+Exec=/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=deskflow org.deskflow.deskflow
+Icon=org.deskflow.deskflow
+Terminal=false
+X-Flatpak=org.deskflow.deskflow
+X-GNOME-Autostart-enabled=true

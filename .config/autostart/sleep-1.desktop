@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=sleep 500 &&  sudo systemctl stop motion.service
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=false
+Name[en_US]=Motion-stop
+Name=Motion-stop
+Comment[en_US]=Motion stop
+Comment=Motion stop
