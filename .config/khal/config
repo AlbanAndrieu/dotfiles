@@ -6,7 +6,7 @@ type = discover
 readonly = False
 
 [sqlite]
-path = /home/albandrieu/.local/share/khal/khal.db
+path = ~/.local/share/khal/khal.db
 
 [locale]
 default_timezone = Europe/Paris

@@ -156,8 +156,8 @@ alias lumbermill='java -jar ${LUMBERMILL_HOME}/dist/lib/lumbermill.jar'
 
 alias mkctl="microk8s kubectl"
 
-#mkdir /home/albandrieu/.k9s
-alias k9s='k9s --kubeconfig /home/albandrieu/.kube/config'
+#mkdir ~/.k9s
+alias k9s='k9s --kubeconfig ~/.kube/config'
 alias dockviz="docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
 
 #rm ~/.gitconfig.lock
